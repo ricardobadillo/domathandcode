@@ -4,6 +4,7 @@ description: Sistemas de coordenadas cartesianas, cilíndricas y esféricas en R
 ---
 
 import SurfacePlot from '../../../components/SurfacePlot.astro';
+import SurfacePlotInteractive from '../../../components/SurfacePlotInteractive.astro';
 
 ### Coordenadas cartesianas:
 
@@ -68,4 +69,17 @@ $$
 	ymax={3}
 	resolution={32}
 	caption="Paraboloide de revolución"
+/>
+
+La misma figura puede explorarse de forma **interactiva** (girar, acercar y desplazar con el ratón):
+
+<SurfacePlotInteractive
+	fn="sin(x)*cos(y)"
+	label="z = \sin(x)\cos(y)"
+	xmin={-4}
+	xmax={4}
+	ymin={-4}
+	ymax={4}
+	resolution={70}
+	caption="Superficie interactiva con Plotly.js"
 />

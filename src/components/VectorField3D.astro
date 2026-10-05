@@ -1,0 +1,244 @@
+---
+import katex from 'katex';
+
+interface Props {
+  /** Componente x del campo F(x, y, z). */
+  fx: string;
+  /** Componente y del campo F(x, y, z). */
+  fy: string;
+  /** Componente z del campo F(x, y, z). */
+  fz: string;
+  xmin?: number;
+  xmax?: number;
+  ymin?: number;
+  ymax?: number;
+  zmin?: number;
+  zmax?: number;
+  /** Puntos por eje de la malla de flechas. */
+  resolution?: number;
+  /** Longitud máxima de las flechas (unidades de la escena). */
+  scale?: number;
+  /** Iguala la longitud de todas las flechas (sólo muestra la dirección). */
+  normalize?: boolean;
+  /** Altura del lienzo en píxeles. */
+  height?: number;
+  /** Fórmula en LaTeX para la leyenda. */
+  label?: string;
+  caption?: string;
+}
+
+const {
+  fx,
+  fy,
+  fz,
+  xmin = -2,
+  xmax = 2,
+  ymin = -2,
+  ymax = 2,
+  zmin = -2,
+  zmax = 2,
+  resolution = 5,
+  scale = 0.25,
+  normalize = false,
+  height = 480,
+  label,
+  caption,
+} = Astro.props;
+
+const labelTex = label ?? `\\vec{F} = \\big(${fx},\\ ${fy},\\ ${fz}\\big)`;
+const labelHtml = katex.renderToString(labelTex, { throwOnError: false });
+const description = caption ?? `Campo vectorial ${labelTex}`;
+const config = { fx, fy, fz, xmin, xmax, ymin, ymax, zmin, zmax, resolution, scale, normalize };
+---
+
+<figure class="vector-field-3d">
+  <div
+    class="plot"
+    style={`height:${height}px`}
+    data-vector-config={JSON.stringify(config)}
+    role="img"
+    aria-label={description}
+  >
+    <p class="loading">Cargando campo vectorial…</p>
+  </div>
+  <p class="hint">Arrastra para rotar · rueda para hacer zoom · clic derecho para desplazar</p>
+  <figcaption>
+    <span set:html={labelHtml} />
+    {caption && <span class="caption-text"> — {caption}</span>}
+  </figcaption>
+</figure>
+
+<script>
+  import { compileExpression, colormap } from '../lib/plot';
+  import { setupScene, addReferenceBox, startLoop } from '../lib/three-scene';
+
+  interface VectorConfig {
+    fx: string;
+    fy: string;
+    fz: string;
+    xmin: number;
+    xmax: number;
+    ymin: number;
+    ymax: number;
+    zmin: number;
+    zmax: number;
+    resolution: number;
+    scale: number;
+    normalize: boolean;
+  }
+
+  function toHex(color: [number, number, number]): number {
+    return (color[0] << 16) | (color[1] << 8) | color[2];
+  }
+
+  async function renderField(container: HTMLElement): Promise<void> {
+    const raw = container.dataset.vectorConfig;
+    if (!raw) return;
+
+    const config = JSON.parse(raw) as VectorConfig;
+    const { THREE, scene, camera, renderer, controls } = await setupScene(container);
+
+    const fX = compileExpression(config.fx, ['x', 'y', 'z']);
+    const fY = compileExpression(config.fy, ['x', 'y', 'z']);
+    const fZ = compileExpression(config.fz, ['x', 'y', 'z']);
+
+    const steps = Math.max(2, Math.floor(config.resolution));
+    const spanX = config.xmax - config.xmin || 1;
+    const spanY = config.ymax - config.ymin || 1;
+    const spanZ = config.zmax - config.zmin || 1;
+    const toSceneX = (value: number) => ((value - config.xmin) / spanX - 0.5) * 2;
+    const toSceneY = (value: number) => ((value - config.ymin) / spanY - 0.5) * 2;
+    const toSceneZ = (value: number) => ((value - config.zmin) / spanZ - 0.5) * 2;
+
+    interface Arrow {
+      origin: [number, number, number];
+      direction: [number, number, number];
+      magnitude: number;
+    }
+
+    const arrows: Arrow[] = [];
+    let maxMagnitude = 0;
+
+    for (let k = 0; k < steps; k++) {
+      const z = config.zmin + (spanZ * k) / (steps - 1);
+      for (let j = 0; j < steps; j++) {
+        const y = config.ymin + (spanY * j) / (steps - 1);
+        for (let i = 0; i < steps; i++) {
+          const x = config.xmin + (spanX * i) / (steps - 1);
+          const vx = fX(x, y, z);
+          const vy = fY(x, y, z);
+          const vz = fZ(x, y, z);
+          if (![vx, vy, vz].every((value) => Number.isFinite(value))) continue;
+
+          const dx = vx * (2 / spanX);
+          const dy = vz * (2 / spanZ);
+          const dz = vy * (2 / spanY);
+          const magnitude = Math.hypot(dx, dy, dz);
+          if (magnitude < 1e-9) continue;
+
+          maxMagnitude = Math.max(maxMagnitude, magnitude);
+          arrows.push({
+            origin: [toSceneX(x), toSceneZ(z), toSceneY(y)],
+            direction: [dx, dy, dz],
+            magnitude,
+          });
+        }
+      }
+    }
+
+    if (arrows.length === 0) throw new Error('El campo vectorial está vacío.');
+    if (maxMagnitude === 0) maxMagnitude = 1;
+
+    for (const arrow of arrows) {
+      const direction = new THREE.Vector3(...arrow.direction).normalize();
+      const length = config.normalize
+        ? config.scale
+        : config.scale * Math.min(1, arrow.magnitude / maxMagnitude) + config.scale * 0.15;
+      const color = toHex(colormap(arrow.magnitude / maxMagnitude));
+      const helper = new THREE.ArrowHelper(
+        direction,
+        new THREE.Vector3(...arrow.origin),
+        length,
+        color,
+        length * 0.3,
+        length * 0.18
+      );
+      scene.add(helper);
+    }
+
+    addReferenceBox(THREE, scene);
+    startLoop(renderer, scene, camera, controls);
+  }
+
+  function init(): void {
+    const containers = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-vector-config]')
+    );
+    for (const container of containers) {
+      renderField(container).catch((error) => {
+        console.error('VectorField3D:', error);
+        const loading = container.querySelector('.loading');
+        if (loading) loading.textContent = 'No se pudo cargar el campo vectorial.';
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+</script>
+
+<style>
+  .vector-field-3d {
+    margin: 1.5rem 0;
+  }
+
+  .plot {
+    width: 100%;
+    min-height: 320px;
+    border-radius: 0.5rem;
+    cursor: grab;
+  }
+
+  .plot:active {
+    cursor: grabbing;
+  }
+
+  .plot canvas {
+    display: block;
+    border-radius: 0.5rem;
+  }
+
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--sl-color-gray-3);
+    font-size: 0.95rem;
+  }
+
+  .hint {
+    margin: 0.35rem 0 0;
+    text-align: center;
+    color: var(--sl-color-gray-3);
+    font-size: 0.8rem;
+  }
+
+  figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.35rem;
+    color: var(--sl-color-gray-2);
+    font-size: 0.95rem;
+  }
+
+  .caption-text {
+    color: var(--sl-color-gray-3);
+  }
+</style>

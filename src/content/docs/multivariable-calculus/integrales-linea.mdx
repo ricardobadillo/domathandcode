@@ -3,6 +3,8 @@ title: Integrales de línea y de superficie
 description: Integrales de línea, de superficie y sus aplicaciones
 ---
 
+import ParametricCurve3D from '../../../components/ParametricCurve3D.astro';
+
 ### Integral de línea de un campo escalar:
 
 Sea $$C$$ una curva parametrizada por $$\gamma(t)$$ con $$a \leq t \leq b$$, y $$f$$ un campo escalar. Su integral de línea respecto a la longitud de arco es:
@@ -12,6 +14,19 @@ $$
 $$
 
 Si $$f = 1$$, se obtiene la **longitud** de la curva.
+
+Una hélice circular es un ejemplo típico de curva parametrizada:
+
+<ParametricCurve3D
+	x="cos(t)"
+	y="sin(t)"
+	z="t/(2*pi)"
+	tmin={0}
+	tmax={12.566370614359172}
+	samples={500}
+	label="\vec{r}(t) = (\cos t,\ \sin t,\ t/2\pi)"
+	caption="Hélice interactiva en el espacio"
+/>
 
 ### Integral de línea de un campo vectorial:
 

@@ -1,0 +1,211 @@
+---
+import katex from 'katex';
+
+interface Props {
+  /** Componente x(t) de la curva. */
+  x: string;
+  /** Componente y(t) de la curva. */
+  y: string;
+  /** Componente z(t) de la curva. */
+  z: string;
+  tmin?: number;
+  tmax?: number;
+  /** Número de puntos de muestreo. */
+  samples?: number;
+  /** Radio del tubo (en unidades de la escena). */
+  radius?: number;
+  /** Color de la curva (hexadecimal). */
+  color?: string;
+  /** Altura del lienzo en píxeles. */
+  height?: number;
+  /** Fórmula en LaTeX para la leyenda. */
+  label?: string;
+  caption?: string;
+}
+
+const {
+  x,
+  y,
+  z,
+  tmin = 0,
+  tmax = 6.283185307179586,
+  samples = 400,
+  radius = 0.03,
+  color = '#2f81f7',
+  height = 460,
+  label,
+  caption,
+} = Astro.props;
+
+const labelTex = label ?? `\\vec{r}(t) = \\big(${x},\\ ${y},\\ ${z}\\big)`;
+const labelHtml = katex.renderToString(labelTex, { throwOnError: false });
+const description = caption ?? `Curva paramétrica ${labelTex}`;
+const config = { x, y, z, tmin, tmax, samples, radius, color };
+---
+
+<figure class="parametric-curve-3d">
+  <div
+    class="plot"
+    style={`height:${height}px`}
+    data-curve-config={JSON.stringify(config)}
+    role="img"
+    aria-label={description}
+  >
+    <p class="loading">Cargando curva interactiva…</p>
+  </div>
+  <p class="hint">Arrastra para rotar · rueda para hacer zoom · clic derecho para desplazar</p>
+  <figcaption>
+    <span set:html={labelHtml} />
+    {caption && <span class="caption-text"> — {caption}</span>}
+  </figcaption>
+</figure>
+
+<script>
+  import { parseExpressionT } from '../lib/plot';
+  import { setupScene, addReferenceBox, startLoop } from '../lib/three-scene';
+
+  interface CurveConfig {
+    x: string;
+    y: string;
+    z: string;
+    tmin: number;
+    tmax: number;
+    samples: number;
+    radius: number;
+    color: string;
+  }
+
+  async function renderCurve(container: HTMLElement): Promise<void> {
+    const raw = container.dataset.curveConfig;
+    if (!raw) return;
+
+    const config = JSON.parse(raw) as CurveConfig;
+    const { THREE, scene, camera, renderer, controls } = await setupScene(container);
+
+    const fx = parseExpressionT(config.x);
+    const fy = parseExpressionT(config.y);
+    const fz = parseExpressionT(config.z);
+
+    const n = Math.max(2, Math.floor(config.samples));
+    const rawPoints: [number, number, number][] = [];
+    for (let i = 0; i <= n; i++) {
+      const t = config.tmin + ((config.tmax - config.tmin) * i) / n;
+      const px = fx(t);
+      const py = fy(t);
+      const pz = fz(t);
+      if ([px, py, pz].every((value) => Number.isFinite(value))) {
+        rawPoints.push([px, py, pz]);
+      }
+    }
+    if (rawPoints.length < 2) throw new Error('La curva no tiene puntos finitos.');
+
+    let minX = Infinity, maxX = -Infinity;
+    let minY = Infinity, maxY = -Infinity;
+    let minZ = Infinity, maxZ = -Infinity;
+    for (const [px, py, pz] of rawPoints) {
+      minX = Math.min(minX, px); maxX = Math.max(maxX, px);
+      minY = Math.min(minY, py); maxY = Math.max(maxY, py);
+      minZ = Math.min(minZ, pz); maxZ = Math.max(maxZ, pz);
+    }
+    const centerX = (minX + maxX) / 2;
+    const centerY = (minY + maxY) / 2;
+    const centerZ = (minZ + maxZ) / 2;
+    const span = Math.max(maxX - minX, maxY - minY, maxZ - minZ) || 1;
+    const scale = 2 / span;
+
+    const points = rawPoints.map(
+      ([px, py, pz]) =>
+        new THREE.Vector3((px - centerX) * scale, (pz - centerZ) * scale, (py - centerY) * scale)
+    );
+
+    const curve = new THREE.CatmullRomCurve3(points);
+    const geometry = new THREE.TubeGeometry(
+      curve,
+      Math.max(2, points.length),
+      config.radius,
+      10,
+      false
+    );
+    const material = new THREE.MeshStandardMaterial({
+      color: new THREE.Color(config.color),
+      roughness: 0.5,
+      metalness: 0.1,
+    });
+    scene.add(new THREE.Mesh(geometry, material));
+
+    addReferenceBox(THREE, scene);
+    startLoop(renderer, scene, camera, controls);
+  }
+
+  function init(): void {
+    const containers = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-curve-config]')
+    );
+    for (const container of containers) {
+      renderCurve(container).catch((error) => {
+        console.error('ParametricCurve3D:', error);
+        const loading = container.querySelector('.loading');
+        if (loading) loading.textContent = 'No se pudo cargar la curva interactiva.';
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+</script>
+
+<style>
+  .parametric-curve-3d {
+    margin: 1.5rem 0;
+  }
+
+  .plot {
+    width: 100%;
+    min-height: 320px;
+    border-radius: 0.5rem;
+    cursor: grab;
+  }
+
+  .plot:active {
+    cursor: grabbing;
+  }
+
+  .plot canvas {
+    display: block;
+    border-radius: 0.5rem;
+  }
+
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--sl-color-gray-3);
+    font-size: 0.95rem;
+  }
+
+  .hint {
+    margin: 0.35rem 0 0;
+    text-align: center;
+    color: var(--sl-color-gray-3);
+    font-size: 0.8rem;
+  }
+
+  figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.35rem;
+    color: var(--sl-color-gray-2);
+    font-size: 0.95rem;
+  }
+
+  .caption-text {
+    color: var(--sl-color-gray-3);
+  }
+</style>

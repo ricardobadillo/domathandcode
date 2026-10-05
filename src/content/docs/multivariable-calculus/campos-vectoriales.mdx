@@ -3,6 +3,8 @@ title: Campos vectoriales
 description: Campos vectoriales, divergencia, rotacional y potencial
 ---
 
+import VectorField3D from '../../../components/VectorField3D.astro';
+
 ### Definición:
 
 Un **campo vectorial** asigna a cada punto del espacio un vector:
@@ -16,6 +18,24 @@ Un ejemplo es el **campo gradiente** de una función escalar $$f$$:
 $$
 \mathbf{F} = \nabla f = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right).
 $$
+
+Un campo rotacional alrededor del eje vertical, $$\mathbf{F} = (-y,\, x,\, 0)$$:
+
+<VectorField3D
+	fx="-y"
+	fy="x"
+	fz="0"
+	xmin={-2}
+	xmax={2}
+	ymin={-2}
+	ymax={2}
+	zmin={-2}
+	zmax={2}
+	resolution={6}
+	scale={0.28}
+	label="\vec{F} = (-y,\ x,\ 0)"
+	caption="Campo vectorial interactivo: el color indica la magnitud"
+/>
 
 ### Divergencia:
 

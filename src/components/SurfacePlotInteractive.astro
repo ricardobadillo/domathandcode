@@ -1,0 +1,287 @@
+---
+import katex from 'katex';
+
+interface Props {
+  /** Expresión z = f(x, y). */
+  fn: string;
+  /** Fórmula en LaTeX para la leyenda (por defecto "z = <fn>"). */
+  label?: string;
+  xmin?: number;
+  xmax?: number;
+  ymin?: number;
+  ymax?: number;
+  zmin?: number;
+  zmax?: number;
+  /** Número de subdivisiones de la malla. */
+  resolution?: number;
+  /** Altura del lienzo en píxeles. */
+  height?: number;
+  caption?: string;
+}
+
+const {
+  fn,
+  label,
+  xmin = -5,
+  xmax = 5,
+  ymin = -5,
+  ymax = 5,
+  zmin,
+  zmax,
+  resolution = 60,
+  height = 520,
+  caption,
+} = Astro.props;
+
+const labelTex = label ?? `z = ${fn}`;
+const labelHtml = katex.renderToString(labelTex, { throwOnError: false });
+const description = caption ?? `Superficie interactiva de ${labelTex}`;
+const config = { fn, xmin, xmax, ymin, ymax, zmin, zmax, resolution };
+---
+
+<figure class="surface-plot-interactive">
+  <div
+    class="plot"
+    style={`height:${height}px`}
+    data-surface-config={JSON.stringify(config)}
+    role="img"
+    aria-label={description}
+  >
+    <p class="loading">Cargando gráfica interactiva…</p>
+  </div>
+  <p class="hint">Arrastra para rotar · rueda para hacer zoom · clic derecho para desplazar</p>
+  <figcaption>
+    <span set:html={labelHtml} />
+    {caption && <span class="caption-text"> — {caption}</span>}
+  </figcaption>
+</figure>
+
+<script>
+  import { parseExpression2, linspace, robustRange, colormap } from '../lib/plot';
+
+  interface SurfaceConfig {
+    fn: string;
+    xmin: number;
+    xmax: number;
+    ymin: number;
+    ymax: number;
+    zmin?: number;
+    zmax?: number;
+    resolution: number;
+  }
+
+  function clamp(value: number, min: number, max: number): number {
+    return Math.min(max, Math.max(min, value));
+  }
+
+  async function renderSurface(container: HTMLElement): Promise<void> {
+    const raw = container.dataset.surfaceConfig;
+    if (!raw) return;
+
+    const config = JSON.parse(raw) as SurfaceConfig;
+    const THREE = await import('three');
+    const { OrbitControls } = await import('three/examples/jsm/controls/OrbitControls.js');
+
+    const f = parseExpression2(config.fn);
+    const n = Math.max(2, Math.floor(config.resolution));
+    const xs = linspace(config.xmin, config.xmax, n);
+    const ys = linspace(config.ymin, config.ymax, n);
+
+    const grid: (number | null)[][] = ys.map((y) =>
+      xs.map((x) => {
+        try {
+          const value = f(x, y);
+          return Number.isFinite(value) ? value : null;
+        } catch {
+          return null;
+        }
+      })
+    );
+
+    const finite = grid.flat().filter((value): value is number => value !== null);
+    const [zLo, zHi] =
+      config.zmin !== undefined && config.zmax !== undefined
+        ? [config.zmin, config.zmax]
+        : robustRange(finite);
+
+    const spanX = config.xmax - config.xmin || 1;
+    const spanY = config.ymax - config.ymin || 1;
+    const spanZ = zHi - zLo || 1;
+    const normalizeX = (x: number) => ((x - config.xmin) / spanX - 0.5) * 2;
+    const normalizeY = (y: number) => ((y - config.ymin) / spanY - 0.5) * 2;
+    const normalizeZ = (z: number) => ((clamp(z, zLo, zHi) - zLo) / spanZ - 0.5) * 2;
+
+    const positions: number[] = [];
+    const colors: number[] = [];
+    const indices: number[] = [];
+    const vertexIndex: number[][] = [];
+
+    for (let j = 0; j <= n; j++) {
+      const row: number[] = [];
+      for (let i = 0; i <= n; i++) {
+        const z = grid[j]![i]!;
+        if (z === null) {
+          row.push(-1);
+          continue;
+        }
+        positions.push(normalizeX(xs[i]!), normalizeZ(z), normalizeY(ys[j]!));
+        const t = (clamp(z, zLo, zHi) - zLo) / spanZ;
+        const [r, g, b] = colormap(t);
+        colors.push(r / 255, g / 255, b / 255);
+        row.push(positions.length / 3 - 1);
+      }
+      vertexIndex.push(row);
+    }
+
+    for (let j = 0; j < n; j++) {
+      for (let i = 0; i < n; i++) {
+        const a = vertexIndex[j]![i]!;
+        const b = vertexIndex[j]![i + 1]!;
+        const c = vertexIndex[j + 1]![i + 1]!;
+        const d = vertexIndex[j + 1]![i]!;
+        if (a < 0 || b < 0 || c < 0 || d < 0) continue;
+        indices.push(a, b, d, b, c, d);
+      }
+    }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+    geometry.setIndex(indices);
+    geometry.computeVertexNormals();
+
+    const material = new THREE.MeshStandardMaterial({
+      vertexColors: true,
+      side: THREE.DoubleSide,
+      roughness: 0.6,
+      metalness: 0.05,
+    });
+    const mesh = new THREE.Mesh(geometry, material);
+
+    const scene = new THREE.Scene();
+    scene.add(mesh);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.1);
+    keyLight.position.set(1.6, 2.4, 1.6);
+    scene.add(keyLight);
+
+    const fillLight = new THREE.DirectionalLight(0xffffff, 0.4);
+    fillLight.position.set(-2, -1, -2);
+    scene.add(fillLight);
+
+    const axes = new THREE.AxesHelper(1.5);
+    scene.add(axes);
+
+    const boxLines = new THREE.LineSegments(
+      new THREE.EdgesGeometry(new THREE.BoxGeometry(2, 2, 2)),
+      new THREE.LineBasicMaterial({ color: 0x8a8a8a, transparent: true, opacity: 0.35 })
+    );
+    scene.add(boxLines);
+
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+    camera.position.set(2.3, 1.9, 2.7);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.target.set(0, 0, 0);
+    controls.update();
+
+    container.querySelector('.loading')?.remove();
+    container.appendChild(renderer.domElement);
+
+    const resize = () => {
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      if (width === 0 || height === 0) return;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    };
+    resize();
+
+    const observer = new ResizeObserver(resize);
+    observer.observe(container);
+
+    renderer.setAnimationLoop(() => {
+      controls.update();
+      renderer.render(scene, camera);
+    });
+  }
+
+  function init(): void {
+    const containers = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-surface-config]')
+    );
+    for (const container of containers) {
+      renderSurface(container).catch((error) => {
+        console.error('SurfacePlotInteractive:', error);
+        const loading = container.querySelector('.loading');
+        if (loading) loading.textContent = 'No se pudo cargar la gráfica interactiva.';
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+</script>
+
+<style>
+  .surface-plot-interactive {
+    margin: 1.5rem 0;
+  }
+
+  .plot {
+    width: 100%;
+    min-height: 320px;
+    border-radius: 0.5rem;
+    cursor: grab;
+  }
+
+  .plot:active {
+    cursor: grabbing;
+  }
+
+  .plot canvas {
+    display: block;
+    border-radius: 0.5rem;
+  }
+
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--sl-color-gray-3);
+    font-size: 0.95rem;
+  }
+
+  .hint {
+    margin: 0.35rem 0 0;
+    text-align: center;
+    color: var(--sl-color-gray-3);
+    font-size: 0.8rem;
+  }
+
+  figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.35rem;
+    color: var(--sl-color-gray-2);
+    font-size: 0.95rem;
+  }
+
+  .caption-text {
+    color: var(--sl-color-gray-3);
+  }
+</style>

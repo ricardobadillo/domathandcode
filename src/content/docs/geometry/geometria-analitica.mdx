@@ -5,6 +5,7 @@ description: Coordenadas, distancia, recta, circunferencia y cónicas
 
 import FunctionPlot from '../../../components/FunctionPlot.astro';
 import GeometryFigure from '../../../components/GeometryFigure.astro';
+import ParametricCurve3D from '../../../components/ParametricCurve3D.astro';
 
 ### Coordenadas cartesianas:
 
@@ -98,3 +99,22 @@ Se obtienen al cortar un cono con un plano:
 
 - Sumar una constante a $$x$$ o a $$y$$ **traslada** la gráfica.
 - Cambiar el signo de $$x$$ refleja respecto al eje $$y$$; cambiar el signo de $$y$$ refleja respecto al eje $$x$$.
+
+### Curvas paramétricas en el espacio:
+
+Así como una recta o una cónica se describen con ecuaciones en el plano, una curva en $$\mathbb{R}^3$$ se describe mediante una parametrización $$\mathbf{r}(t) = (x(t), y(t), z(t))$$. Un ejemplo clásico es la **cúbica alabeada**:
+
+$$
+\mathbf{r}(t) = (t,\ t^2,\ t^3).
+$$
+
+<ParametricCurve3D
+	x="t"
+	y="t^2"
+	z="t^3"
+	tmin={-2}
+	tmax={2}
+	samples={300}
+	label="\vec{r}(t) = (t,\ t^2,\ t^3)"
+	caption="Cúbica alabeada interactiva"
+/>

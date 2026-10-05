@@ -5,6 +5,7 @@ description: Derivadas parciales, plano tangente, gradiente y regla de la cadena
 
 import FunctionPlot from '../../../components/FunctionPlot.astro';
 import SurfacePlot from '../../../components/SurfacePlot.astro';
+import VectorField3D from '../../../components/VectorField3D.astro';
 
 ### Derivadas parciales:
 
@@ -56,6 +57,24 @@ $$
 $$
 
 El gradiente apunta en la dirección de **máximo crecimiento** de $$f$$ y es perpendicular a las superficies de nivel $$f = c$$.
+
+El campo gradiente de $$f(x, y, z) = x^2 + y^2 + z^2$$ es $$\nabla f = (2x, 2y, 2z)$$:
+
+<VectorField3D
+	fx="2*x"
+	fy="2*y"
+	fz="2*z"
+	xmin={-2}
+	xmax={2}
+	ymin={-2}
+	ymax={2}
+	zmin={-2}
+	zmax={2}
+	resolution={6}
+	scale={0.24}
+	label="\nabla f = (2x,\ 2y,\ 2z)"
+	caption="Campo gradiente: los vectores apuntan hacia afuera y crecen con la distancia"
+/>
 
 ### Derivada direccional:
 
