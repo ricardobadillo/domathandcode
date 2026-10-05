@@ -1,0 +1,84 @@
+---
+title: Regresión y correlación
+description: Regresión lineal, correlación y bondad de ajuste
+---
+
+import FunctionPlot from '../../../components/FunctionPlot.astro';
+
+### Diagrama de dispersión:
+
+El **diagrama de dispersión** representa los pares de datos $$(x_i, y_i)$$ y permite observar la forma de la relación entre dos variables cuantitativas: lineal, curvilínea o inexistente.
+
+### Covarianza:
+
+$$
+\operatorname{Cov}(X, Y) = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}).
+$$
+
+Su signo indica el sentido de la relación, pero depende de las unidades de medida.
+
+### Correlación de Pearson:
+
+El **coeficiente de correlación lineal** es:
+
+$$
+r = \frac{\operatorname{Cov}(X, Y)}{s_x s_y} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}},
+$$
+
+con $$-1 \leq r \leq 1$$. Valores cercanos a $$\pm 1$$ indican una relación lineal fuerte; $$r = 0$$ indica ausencia de relación lineal.
+
+### Recta de regresión:
+
+La **recta de regresión de $$Y$$ sobre $$X$$** por mínimos cuadrados es:
+
+$$
+\hat{y} = a + b x,
+$$
+
+con pendiente y ordenada en el origen:
+
+$$
+b = \frac{\operatorname{Cov}(X, Y)}{s_x^2} = r\, \frac{s_y}{s_x}, \qquad a = \bar{y} - b\bar{x}.
+$$
+
+La recta pasa siempre por el punto $$(\bar{x}, \bar{y})$$.
+
+<FunctionPlot
+	fn="0.8*x + 1.2"
+	label="\hat{y} = 0.8x + 1.2"
+	points={[
+		{ x: 1, y: 2.1 },
+		{ x: 2, y: 2.4 },
+		{ x: 3, y: 3.7 },
+		{ x: 4, y: 4.1 },
+		{ x: 5, y: 5.3 },
+		{ x: 6, y: 5.5 },
+		{ x: 7, y: 6.6 },
+	]}
+	pointsLabel="\text{datos}"
+	xmin={0}
+	xmax={8}
+	ymin={0}
+	ymax={8}
+	caption="Diagrama de dispersión y recta de mínimos cuadrados"
+/>
+
+### Coeficiente de determinación:
+
+El **coeficiente de determinación** mide la proporción de variabilidad de $$Y$$ explicada por el modelo:
+
+$$
+R^2 = r^2.
+$$
+
+Un $$R^2$$ cercano a $$1$$ indica un buen ajuste lineal.
+
+### Regresión múltiple:
+
+Con varias variables explicativas $$x_1, \dots, x_k$$, el modelo es:
+
+$$
+y = \beta_0 + \beta_1 x_1 + \cdots + \beta_k x_k + \varepsilon,
+$$
+
+cuyos coeficientes se estiman por mínimos cuadrados. Cada $$\beta_j$$ representa el cambio esperado en $$y$$ por unidad de cambio en $$x_j$$, manteniendo el resto constantes.

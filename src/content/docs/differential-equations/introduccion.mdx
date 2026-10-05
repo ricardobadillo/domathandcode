@@ -1,0 +1,71 @@
+---
+title: Introducción
+description: Definición, orden, solución general y problemas de valor inicial
+---
+
+import FunctionPlot from '../../../components/FunctionPlot.astro';
+
+### Definición:
+
+Una **ecuación diferencial** es una ecuación que relaciona una función incógnita con sus derivadas. Para una función $$y = y(x)$$, su forma general es:
+
+$$
+F\left(x, y, y', y'', \dots, y^{(n)}\right) = 0.
+$$
+
+El **orden** es el de la derivada más alta que aparece, y el **grado** es la potencia de esa derivada cuando la ecuación es polinómica en ellas.
+
+### Solución:
+
+Una función $$y = \phi(x)$$ es **solución** de la ecuación si, al sustituirla junto con sus derivadas, la ecuación se satisface idénticamente en un intervalo.
+
+- La **solución general** contiene tantas constantes arbitrarias como el orden de la ecuación.
+- Una **solución particular** se obtiene al fijar valores concretos a esas constantes.
+
+### Ejemplo:
+
+La ecuación de primer orden:
+
+$$
+\frac{dy}{dx} = y
+$$
+
+tiene por solución general:
+
+$$
+y(x) = C e^{x}, \qquad C \in \mathbb{R}.
+$$
+
+<FunctionPlot
+	fns={[
+		{ fn: 'exp(x)', label: 'C = 1' },
+		{ fn: '0.5*exp(x)', label: 'C = 1/2' },
+		{ fn: '-exp(x)', label: 'C = -1' },
+	]}
+	xmin={-2}
+	xmax={1.5}
+	ymin={-5}
+	ymax={5}
+	caption="Familia de soluciones y = Ceˣ de la ecuación y′ = y"
+/>
+
+### Problema de valor inicial (PVI):
+
+Un **problema de valor inicial** consiste en una ecuación diferencial junto con condiciones sobre la solución en un punto:
+
+$$
+\begin{cases}
+y' = f(x, y), \\
+y(x_0) = y_0.
+\end{cases}
+$$
+
+### Teorema de existencia y unicidad:
+
+Si $$f$$ y $$\dfrac{\partial f}{\partial y}$$ son continuas en un rectángulo que contiene a $$(x_0, y_0)$$, entonces el PVI tiene una única solución en algún entorno de $$x_0$$.
+
+### Clasificación:
+
+- **Ordinarias (EDO):** la incógnita depende de una sola variable.
+- **En derivadas parciales (EDP):** la incógnita depende de varias variables.
+- **Lineales:** la función y sus derivadas aparecen con exponente uno y sin productos entre ellas.

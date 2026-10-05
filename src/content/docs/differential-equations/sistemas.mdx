@@ -1,0 +1,67 @@
+---
+title: Sistemas de ecuaciones diferenciales
+description: Sistemas lineales, matriz fundamental y valores propios
+---
+
+### Forma matricial:
+
+Un **sistema lineal de primer orden** con coeficientes constantes se escribe:
+
+$$
+\mathbf{x}'(t) = A\, \mathbf{x}(t),
+$$
+
+donde $$\mathbf{x}(t) \in \mathbb{R}^n$$ y $$A$$ es una matriz constante $$n \times n$$. Con un término externo, el sistema es no homogéneo:
+
+$$
+\mathbf{x}' = A \mathbf{x} + \mathbf{b}(t).
+$$
+
+### Solución por valores propios:
+
+Se buscan soluciones de la forma $$\mathbf{x}(t) = e^{\lambda t} \mathbf{v}$$, con $$\lambda$$ valor propio y $$\mathbf{v}$$ vector propio de $$A$$:
+
+$$
+A \mathbf{v} = \lambda \mathbf{v}.
+$$
+
+- **Valores propios reales distintos** $$\lambda_1, \dots, \lambda_n$$ con vectores propios $$\mathbf{v}_1, \dots, \mathbf{v}_n$$:
+
+$$
+\mathbf{x}(t) = C_1 e^{\lambda_1 t} \mathbf{v}_1 + \cdots + C_n e^{\lambda_n t} \mathbf{v}_n.
+$$
+
+- **Valores propios repetidos:** si falta un vector propio, se añaden soluciones del tipo $$t e^{\lambda t}\mathbf{v} + e^{\lambda t}\mathbf{w}$$.
+- **Valores propios complejos** $$\lambda = \alpha \pm \beta i$$ con vector propio $$\mathbf{u} + i\mathbf{w}$$, aparecen soluciones reales:
+
+$$
+e^{\alpha t}\big( \cos(\beta t)\, \mathbf{u} - \sin(\beta t)\, \mathbf{w} \big), \qquad e^{\alpha t}\big( \sin(\beta t)\, \mathbf{u} + \cos(\beta t)\, \mathbf{w} \big).
+$$
+
+### Matriz fundamental:
+
+Una **matriz fundamental** $$\Phi(t)$$ tiene por columnas un conjunto fundamental de soluciones y cumple:
+
+$$
+\Phi'(t) = A\, \Phi(t), \qquad \det \Phi(t) \neq 0.
+$$
+
+La solución con condición inicial $$\mathbf{x}(0) = \mathbf{x}_0$$ es $$\mathbf{x}(t) = \Phi(t)\, \Phi(0)^{-1} \mathbf{x}_0$$.
+
+### Matriz exponencial:
+
+La **matriz exponencial** se define por la serie:
+
+$$
+e^{At} = \sum_{k=0}^{\infty} \frac{A^k t^k}{k!},
+$$
+
+y es una matriz fundamental con $$\Phi(0) = I$$, de modo que:
+
+$$
+\mathbf{x}(t) = e^{At} \mathbf{x}_0.
+$$
+
+### Retrato de fase:
+
+El **retrato de fase** representa las trayectorias en el plano. Según los valores propios, el origen es un **nodo**, un **punto de silla**, un **foco** o un **centro**, y puede ser **estable** o **inestable**.

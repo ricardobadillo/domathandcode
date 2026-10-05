@@ -1,0 +1,82 @@
+---
+title: Límites y continuidad
+description: Límite de funciones, discontinuidades, valor intermedio y continuidad uniforme
+---
+
+import FunctionPlot from '../../../components/FunctionPlot.astro';
+
+### Límite de una función:
+
+Sea $$f : A \subseteq \mathbb{R} \to \mathbb{R}$$ y $$a$$ un punto de acumulación de $$A$$. Se dice que:
+
+$$
+\lim_{x \to a} f(x) = L
+$$
+
+si:
+
+$$
+\forall \varepsilon > 0 \ \exists \delta > 0 : \ 0 < \lvert x - a \rvert < \delta \Rightarrow \lvert f(x) - L \rvert < \varepsilon.
+$$
+
+El valor $$f(a)$$ no interviene: el límite describe el comportamiento cerca de $$a$$, no en $$a$$.
+
+### Límites laterales:
+
+$$
+\lim_{x \to a^-} f(x), \qquad \lim_{x \to a^+} f(x).
+$$
+
+El límite existe **si y sólo si** ambos límites laterales existen y coinciden.
+
+### Álgebra de límites:
+
+Si $$\lim_{x \to a} f(x) = L$$ y $$\lim_{x \to a} g(x) = M$$, entonces:
+
+$$
+\lim (f \pm g) = L \pm M, \qquad \lim (f g) = LM, \qquad \lim \frac{f}{g} = \frac{L}{M} \ (M \neq 0).
+$$
+
+### Continuidad:
+
+$$f$$ es **continua** en $$a \in A$$ si:
+
+$$
+\lim_{x \to a} f(x) = f(a).
+$$
+
+Es decir, el límite existe, está definido $$f(a)$$ y ambos coinciden. La suma, producto, cociente (con denominador no nulo) y composición de funciones continuas es continua.
+
+### Tipos de discontinuidad:
+
+- **Evitable:** existe $$\lim_{x \to a} f(x)$$ pero no coincide con $$f(a)$$ (o $$f(a)$$ no existe).
+- **De salto:** los límites laterales existen pero son distintos.
+- **Asintótica (de segunda especie):** algún límite lateral es infinito.
+
+<FunctionPlot
+	fn="abs(x)/x"
+	label="f(x) = \dfrac{\lvert x \rvert}{x}"
+	xmin={-4}
+	xmax={4}
+	ymin={-2}
+	ymax={2}
+	caption="Discontinuidad de salto en x = 0"
+/>
+
+### Teorema del valor intermedio:
+
+Si $$f$$ es continua en $$[a, b]$$, entonces para todo valor $$y$$ entre $$f(a)$$ y $$f(b)$$ existe $$c \in (a, b)$$ con $$f(c) = y$$.
+
+### Teorema de Weierstrass:
+
+Si $$f$$ es continua en un intervalo cerrado y acotado $$[a, b]$$, entonces $$f$$ está acotada y alcanza su **máximo** y su **mínimo** absolutos.
+
+### Continuidad uniforme:
+
+$$f$$ es **uniformemente continua** en $$A$$ si:
+
+$$
+\forall \varepsilon > 0 \ \exists \delta > 0 : \ \forall x, y \in A, \ \lvert x - y \rvert < \delta \Rightarrow \lvert f(x) - f(y) \rvert < \varepsilon.
+$$
+
+Aquí $$\delta$$ depende sólo de $$\varepsilon$$, no del punto. Toda función continua en un **compacto** $$[a, b]$$ es uniformemente continua (teorema de Heine-Cantor).

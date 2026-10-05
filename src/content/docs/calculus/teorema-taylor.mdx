@@ -1,0 +1,69 @@
+---
+title: Teorema de Taylor
+description: Polinomios de Taylor, resto y series de Taylor
+---
+
+import FunctionPlot from '../../../components/FunctionPlot.astro';
+
+### Aproximación polinómica:
+
+Si $$f$$ tiene $$n$$ derivadas en $$x_0$$, su **polinomio de Taylor** de orden $$n$$ es:
+
+$$
+P_n(x) = \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!} (x - x_0)^k.
+$$
+
+Es el único polinomio de grado $$\leq n$$ que coincide con $$f$$ y sus derivadas hasta orden $$n$$ en $$x_0$$.
+
+### Teorema de Taylor:
+
+Si $$f$$ es $$n+1$$ veces derivable en un intervalo que contiene a $$x_0$$ y a $$x$$, entonces:
+
+$$
+f(x) = P_n(x) + R_n(x),
+$$
+
+donde el **resto de Lagrange** es, para algún $$\xi$$ entre $$x_0$$ y $$x$$:
+
+$$
+R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x - x_0)^{n+1}.
+$$
+
+### Series de Maclaurin:
+
+Con $$x_0 = 0$$ se obtienen los desarrollos más habituales, válidos en su radio de convergencia:
+
+$$
+e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}, \qquad x \in \mathbb{R},
+$$
+
+$$
+\sin x = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!}, \qquad \cos x = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n}}{(2n)!},
+$$
+
+$$
+\ln(1 + x) = \sum_{n=1}^{\infty} \frac{(-1)^{n+1} x^n}{n}, \qquad -1 < x \leq 1,
+$$
+
+$$
+(1 + x)^\alpha = \sum_{n=0}^{\infty} \binom{\alpha}{n} x^n, \qquad |x| < 1.
+$$
+
+<FunctionPlot
+	fns={[
+		{ fn: 'sin(x)', label: '\sin x' },
+		{ fn: 'x - x^3/6', label: 'P_3(x)', dash: true },
+		{ fn: 'x - x^3/6 + x^5/120', label: 'P_5(x)', dash: true },
+	]}
+	xmin={-6}
+	xmax={6}
+	ymin={-2}
+	ymax={2}
+	caption="Aproximaciones de Maclaurin del seno alrededor de x = 0"
+/>
+
+### Aplicaciones:
+
+- **Cálculo de límites** sustituyendo por desarrollos truncados.
+- **Aproximaciones numéricas** con cota del error dada por $$R_n$$.
+- **Estudio de extremos** mediante las derivadas sucesivas.

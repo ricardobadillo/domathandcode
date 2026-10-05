@@ -1,0 +1,93 @@
+---
+title: Fundamentos
+description: Puntos, rectas, planos, segmentos y ángulos
+---
+
+import GeometryFigure from '../../../components/GeometryFigure.astro';
+
+### Entes primitivos:
+
+La geometría parte de tres conceptos que se aceptan sin definición: el **punto**, la **recta** y el **plano**. Un punto se denota con una mayúscula ($$A$$, $$B$$), una recta con una minúscula ($$r$$, $$s$$) o mediante dos de sus puntos ($$\overleftrightarrow{AB}$$), y un plano con una letra griega ($$\pi$$).
+
+### Segmentos y semirrectas:
+
+- **Segmento** $$\overline{AB}$$: porción de recta limitada por los puntos $$A$$ y $$B$$; su longitud es $$\lvert AB \rvert$$.
+- **Punto medio**: punto que divide un segmento en dos partes iguales.
+- **Semirrecta**: porción de recta con un origen fijo que se extiende indefinidamente en un sentido.
+- **Recta**: sucesión infinita de puntos en una misma dirección.
+
+### Ángulos:
+
+Un **ángulo** es la región formada por dos semirrectas con un origen común llamado **vértice**. Se denota $$\angle ABC$$, con vértice en $$B$$.
+
+$$
+1\ \text{rad} = \frac{180^\circ}{\pi}, \qquad 180^\circ = \pi\ \text{rad}.
+$$
+
+Según su medida, un ángulo puede ser:
+
+1. **Agudo:** $$< 90^\circ$$.
+2. **Recto:** $$= 90^\circ$$.
+3. **Obtuso:** $$> 90^\circ$$ y $$< 180^\circ$$.
+4. **Llano:** $$= 180^\circ$$.
+5. **Completo:** $$= 360^\circ$$.
+
+Dos ángulos son **complementarios** si suman $$90^\circ$$ y **suplementarios** si suman $$180^\circ$$.
+
+<GeometryFigure
+	caption="Ángulo ∠ABC con vértice en B"
+	elements={[
+		{ type: 'segment', from: [60, 260], to: [200, 260] },
+		{ type: 'segment', from: [200, 260], to: [330, 90] },
+		{ type: 'angle', at: [200, 260], from: [60, 260], to: [330, 90], radius: 42, label: 'α' },
+		{ type: 'point', at: [200, 260], label: 'B', labelOffset: [0, 24] },
+		{ type: 'point', at: [60, 260], label: 'A', labelOffset: [-16, 4] },
+		{ type: 'point', at: [330, 90], label: 'C', labelOffset: [14, -4] },
+	]}
+/>
+
+### Posiciones relativas de dos rectas:
+
+1. **Paralelas:** no se cortan ($$r \parallel s$$).
+2. **Secantes:** se cortan en un punto.
+3. **Perpendiculares:** se cortan formando cuatro ángulos rectos ($$r \perp s$$).
+4. **Coincidentes:** todos sus puntos son comunes.
+
+<GeometryFigure
+	caption="Dos rectas perpendiculares (r ⟂ s)"
+	elements={[
+		{ type: 'segment', from: [60, 190], to: [360, 190] },
+		{ type: 'segment', from: [210, 60], to: [210, 310] },
+		{ type: 'angle', at: [210, 190], from: [60, 190], to: [210, 60], right: true, radius: 18 },
+		{ type: 'label', at: [372, 196], text: 'r' },
+		{ type: 'label', at: [218, 52], text: 's' },
+	]}
+/>
+
+### Ángulos entre paralelas:
+
+Cuando una recta transversal corta a dos paralelas, se cumple:
+
+- Los **ángulos correspondientes** son iguales.
+- Los **ángulos alternos internos** son iguales.
+- Los **ángulos conjugados internos** son suplementarios.
+
+<GeometryFigure
+	caption="Rectas paralelas r y s cortadas por una transversal t: los ángulos correspondientes α son iguales"
+	elements={[
+		{ type: 'segment', from: [60, 110], to: [360, 110] },
+		{ type: 'segment', from: [60, 230], to: [360, 230] },
+		{ type: 'segment', from: [110, 40], to: [300, 300] },
+		{ type: 'angle', at: [161.2, 110], from: [60, 110], to: [110, 40], radius: 26, label: 'α' },
+		{ type: 'angle', at: [248.8, 230], from: [60, 230], to: [161.2, 110], radius: 26, label: 'α' },
+		{ type: 'label', at: [372, 116], text: 'r' },
+		{ type: 'label', at: [372, 236], text: 's' },
+		{ type: 'label', at: [306, 300], text: 't' },
+	]}
+/>
+
+### Postulados de la geometría euclidiana:
+
+1. Por dos puntos distintos pasa una única recta.
+2. Por un punto exterior a una recta pasa una única recta paralela a ella.
+3. La suma de los ángulos interiores de un triángulo es $$180^\circ$$.

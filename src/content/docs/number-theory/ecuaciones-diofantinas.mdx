@@ -1,0 +1,68 @@
+---
+title: Ecuaciones diofantinas
+description: Ecuaciones diofantinas lineales y no lineales
+---
+
+### Definición:
+
+Una **ecuación diofantina** es una ecuación polinómica cuyas soluciones se buscan en los números enteros:
+
+$$
+P(x_1, x_2, \dots, x_n) = 0, \qquad x_i \in \mathbb{Z}.
+$$
+
+### Ecuación lineal $$ax + by = c$$:
+
+Sean $$a, b, c \in \mathbb{Z}$$ con $$a, b$$ no ambos nulos. La ecuación:
+
+$$
+ax + by = c
+$$
+
+tiene solución entera si y sólo si:
+
+$$
+d = \gcd(a, b) \mid c.
+$$
+
+En tal caso, si $$(x_0, y_0)$$ es una solución particular (obtenida con la identidad de Bézout), la **solución general** es:
+
+$$
+x = x_0 + \frac{b}{d} t, \qquad y = y_0 - \frac{a}{d} t, \qquad t \in \mathbb{Z}.
+$$
+
+### Ternas pitagóricas:
+
+Las soluciones enteras positivas de:
+
+$$
+x^2 + y^2 = z^2
+$$
+
+son, para $$m > n > 0$$ primos entre sí y de paridad distinta:
+
+$$
+x = m^2 - n^2, \qquad y = 2mn, \qquad z = m^2 + n^2.
+$$
+
+### Descenso infinito:
+
+El **descenso infinito** es una técnica de demostración por contradicción: si una solución produce otra estrictamente menor y positiva, se genera una cadena infinita decreciente de enteros positivos, lo cual es imposible. Fermat la usó para probar que no hay soluciones no triviales de:
+
+$$
+x^4 + y^4 = z^4.
+$$
+
+### Ecuación de Pell:
+
+La **ecuación de Pell** es:
+
+$$
+x^2 - D y^2 = 1, \qquad D \in \mathbb{N} \text{ no cuadrado perfecto}.
+$$
+
+Tiene infinitas soluciones, generadas a partir de la **solución fundamental** $$(x_1, y_1)$$ mediante:
+
+$$
+x_k + y_k \sqrt{D} = (x_1 + y_1 \sqrt{D})^k.
+$$

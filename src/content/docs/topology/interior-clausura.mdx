@@ -1,0 +1,55 @@
+---
+title: Interior, clausura y frontera
+description: Interior, clausura, frontera, puntos de acumulación y conjuntos densos
+---
+
+### Interior:
+
+El **interior** de $$A \subseteq X$$ es el mayor abierto contenido en $$A$$:
+
+$$
+\operatorname{int}(A) = \bigcup \{ U \in \tau : U \subseteq A \}.
+$$
+
+Un punto $$x \in \operatorname{int}(A)$$ es un **punto interior**: existe un abierto $$U$$ con $$x \in U \subseteq A$$.
+
+### Clausura:
+
+La **clausura** (o adherencia) de $$A$$ es el menor cerrado que contiene a $$A$$:
+
+$$
+\bar{A} = \bigcap \{ F \subseteq X : F \text{ cerrado},\ A \subseteq F \}.
+$$
+
+Equivalentemente, $$x \in \bar{A}$$ si todo abierto que contiene a $$x$$ corta a $$A$$.
+
+### Frontera:
+
+La **frontera** de $$A$$ es el conjunto de puntos que pertenecen a la clausura de $$A$$ y de su complemento:
+
+$$
+\partial A = \bar{A} \cap \overline{X \setminus A}.
+$$
+
+Se cumple la relación fundamental:
+
+$$
+X = \operatorname{int}(A) \;\dot\cup\; \partial A \;\dot\cup\; \operatorname{int}(X \setminus A),
+$$
+
+y en particular $$\bar{A} = \operatorname{int}(A) \cup \partial A$$.
+
+### Puntos de acumulación:
+
+Un punto $$x$$ es de **acumulación** de $$A$$ si todo abierto que lo contiene contiene algún punto de $$A$$ distinto de $$x$$. El conjunto de puntos de acumulación es la **clausura menos los puntos aislados**. Un punto es **aislado** si es de $$A$$ pero no de acumulación.
+
+### Conjuntos densos:
+
+$$A$$ es **denso** en $$X$$ si $$\bar{A} = X$$, es decir, si todo abierto no vacío corta a $$A$$. Por ejemplo, $$\mathbb{Q}$$ es denso en $$\mathbb{R}$$.
+
+### Propiedades:
+
+1. $$A \subseteq \bar{A}$$ y $$A$$ es cerrado si y sólo si $$A = \bar{A}$$.
+2. $$A$$ es abierto si y sólo si $$A = \operatorname{int}(A)$$.
+3. $$\overline{A \cup B} = \bar{A} \cup \bar{B}$$ y $$\operatorname{int}(A \cap B) = \operatorname{int}(A) \cap \operatorname{int}(B)$$.
+4. $$\partial A = \partial(X \setminus A)$$ y $$\partial A$$ es siempre cerrado.

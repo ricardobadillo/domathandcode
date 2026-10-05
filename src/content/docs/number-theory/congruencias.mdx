@@ -1,0 +1,100 @@
+---
+title: Congruencias
+description: Definición de congruencia, propiedades, congruencias lineales y teorema de Fermat
+---
+
+### Definición:
+
+Sean $$a, b \in \mathbb{Z}$$ y $$m > 0$$ un entero. Se dice que $$a$$ es **congruente** con $$b$$ módulo $$m$$, y se escribe:
+
+$$
+a \equiv b \pmod{m},
+$$
+
+si $$m \mid (a - b)$$. Equivalentemente, existe un entero $$k$$ tal que:
+
+$$
+a - b = km.
+$$
+
+### Propiedades de la congruencia:
+
+Para todo $$a, b, c, d \in \mathbb{Z}$$ y $$m > 0$$:
+
+1. **Reflexiva:** $$a \equiv a \pmod{m}.$$
+2. **Simétrica:** si $$a \equiv b \pmod{m}$$, entonces $$b \equiv a \pmod{m}$$.
+3. **Transitiva:** si $$a \equiv b \pmod{m}$$ y $$b \equiv c \pmod{m}$$, entonces $$a \equiv c \pmod{m}$$.
+4. Si $$a \equiv b \pmod{m}$$ y $$c \equiv d \pmod{m}$$, entonces:
+   $$
+   a + c \equiv b + d \pmod{m} \quad \text{y} \quad ac \equiv bd \pmod{m}.
+   $$
+
+### Clases de congruencia:
+
+La congruencia módulo $$m$$ divide a $$\mathbb{Z}$$ en $$m$$ **clases de equivalencia**, llamadas **clases de residuos**:
+
+$$
+[0], [1], [2], \dots, [m-1].
+$$
+
+El conjunto de estas clases se denota $$\mathbb{Z}_m$$ y forma un anillo conmutativo con identidad.
+
+### Inversos módulo m:
+
+Un entero $$a$$ tiene **inverso modular** módulo $$m$$ si existe $$x$$ tal que:
+
+$$
+ax \equiv 1 \pmod{m}.
+$$
+
+El inverso existe si y sólo si $$\gcd(a, m) = 1$$, es decir, si $$a$$ es coprimo con $$m$$.
+
+### Congruencias lineales:
+
+Una congruencia lineal tiene la forma:
+
+$$
+ax \equiv b \pmod{m}.
+$$
+
+Tiene solución si y sólo si $$d = \gcd(a, m)$$ divide a $$b$$, en cuyo caso admite exactamente $$d$$ soluciones módulo $$m$$. Puede resolverse mediante el **algoritmo extendido de Euclides**.
+
+### Teorema chino del resto:
+
+Si $$m_1, m_2, \dots, m_k$$ son enteros positivos **coprimos dos a dos**, el sistema de congruencias:
+
+$$
+x \equiv r_1 \pmod{m_1}, \quad x \equiv r_2 \pmod{m_2}, \quad \dots, \quad x \equiv r_k \pmod{m_k}
+$$
+
+tiene una solución única módulo $$M = m_1 m_2 \cdots m_k$$.
+
+### Teorema de Fermat:
+
+Si $$p$$ es primo y $$p \nmid a$$, entonces:
+
+$$
+a^{p-1} \equiv 1 \pmod{p}.
+$$
+
+En consecuencia, para cualquier entero $$a$$:
+
+$$
+a^p \equiv a \pmod{p}.
+$$
+
+### Teorema de Euler (generalización):
+
+La **función de Euler** $$\varphi(n)$$ cuenta cuántos enteros entre $$1$$ y $$n$$ son coprimos con $$n$$. Si $$\gcd(a, n) = 1$$, entonces:
+
+$$
+a^{\varphi(n)} \equiv 1 \pmod{n}.
+$$
+
+### Ejemplo:
+
+Para resolver $$x \equiv 2 \pmod{3}$$ y $$x \equiv 3 \pmod{5}$$, como $$3$$ y $$5$$ son coprimos, el sistema tiene solución única módulo $$15$$, y se comprueba que:
+
+$$
+x \equiv 8 \pmod{15}.
+$$

@@ -1,0 +1,79 @@
+---
+title: Sucesiones y series
+description: Convergencia de sucesiones y series, criterios y series de potencias
+---
+
+import FunctionPlot from '../../../components/FunctionPlot.astro';
+
+### Sucesiones:
+
+Una **sucesión** de números reales es una función $$a : \mathbb{N} \to \mathbb{R}$$, que se escribe $$(a_n)_{n \geq 1}$$. **Converge** a $$L \in \mathbb{R}$$, y se escribe $$\lim_{n \to \infty} a_n = L$$, si para todo $$\varepsilon > 0$$ existe $$N$$ tal que:
+
+$$
+n \geq N \implies |a_n - L| < \varepsilon.
+$$
+
+Si no converge, **diverge**. Toda sucesión **acotada y monótona** converge.
+
+### Series numéricas:
+
+Dada una sucesión $$(a_n)$$, la serie $$\sum_{n=1}^{\infty} a_n$$ es el límite de las **sumas parciales**:
+
+$$
+S_N = \sum_{n=1}^{N} a_n, \qquad \sum_{n=1}^{\infty} a_n = \lim_{N \to \infty} S_N.
+$$
+
+**Condición necesaria:** si la serie converge, entonces $$a_n \to 0$$; el recíproco es falso (serie armónica).
+
+### Series notables:
+
+**Geométrica:**
+
+$$
+\sum_{n=0}^{\infty} r^n = \frac{1}{1 - r}, \qquad |r| < 1.
+$$
+
+<FunctionPlot
+	fns={[
+		{ fn: '1/(1-x)', label: '\sum_{n=0}^{\infty} x^n = \frac{1}{1-x}' },
+		{ fn: '1 + x + x^2 + x^3 + x^4', label: 'S_5(x)', dash: true },
+	]}
+	xmin={-0.95}
+	xmax={0.95}
+	ymin={-1}
+	ymax={8}
+	caption="La suma parcial S₅ se aproxima a 1/(1 − x) dentro del radio de convergencia"
+/>
+
+**Serie p (armónica generalizada):**
+
+$$
+\sum_{n=1}^{\infty} \frac{1}{n^p} \text{ converge} \iff p > 1.
+$$
+
+### Criterios de convergencia:
+
+- **Comparación:** si $$0 \leq a_n \leq b_n$$ y $$\sum b_n$$ converge, entonces $$\sum a_n$$ converge.
+- **Cociente (D'Alembert):** si $$\lim \left| a_{n+1}/a_n \right| = L$$, la serie converge si $$L < 1$$ y diverge si $$L > 1$$.
+- **Raíz (Cauchy):** si $$\lim \sqrt[n]{|a_n|} = L$$, la serie converge si $$L < 1$$ y diverge si $$L > 1$$.
+- **Integral:** si $$f$$ es positiva, continua y decreciente con $$f(n) = a_n$$, entonces $$\sum a_n$$ e $$\int_1^\infty f(x)\,dx$$ convergen o divergen a la vez.
+
+### Series alternantes:
+
+Si $$a_n$$ es decreciente y $$a_n \to 0$$, la serie alternante $$\sum (-1)^n a_n$$ **converge** (criterio de Leibniz). Una serie es **absolutamente convergente** si $$\sum |a_n|$$ converge; entonces también converge, pero el recíproco no siempre es cierto.
+
+### Series de potencias:
+
+Una **serie de potencias** centrada en $$x_0$$ es:
+
+$$
+\sum_{n=0}^{\infty} a_n (x - x_0)^n.
+$$
+
+Su **radio de convergencia** $$R$$ se obtiene por el criterio del cociente:
+
+$$
+\frac{1}{R} = \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right|,
+$$
+
+y la serie converge absolutamente para $$|x - x_0| < R$$. Dentro del intervalo de convergencia define una función continua y derivable término a término.

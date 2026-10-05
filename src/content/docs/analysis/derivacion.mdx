@@ -1,0 +1,74 @@
+---
+title: Derivación
+description: Derivada, reglas, teoremas de Rolle, valor medio y Taylor
+---
+
+### Derivada:
+
+La **derivada** de $$f$$ en $$a$$ es:
+
+$$
+f'(a) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h},
+$$
+
+si el límite existe. La función es **diferenciable** en $$a$$. Si $$f$$ es diferenciable en $$a$$, entonces es continua en $$a$$ (el recíproco es falso).
+
+### Reglas de derivación:
+
+$$
+(f \pm g)' = f' \pm g', \qquad (fg)' = f'g + fg', \qquad \left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2},
+$$
+
+y la **regla de la cadena**:
+
+$$
+(f \circ g)'(x) = f'(g(x))\, g'(x).
+$$
+
+### Teorema de Rolle:
+
+Si $$f$$ es continua en $$[a, b]$$, diferenciable en $$(a, b)$$ y $$f(a) = f(b)$$, entonces existe $$c \in (a, b)$$ con:
+
+$$
+f'(c) = 0.
+$$
+
+### Teorema del valor medio (Lagrange):
+
+Si $$f$$ es continua en $$[a, b]$$ y diferenciable en $$(a, b)$$, existe $$c \in (a, b)$$ tal que:
+
+$$
+f'(c) = \frac{f(b) - f(a)}{b - a}.
+$$
+
+Geométricamente, hay un punto donde la tangente es paralela a la cuerda que une $$(a, f(a))$$ con $$(b, f(b))$$.
+
+### Valor medio generalizado (Cauchy):
+
+Si $$f$$ y $$g$$ son continuas en $$[a, b]$$ y diferenciables en $$(a, b)$$, con $$g'(x) \neq 0$$, existe $$c \in (a, b)$$ tal que:
+
+$$
+\frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}.
+$$
+
+De aquí se deduce la **regla de L'Hôpital**.
+
+### Monotonía y extremos:
+
+- Si $$f' > 0$$ en un intervalo, $$f$$ es **creciente**; si $$f' < 0$$, **decreciente**.
+- En un **extremo local**, si $$f'$$ existe, entonces $$f' = 0$$ (punto crítico).
+- Si $$f'' > 0$$, la función es **convexa** y el punto crítico es un mínimo; si $$f'' < 0$$, es cóncava y el punto crítico es un máximo.
+
+### Fórmula de Taylor:
+
+Si $$f$$ es $$n+1$$ veces diferenciable en un intervalo que contiene a $$a$$ y $$x$$:
+
+$$
+f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x - a)^k + R_n(x),
+$$
+
+donde el **resto de Lagrange** es, para algún $$\xi$$ entre $$a$$ y $$x$$:
+
+$$
+R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}(x - a)^{n+1}.
+$$

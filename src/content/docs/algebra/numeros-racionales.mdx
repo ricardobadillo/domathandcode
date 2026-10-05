@@ -1,0 +1,56 @@
+---
+title: Números racionales
+description: Construcción, operaciones, orden y densidad de los racionales
+---
+
+### Definición:
+
+Un número **racional** es el cociente de dos números enteros:
+
+$$
+\mathbb{Q} = \left\{ \frac{a}{b} : a, b \in \mathbb{Z},\; b \neq 0 \right\}.
+$$
+
+Dos fracciones $$\frac{a}{b}$$ y $$\frac{c}{d}$$ representan el mismo racional si $$ad = bc$$. Cada racional admite una **fracción irreducible** $$\frac{a}{b}$$ con $$\gcd(a, b) = 1$$.
+
+### Operaciones:
+
+$$
+\frac{a}{b} + \frac{c}{d} = \frac{ad + bc}{bd}, \qquad \frac{a}{b} \cdot \frac{c}{d} = \frac{ac}{bd}.
+$$
+
+El inverso multiplicativo de $$\frac{a}{b}$$ (con $$a \neq 0$$) es $$\frac{b}{a}$$. Con estas operaciones, $$\mathbb{Q}$$ es un **cuerpo**.
+
+### Orden:
+
+Para $$b, d > 0$$:
+
+$$
+\frac{a}{b} < \frac{c}{d} \iff ad < bc.
+$$
+
+$$(\mathbb{Q}, +, \cdot, <)$$ es un **cuerpo ordenado**, pero **no completo**: por ejemplo, no existe ningún racional cuyo cuadrado sea $$2$$.
+
+### Densidad:
+
+Entre dos racionales distintos siempre hay otro racional:
+
+$$
+\frac{a}{b} < \frac{a + c}{b + d} < \frac{c}{d} \quad \text{si } \frac{a}{b} < \frac{c}{d}.
+$$
+
+Por ello $$\mathbb{Q}$$ es **denso** en sí mismo y en $$\mathbb{R}$$.
+
+### Representación decimal:
+
+Todo racional tiene un desarrollo decimal **finito** o **periódico**:
+
+$$
+\frac{1}{4} = 0.25, \qquad \frac{1}{3} = 0.\overline{3}, \qquad \frac{1}{7} = 0.\overline{142857}.
+$$
+
+Recíprocamente, todo decimal finito o periódico representa un número racional.
+
+### Numerabilidad:
+
+$$\mathbb{Q}$$ es **numerable** (puede ponerse en biyección con $$\mathbb{N}$$), a diferencia de $$\mathbb{R}$$, que no lo es.

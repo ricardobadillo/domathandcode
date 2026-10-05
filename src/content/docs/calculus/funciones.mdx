@@ -1,0 +1,281 @@
+---
+title: Funciones
+description: Definición de función, dominio, recorrido y operaciones con funciones
+---
+
+import FunctionPlot from '../../../components/FunctionPlot.astro';
+
+### Definición:
+
+Sean $$X$$ y $$Y$$ conjuntos no vacíos. Una **función** $$f : X \to Y$$ es una regla que asigna a cada elemento $$x \in X$$ un único elemento $$f(x) \in Y$$. A $$X$$ se le llama **dominio** y a $$Y$$ **codominio**; al conjunto de valores alcanzados se le llama **recorrido** (o imagen):
+
+$$
+\operatorname{Im}(f) = \{ y \in Y : \exists \, x \in X \text{ con } y = f(x) \} \subseteq Y.
+$$
+
+### Notación de funciones:
+
+Si $$f : X \to Y$$ está definida por la expresión $$y = f(x)$$, a menudo se escribe:
+
+$$
+\begin{aligned}
+f : \quad X &\to Y \\
+x &\mapsto f(x).
+\end{aligned}
+$$
+
+### Gráfica de una función:
+
+La **gráfica** de $$f : X \to Y$$ es el conjunto de pares ordenados:
+
+$$
+G(f) = \{ (x, f(x)) : x \in X \} \subseteq X \times Y.
+$$
+
+### Composición de funciones:
+
+Si $$f : X \to Y$$ y $$g : Y \to Z$$, la **composición** $$g \circ f : X \to Z$$ se define por:
+
+$$
+(g \circ f)(x) = g(f(x)).
+$$
+
+### Función inversa:
+
+Una función $$f : X \to Y$$ es **biyectiva** si es inyectiva y sobreyectiva. En ese caso existe la **función inversa** $$f^{-1} : Y \to X$$ tal que:
+
+$$
+(f^{-1} \circ f)(x) = x \quad \text{y} \quad (f \circ f^{-1})(y) = y.
+$$
+
+### Tipos de funciones:
+
+Una función $$f : \mathbb{R} \to \mathbb{R}$$ es:
+
+1. **Inyectiva** si $$f(x_1) = f(x_2) \Rightarrow x_1 = x_2.$$
+2. **Sobreyectiva** si $$\operatorname{Im}(f) = Y.$$
+3. **Biyectiva** si es inyectiva y sobreyectiva a la vez.
+4. **Par** si $$f(-x) = f(x)$$ para todo $$x$$.
+5. **Impar** si $$f(-x) = -f(x)$$ para todo $$x$$.
+6. **Periódica** si existe $$T > 0$$ tal que $$f(x + T) = f(x)$$ para todo $$x$$.
+
+### Funciones polinómicas:
+
+Una función **polinómica** de grado $$n$$ tiene la forma:
+
+$$
+f(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0, \qquad a_n \neq 0.
+$$
+
+- **Constante:** $$f(x) = c$$ (grado 0).
+- **Lineal:** $$f(x) = mx + b$$, con pendiente $$m$$. Su gráfica es una recta, y su dominio es $$\mathbb{R}$$.
+- **Cuadrática:** $$f(x) = ax^2 + bx + c$$, con $$a \neq 0$$. Su gráfica es una **parábola**; abre hacia arriba si $$a > 0$$ y hacia abajo si $$a < 0$$. El vértice se halla en $$x = -\dfrac{b}{2a}$$.
+- **Cúbica:** $$f(x) = ax^3 + bx^2 + cx + d$$.
+
+<FunctionPlot
+	fn="2"
+	label="f(x) = c"
+	xmin={-3}
+	xmax={3}
+	ymin={0}
+	ymax={4}
+	caption="Función constante"
+/>
+
+<FunctionPlot
+	fn="0.5*x^3 - 2*x"
+	label="f(x) = 0.5x^3 - 2x"
+	xmin={-3}
+	xmax={3}
+	ymin={-6}
+	ymax={6}
+	caption="Función cúbica"
+/>
+
+### Función lineal:
+
+Una función **lineal** es de la forma $$f(x) = mx + b$$. El coeficiente $$m$$ es la **pendiente** y $$b$$ la **ordenada al origen**. Su gráfica es una recta, y es creciente si $$m > 0$$ y decreciente si $$m < 0$$. En particular, la función $$f(x) = x$$ es la recta identidad.
+
+<FunctionPlot
+	fns={[
+		{ fn: '2*x - 1', label: 'f(x) = 2x - 1' },
+		{ fn: '-x + 2', label: 'g(x) = -x + 2' },
+	]}
+	xmin={-3}
+	xmax={3}
+	ymin={-5}
+	ymax={5}
+	caption="Rectas con pendiente positiva y negativa"
+/>
+
+### Función cuadrática:
+
+La función **cuadrática** $$f(x) = ax^2 + bx + c$$ tiene como gráfica una parábola. Su **vértice** es el punto:
+
+$$
+V = \left( -\frac{b}{2a}, \; f\!\left(-\frac{b}{2a}\right) \right).
+$$
+
+Si $$a > 0$$ la parábola tiene un **mínimo** en el vértice; si $$a < 0$$, un **máximo**. Sus raíces se obtienen con la fórmula general:
+
+$$
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.
+$$
+
+<FunctionPlot
+	fns={[
+		{ fn: 'x^2', label: 'f(x) = x^2' },
+		{ fn: '-x^2 + 4', label: 'g(x) = -x^2 + 4' },
+	]}
+	xmin={-2.5}
+	xmax={2.5}
+	ymin={-6}
+	ymax={6}
+	caption="Parábolas que abren hacia arriba y hacia abajo"
+/>
+
+### Función exponencial:
+
+Una función **exponencial** es de la forma:
+
+$$
+f(x) = a^x, \qquad a > 0, \; a \neq 1.
+$$
+
+Es siempre positiva ($$\operatorname{Im}(f) = (0, +\infty)$$), pasa por el punto $$(0, 1)$$ y tiene asíntota horizontal $$y = 0$$. Es creciente si $$a > 1$$ y decreciente si $$0 < a < 1$$. La base más usada es el número de Euler $$e \approx 2{,}718$$. La **función exponencial natural** es $$f(x) = e^x$$.
+
+<FunctionPlot
+	fn="exp(x)"
+	label="f(x) = e^x"
+	xmin={-3}
+	xmax={3}
+	ymin={-1}
+	ymax={12}
+	caption="Función exponencial natural"
+/>
+
+### Función logarítmica:
+
+La **función logarítmica** es la inversa de la exponencial:
+
+$$
+y = \log_a(x) \quad \Longleftrightarrow \quad a^y = x, \qquad x > 0.
+$$
+
+Su dominio es $$(0, +\infty)$$ y su recorrido $$\mathbb{R}$$; pasa por el punto $$(1, 0)$$ y tiene asíntota vertical en $$x = 0$$. Es creciente si $$a > 1$$ y decreciente si $$0 < a < 1$$. El **logaritmo natural** es el de base $$e$$, denotado $$\ln(x)$$, y cumple:
+
+$$
+\ln(e^x) = x, \qquad e^{\ln x} = x.
+$$
+
+<FunctionPlot
+	fn="ln(x)"
+	label="f(x) = \ln(x)"
+	xmin={0.02}
+	xmax={8}
+	ymin={-4}
+	ymax={3}
+	caption="Función logarítmica natural"
+/>
+
+### Función potencia:
+
+Una función **potencia** es de la forma $$f(x) = x^n$$, con $$n$$ un número real fijo. Entre las más comunes están $$f(x) = x^2$$, $$f(x) = x^3$$ y $$f(x) = \sqrt{x} = x^{1/2}$$.
+
+<FunctionPlot
+	fns={[
+		{ fn: 'x^2', label: 'f(x) = x^2' },
+		{ fn: 'x^3', label: 'f(x) = x^3' },
+		{ fn: 'sqrt(x)', label: 'f(x) = \sqrt{x}' },
+	]}
+	xmin={0}
+	xmax={2}
+	ymin={0}
+	ymax={8}
+	caption="Funciones potencia con distintos exponentes"
+/>
+
+### Función racional:
+
+Una función **racional** es el cociente de dos polinomios:
+
+$$
+f(x) = \frac{P(x)}{Q(x)}, \qquad Q(x) \neq 0.
+$$
+
+Su dominio es $$\mathbb{R}$$ excluyendo las raíces de $$Q(x)$$. Por ejemplo, $$f(x) = \dfrac{1}{x}$$ tiene asíntota vertical en $$x = 0$$ y asíntota horizontal en $$y = 0$$.
+
+<FunctionPlot
+	fn="1/x"
+	label="f(x) = \dfrac{1}{x}"
+	xmin={-5}
+	xmax={5}
+	ymin={-5}
+	ymax={5}
+	caption="Hipérbola con asíntotas en x = 0 e y = 0"
+/>
+
+### Funciones trigonométricas:
+
+Las funciones fundamentales son $$\sin(x)$$ y $$\cos(x)$$, ambas periódicas de período $$2\pi$$. Se relacionan por la identidad fundamental:
+
+$$
+\sin^2(x) + \cos^2(x) = 1.
+$$
+
+Otras son la **tangente** $$\tan(x) = \dfrac{\sin x}{\cos x}$$ y las recíprocas, a saber, la cotangente, secante y cosecante.
+
+<FunctionPlot
+	fns={[
+		{ fn: 'sin(x)', label: 'f(x) = \sin(x)' },
+		{ fn: 'cos(x)', label: 'g(x) = \cos(x)', dash: true },
+	]}
+	xmin={-6.5}
+	xmax={6.5}
+	ymin={-1.6}
+	ymax={1.6}
+	caption="Funciones seno y coseno, periódicas de período 2π"
+/>
+
+### Ejemplo:
+
+Sea la función cuadrática $$f(x) = 2x^2 - 4x + 1$$. Calculamos su vértice y sus raíces:
+
+$$
+x_V = -\frac{b}{2a} = -\frac{-4}{2 \cdot 2} = 1, \qquad
+f(1) = 2(1)^2 - 4(1) + 1 = -1.
+$$
+
+El vértice es $$V = (1, -1)$$, y como $$a = 2 > 0$$ la parábola abre hacia arriba y el vértice es un **mínimo**. Sus raíces se obtienen con la fórmula general:
+
+$$
+x = \frac{4 \pm \sqrt{(-4)^2 - 4 \cdot 2 \cdot 1}}{2 \cdot 2} = \frac{4 \pm \sqrt{8}}{4} = 1 \pm \frac{\sqrt{2}}{2}.
+$$
+
+El recorrido de $$f$$ es, por tanto, $$[-1, +\infty)$$.
+
+<FunctionPlot
+	fn="2*x^2 - 4*x + 1"
+	label="f(x) = 2x^2 - 4x + 1"
+	xmin={-1}
+	xmax={3}
+	ymin={-3}
+	ymax={7}
+	caption="Parábola con vértice en (1, -1)"
+/>
+
+### Operaciones con funciones:
+
+Dadas $$f, g : X \to \mathbb{R}$$ y un escalar $$\lambda \in \mathbb{R}$$, se definen para todo $$x \in X$$:
+
+$$
+(f + g)(x) = f(x) + g(x), \qquad
+(\lambda f)(x) = \lambda f(x), \qquad
+(fg)(x) = f(x)g(x),
+$$
+
+y, si $$g(x) \neq 0$$:
+
+$$
+\left( \frac{f}{g} \right)(x) = \frac{f(x)}{g(x)}.
+$$

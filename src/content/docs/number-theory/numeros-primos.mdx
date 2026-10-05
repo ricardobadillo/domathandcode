@@ -1,0 +1,68 @@
+---
+title: Números primos
+description: Definición de número primo, teorema fundamental de la aritmética y criba de Eratóstenes
+---
+
+### Definición:
+
+Un entero positivo $$p > 1$$ es un **número primo** si sus únicos divisores positivos son $$1$$ y el propio $$p$$. Si $$n > 1$$ no es primo, se dice que es **compuesto**.
+
+### Teorema fundamental de la aritmética:
+
+Todo entero $$n > 1$$ se puede descomponer, de forma única salvo el orden de los factores, como producto de números primos:
+
+$$
+n = p_1^{a_1} p_2^{a_2} \cdots p_k^{a_k},
+$$
+
+donde los $$p_i$$ son primos distintos y $$a_i \geq 1$.
+
+### Infinitud de los primos (Euclides):
+
+Existen infinitos números primos. La demostración clásica de Euclides supone una lista finita $$p_1, \dots, p_k$$ y considera el número:
+
+$$
+N = p_1 p_2 \cdots p_k + 1,
+$$
+
+que no es divisible por ninguno de los $$p_i$$, de modo que debe existir un primo fuera de la lista, obteniendo una contradicción.
+
+### Criba de Eratóstenes:
+
+La **criba de Eratóstenes** es un algoritmo para encontrar todos los primos menores que $$n$$: se escribe la lista $$2, 3, \dots, n$$ y se van tachando los múltiplos de cada primo a partir de $$p^2$$.
+
+### Test de primalidad:
+
+Para verificar si un entero $$n > 1$$ es primo, basta comprobar la divisibilidad por todos los primos $$p \leq \sqrt{n}$$. Si ninguno divide a $$n$$, entonces $$n$$ es primo.
+
+### Distribución de los primos:
+
+La función $$\pi(x)$$ cuenta cuántos primos hay menores o iguales que $$x$$. El **teorema de los números primos** establece:
+
+$$
+\pi(x) \sim \frac{x}{\ln x} \quad \text{cuando } x \to \infty.
+$$
+
+### Conjetura de Goldbach:
+
+Afirma que todo entero par mayor que $$2$$ se puede expresar como la suma de dos números primos:
+
+$$
+2n = p + q.
+$$
+
+La conjetura permanece sin demostrar para el caso general.
+
+### Números primos y compuestos:
+
+- El único número primo par es $$2$$.
+- Todo primo mayor que $$3$$ es de la forma $$6k \pm 1$$.
+- Los **primos gemelos** son pares de primos de la forma $$(p, p + 2)$$, como $$(11, 13)$$ o $$(17, 19)$$.
+
+### Ejemplo:
+
+Descomponemos $$360$$ en factores primos:
+
+$$
+360 = 2^3 \cdot 3^2 \cdot 5.
+$$

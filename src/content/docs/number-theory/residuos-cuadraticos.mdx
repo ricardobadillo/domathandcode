@@ -1,0 +1,66 @@
+---
+title: Residuos cuadráticos
+description: Residuos cuadráticos, símbolo de Legendre y reciprocidad cuadrática
+---
+
+### Residuos cuadráticos:
+
+Sea $$p$$ un primo impar. Un entero $$a$$ con $$p \nmid a$$ es un **residuo cuadrático módulo $$p$$** si la congruencia:
+
+$$
+x^2 \equiv a \pmod{p}
+$$
+
+tiene solución. En caso contrario, $$a$$ es un **no residuo cuadrático**. Exactamente la mitad de los elementos de $$(\mathbb{Z}/p\mathbb{Z})^*$$ son residuos cuadráticos.
+
+### Criterio de Euler:
+
+$$
+a^{(p-1)/2} \equiv \begin{cases} 1 \pmod{p}, & \text{si } a \text{ es residuo cuadrático}, \\ -1 \pmod{p}, & \text{si no lo es}. \end{cases}
+$$
+
+### Símbolo de Legendre:
+
+Se define:
+
+$$
+\left( \frac{a}{p} \right) = \begin{cases} 0, & p \mid a, \\ 1, & a \text{ es residuo cuadrático}, \\ -1, & a \text{ no es residuo cuadrático}. \end{cases}
+$$
+
+Cumple:
+
+$$
+\left( \frac{ab}{p} \right) = \left( \frac{a}{p} \right) \left( \frac{b}{p} \right), \qquad \left( \frac{a^2}{p} \right) = 1.
+$$
+
+### Lema de Gauss:
+
+Para contar los residuos se usa el **lema de Gauss**: si $$S$$ es el conjunto de residuos de $$a, 2a, \dots, \frac{p-1}{2}a$$ módulo $$p$$ que superan $$\frac{p}{2}$$, entonces:
+
+$$
+\left( \frac{a}{p} \right) = (-1)^{|S|}.
+$$
+
+### Ley de reciprocidad cuadrática:
+
+Para primos impares distintos $$p$$ y $$q$$:
+
+$$
+\left( \frac{p}{q} \right) \left( \frac{q}{p} \right) = (-1)^{\frac{p-1}{2} \cdot \frac{q-1}{2}}.
+$$
+
+Permite calcular símbolos de Legendre reduciendo el problema a primos cada vez más pequeños. Los casos suplementarios son:
+
+$$
+\left( \frac{-1}{p} \right) = (-1)^{(p-1)/2}, \qquad \left( \frac{2}{p} \right) = (-1)^{(p^2-1)/8}.
+$$
+
+### Símbolo de Jacobi:
+
+Extiende el símbolo de Legendre a un denominador impar compuesto $$n = p_1 \cdots p_k$$:
+
+$$
+\left( \frac{a}{n} \right) = \prod_{i=1}^{k} \left( \frac{a}{p_i} \right).
+$$
+
+Es clave en el **test de primalidad de Solovay–Strassen** y en el cifrado **RSA**.

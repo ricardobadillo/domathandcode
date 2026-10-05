@@ -1,0 +1,54 @@
+---
+title: Álgebra de Boole
+description: Operaciones lógicas, leyes, funciones booleanas y formas canónicas
+---
+
+### Definición:
+
+El **álgebra de Boole** trabaja con dos valores, $$0$$ (falso) y $$1$$ (verdadero), y tres operaciones básicas:
+
+1. **Conjunción (AND):** $$x \wedge y$$, que vale $$1$$ sólo si ambos son $$1$$.
+2. **Disyunción (OR):** $$x \vee y$$, que vale $$1$$ si al menos uno es $$1$$.
+3. **Negación (NOT):** $$\neg x$$ o $$\bar{x}$$, que invierte el valor.
+
+| $$x$$ | $$y$$ | $$x \wedge y$$ | $$x \vee y$$ |
+| :---: | :---: | :---: | :---: |
+| $$0$$ | $$0$$ | $$0$$ | $$0$$ |
+| $$0$$ | $$1$$ | $$0$$ | $$1$$ |
+| $$1$$ | $$0$$ | $$0$$ | $$1$$ |
+| $$1$$ | $$1$$ | $$1$$ | $$1$$ |
+
+### Leyes fundamentales:
+
+Para todos $$x, y, z \in \{0, 1\}$$:
+
+1. **Conmutatividad:** $$x \wedge y = y \wedge x$$, $$x \vee y = y \vee x$$.
+2. **Asociatividad:** $$(x \wedge y) \wedge z = x \wedge (y \wedge z)$$, y análogamente para $$\vee$$.
+3. **Distributividad:** $$x \wedge (y \vee z) = (x \wedge y) \vee (x \wedge z)$$ y $$x \vee (y \wedge z) = (x \vee y) \wedge (x \vee z)$$.
+4. **Identidad:** $$x \wedge 1 = x$$, $$x \vee 0 = x$$.
+5. **Dominancia:** $$x \wedge 0 = 0$$, $$x \vee 1 = 1$$.
+6. **Idempotencia:** $$x \wedge x = x$$, $$x \vee x = x$$.
+7. **Complemento:** $$x \wedge \bar{x} = 0$$, $$x \vee \bar{x} = 1$$.
+8. **Doble negación:** $$\overline{\bar{x}} = x$$.
+
+### Leyes de De Morgan:
+
+$$
+\overline{x \wedge y} = \bar{x} \vee \bar{y}, \qquad \overline{x \vee y} = \bar{x} \wedge \bar{y}.
+$$
+
+### Funciones booleanas:
+
+Una **función booleana** $$f : \{0,1\}^n \to \{0,1\}$$ se define mediante una tabla de verdad. Toda función booleana puede escribirse en **forma normal disyuntiva** (suma de productos), como la disyunción de los *minitérminos* donde $$f = 1$$:
+
+$$
+f(x, y) = (\bar{x} \wedge y) \vee (x \wedge \bar{y}) \vee (x \wedge y).
+$$
+
+### Simplificación:
+
+Las expresiones booleanas se simplifican con las leyes anteriores o con el **mapa de Karnaugh**, que agrupa minitérminos adyacentes para reducir el número de términos y literales. La simplificación es clave en el diseño de circuitos digitales.
+
+### Compuertas lógicas:
+
+Cada operación corresponde a una **compuerta**: AND, OR y NOT. Combinándolas se construyen circuitos como las compuertas **NAND** y **NOR**, que son universales (toda función se puede implementar sólo con NAND o sólo con NOR).

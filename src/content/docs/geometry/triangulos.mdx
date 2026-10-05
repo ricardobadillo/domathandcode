@@ -1,0 +1,136 @@
+---
+title: Triángulos
+description: Clasificación, teorema de Pitágoras, congruencia y semejanza
+---
+
+import GeometryFigure from '../../../components/GeometryFigure.astro';
+
+### Definición:
+
+Un **triángulo** es un polígono de tres lados y tres ángulos. La suma de sus ángulos interiores es siempre:
+
+$$
+\angle A + \angle B + \angle C = 180^\circ.
+$$
+
+<GeometryFigure
+	caption="Triángulo con ángulos interiores α, β y γ (α + β + γ = 180°)"
+	elements={[
+		{ type: 'polyline', points: [[60, 270], [360, 270], [210, 70]], closed: true },
+		{ type: 'angle', at: [60, 270], from: [360, 270], to: [210, 70], radius: 34, label: 'α' },
+		{ type: 'angle', at: [360, 270], from: [60, 270], to: [210, 70], radius: 34, label: 'β' },
+		{ type: 'angle', at: [210, 70], from: [60, 270], to: [360, 270], radius: 34, label: 'γ' },
+		{ type: 'point', at: [60, 270], label: 'A', labelOffset: [-16, 6] },
+		{ type: 'point', at: [360, 270], label: 'B', labelOffset: [16, 6] },
+		{ type: 'point', at: [210, 70], label: 'C', labelOffset: [0, -14] },
+	]}
+/>
+
+### Clasificación:
+
+Según sus lados:
+
+1. **Equilátero:** tres lados iguales.
+2. **Isósceles:** dos lados iguales.
+3. **Escaleno:** tres lados distintos.
+
+Según sus ángulos:
+
+1. **Acutángulo:** los tres ángulos son agudos.
+2. **Rectángulo:** tiene un ángulo recto.
+3. **Obtusángulo:** tiene un ángulo obtuso.
+
+### Líneas notables:
+
+- **Altura:** perpendicular desde un vértice al lado opuesto.
+- **Mediana:** segmento del vértice al punto medio del lado opuesto.
+- **Bisectriz:** divide un ángulo en dos iguales.
+- **Mediatriz:** perpendicular a un lado en su punto medio.
+
+### Teorema de Pitágoras:
+
+En todo triángulo rectángulo, con catetos $$a$$, $$b$$ e hipotenusa $$c$$:
+
+$$
+a^2 + b^2 = c^2.
+$$
+
+Recíprocamente, si se cumple esta igualdad, el triángulo es rectángulo.
+
+<GeometryFigure
+	caption="Triángulo rectángulo: a² + b² = c²"
+	elements={[
+		{ type: 'polyline', points: [[80, 270], [340, 270], [80, 80]], closed: true },
+		{ type: 'angle', at: [80, 270], from: [340, 270], to: [80, 80], right: true, radius: 20 },
+		{ type: 'point', at: [80, 270], label: 'A', labelOffset: [-16, 6] },
+		{ type: 'point', at: [340, 270], label: 'B', labelOffset: [16, 6] },
+		{ type: 'point', at: [80, 80], label: 'C', labelOffset: [-14, -6] },
+		{ type: 'label', at: [210, 294], text: 'c' },
+		{ type: 'label', at: [58, 178], text: 'b' },
+		{ type: 'label', at: [232, 168], text: 'a' },
+	]}
+/>
+
+### Congruencia:
+
+Dos triángulos son **congruentes** si tienen lados y ángulos correspondientes iguales. Criterios:
+
+1. **Lado-lado-lado (LLL).**
+2. **Lado-ángulo-lado (LAL).**
+3. **Ángulo-lado-ángulo (ALA).**
+
+<GeometryFigure
+	caption="Triángulos congruentes: lados y ángulos correspondientes iguales"
+	elements={[
+		{ type: 'polyline', points: [[40, 270], [160, 270], [70, 170]], closed: true },
+		{ type: 'polyline', points: [[240, 270], [360, 270], [270, 170]], closed: true },
+		{ type: 'tick', from: [40, 270], to: [160, 270], count: 1 },
+		{ type: 'tick', from: [160, 270], to: [70, 170], count: 2 },
+		{ type: 'tick', from: [70, 170], to: [40, 270], count: 3 },
+		{ type: 'tick', from: [240, 270], to: [360, 270], count: 1 },
+		{ type: 'tick', from: [360, 270], to: [270, 170], count: 2 },
+		{ type: 'tick', from: [270, 170], to: [240, 270], count: 3 },
+	]}
+/>
+
+### Semejanza:
+
+Dos triángulos son **semejantes** si tienen los ángulos iguales y los lados correspondientes proporcionales. Criterios: **AA**, **LAL** y **LLL** (con lados proporcionales). El teorema de Tales es un caso particular de semejanza.
+
+<GeometryFigure
+	caption="Triángulos semejantes: ángulos iguales y lados proporcionales"
+	elements={[
+		{ type: 'polyline', points: [[40, 280], [140, 280], [40, 190]], closed: true },
+		{ type: 'polyline', points: [[210, 280], [410, 280], [210, 100]], closed: true },
+		{ type: 'angle', at: [40, 280], from: [140, 280], to: [40, 190], right: true, radius: 16 },
+		{ type: 'angle', at: [140, 280], from: [40, 280], to: [40, 190], radius: 26, label: 'β' },
+		{ type: 'angle', at: [40, 190], from: [40, 280], to: [140, 280], radius: 26, label: 'γ' },
+		{ type: 'angle', at: [210, 280], from: [410, 280], to: [210, 100], right: true, radius: 16 },
+		{ type: 'angle', at: [410, 280], from: [210, 280], to: [210, 100], radius: 26, label: 'β' },
+		{ type: 'angle', at: [210, 100], from: [210, 280], to: [410, 280], radius: 26, label: 'γ' },
+	]}
+/>
+
+### Teorema del seno y del coseno:
+
+En un triángulo cualquiera de lados $$a, b, c$$ y ángulos opuestos $$A, B, C$$:
+
+$$
+\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C},
+$$
+
+$$
+c^2 = a^2 + b^2 - 2ab\cos C.
+$$
+
+### Área y perímetro:
+
+$$
+P = a + b + c, \qquad A = \frac{1}{2}\,b\,h = \frac{1}{2}\,ab\sin C,
+$$
+
+donde $$b$$ es la base y $$h$$ la altura correspondiente. La fórmula de Herón permite calcular el área conociendo los lados:
+
+$$
+A = \sqrt{s(s-a)(s-b)(s-c)}, \qquad s = \frac{a+b+c}{2}.
+$$

@@ -1,0 +1,66 @@
+---
+title: Conjuntos
+description: Conjuntos, operaciones, producto cartesiano y relaciones de pertenencia
+---
+
+### Definición:
+
+Un **conjunto** es una colección de objetos, llamados **elementos**. Si $$a$$ es un elemento del conjunto $$A$$ se escribe $$a \in A$$; en caso contrario, $$a \notin A$$. Un conjunto puede definirse por extensión o por comprensión:
+
+$$
+A = \{a, b, c\}, \qquad B = \{x : P(x)\}.
+$$
+
+### Conjuntos notables:
+
+- El **conjunto vacío** $$\varnothing$$, que no tiene elementos.
+- El **conjunto universal** $$U$$, que contiene a todos los objetos del discurso.
+- Los conjuntos numéricos $$\mathbb{N}, \mathbb{Z}, \mathbb{Q}, \mathbb{R}, \mathbb{C}$$.
+
+### Subconjuntos:
+
+Se dice que $$A$$ es un **subconjunto** de $$B$$, escrito $$A \subseteq B$$, si todo elemento de $$A$$ pertenece a $$B$$:
+
+$$
+A \subseteq B \iff \forall x \, (x \in A \to x \in B).
+$$
+
+Dos conjuntos son **iguales** si $$A \subseteq B$$ y $$B \subseteq A$$. Un subconjunto propio de $$B$$, denotado $$A \subsetneq B$$, cumple $$A \subseteq B$$ y $$A \neq B$$.
+
+### Operaciones:
+
+1. **Unión:** $$A \cup B = \{x : x \in A \vee x \in B\}$$.
+2. **Intersección:** $$A \cap B = \{x : x \in A \wedge x \in B\}$$.
+3. **Diferencia:** $$A \setminus B = \{x : x \in A \wedge x \notin B\}$$.
+4. **Complemento:** $$A^{c} = U \setminus A = \{x : x \notin A\}$$.
+5. **Diferencia simétrica:** $$A \triangle B = (A \setminus B) \cup (B \setminus A)$$.
+
+### Propiedades:
+
+Para conjuntos $$A, B, C \subseteq U$$:
+
+1. **Conmutatividad:** $$A \cup B = B \cup A$$ y $$A \cap B = B \cap A$$.
+2. **Asociatividad:** $$(A \cup B) \cup C = A \cup (B \cup C)$$ y análogamente para $$\cap$$.
+3. **Distributividad:** $$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$$ y $$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$$.
+4. **Leyes de De Morgan:** $$(A \cup B)^{c} = A^{c} \cap B^{c}$$ y $$(A \cap B)^{c} = A^{c} \cup B^{c}$$.
+5. **Idempotencia:** $$A \cup A = A$$ y $$A \cap A = A$$.
+
+### Conjunto potencia:
+
+El **conjunto potencia** de $$A$$, denotado $$\mathcal{P}(A)$$, es el conjunto de todos los subconjuntos de $$A$$:
+
+$$
+\mathcal{P}(A) = \{B : B \subseteq A\}.
+$$
+
+Si $$A$$ tiene $$n$$ elementos, entonces $$|\mathcal{P}(A)| = 2^{n}$$.
+
+### Producto cartesiano:
+
+El **producto cartesiano** de $$A$$ y $$B$$ es el conjunto de pares ordenados:
+
+$$
+A \times B = \{(a, b) : a \in A, \, b \in B\}.
+$$
+
+Si $$A$$ y $$B$$ son finitos, $$|A \times B| = |A| \cdot |B|$$.

@@ -1,0 +1,58 @@
+---
+title: Anillos
+description: Definición, propiedades, ideales, homomorfismos y dominios de integridad
+---
+
+### Definición:
+
+Sea $$R$$ un conjunto dotado de dos operaciones binarias: la **suma** $$+$$ y el **producto** $$\cdot$$. Se dice que $$(R, +, \cdot)$$ es un **anillo** si se cumplen:
+
+1. $$(R, +)$$ es un grupo abeliano.
+2. El producto es **asociativo:** $$(ab)c = a(bc).$$
+3. **Distributividad:** $$a(b + c) = ab + ac \quad \text{y} \quad (a + b)c = ac + bc.$$
+
+### Anillo conmutativo y anillo con identidad:
+
+Un anillo se llama **conmutativo** si $$ab = ba$$ para todo $$a, b \in R$$. Si existe un elemento neutro multiplicativo $$1_R$$ tal que $$1_R a = a 1_R = a$$ para todo $$a \in R$$, se dice que el anillo tiene **identidad** (o es un anillo con uno).
+
+### Propiedades básicas:
+
+Sea $$R$$ un anillo y $$a, b \in R$$. Denotamos el neutro aditivo por $$0$$.
+
+1. $$a \cdot 0 = 0 \cdot a = 0.$$
+2. $$(-a)b = a(-b) = -(ab).$$
+3. $$(-a)(-b) = ab.$$
+4. $$a(b - c) = ab - ac.$$
+
+### Elementos distinguidos:
+
+En un anillo con identidad, un elemento $$a \neq 0$$ es un **divisor de cero** si existe $$b \neq 0$$ tal que $$ab = 0$$ o $$ba = 0$$. Un elemento $$u$$ es una **unidad** (invertible) si existe $$v$$ tal que $$uv = vu = 1_R$$.
+
+### Dominio de integridad y cuerpo:
+
+Un anillo conmutativo con identidad y sin divisores de cero se llama **dominio de integridad**. En un dominio de integridad rige la ley de cancelación:
+
+$$
+ab = ac, \; a \neq 0 \quad \Longrightarrow \quad b = c.
+$$
+
+Un anillo conmutativo con identidad en el que todo elemento no nulo es una unidad se llama **cuerpo**. Todo cuerpo es un dominio de integridad.
+
+### Ideales:
+
+Un subconjunto no vacío $$I \subseteq R$$ es un **ideal** (bilátero) de $$R$$ si:
+
+1. $$(I, +)$$ es un subgrupo de $$(R, +).$$
+2. Para todo $$a \in R$$ y $$i \in I$$, se cumple $$ai \in I$$ y $$ia \in I.$$
+
+Un ideal generado por un elemento $$a$$ es $$(a) = \{ ra : r \in R \}$$. Si un ideal está generado por un solo elemento, se llama **ideal principal**.
+
+### Homomorfismos de anillos:
+
+Una función $$f : R \to R'$$ entre anillos es un **homomorfismo** si:
+
+$$
+f(a + b) = f(a) + f(b) \quad \text{y} \quad f(ab) = f(a)f(b).
+$$
+
+Un homomorfismo biyectivo se llama **isomorfismo** de anillos. El **núcleo** $$\ker(f)$$ es un ideal de $$R$$, y la **imagen** $$\operatorname{Im}(f)$$ es un subanillo de $$R'$$.

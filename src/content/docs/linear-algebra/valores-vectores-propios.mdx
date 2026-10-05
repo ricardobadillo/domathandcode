@@ -1,0 +1,75 @@
+---
+title: Valores y vectores propios
+description: Definición de autovalores y autovectores, polinomio característico y diagonalización
+---
+
+### Definición:
+
+Sea $$A$$ una matriz cuadrada de orden $$n$$. Un **valor propio** (o autovalor) de $$A$$ es un escalar $$\lambda$$ para el cual existe un vector no nulo $$v \neq 0$$ tal que:
+
+$$
+Av = \lambda v.
+$$
+
+El vector $$v$$ se llama **vector propio** (o autovector) de $$A$$ asociado al valor propio $$\lambda$$.
+
+Geométricamente, un valor propio $$\lambda$$ indica que la transformación lineal asociada a $$A$$ estira o comprime a $$v$$ (o lo invierte si $$\lambda < 0$$) sin cambiar su dirección.
+
+### Espacio propio:
+
+Dado un valor propio $$\lambda$$, el conjunto de todos los vectores $$v$$ que satisfacen $$Av = \lambda v$$ junto con el vector nulo forma un subespacio vectorial llamado **espacio propio**:
+
+$$
+E_\lambda = \{ v \in \mathbb{R}^n : Av = \lambda v \} = \ker(A - \lambda I_n).
+$$
+
+La dimensión $$\dim(E_\lambda)$$ se llama la **multiplicidad geométrica** de $$\lambda$$.
+
+### Polinomio característico:
+
+Los valores propios de $$A$$ son las raíces del **polinomio característico**:
+
+$$
+p(\lambda) = \det(A - \lambda I_n).
+$$
+
+La multiplicidad de $$\lambda$$ como raíz de $$p(\lambda)$$ se llama **multiplicidad algebraica** de $$\lambda$$. Siempre se cumple:
+
+$$
+\text{multiplicidad geométrica} \leq \text{multiplicidad algebraica}.
+$$
+
+### Ecuación característica:
+
+Resolver un problema de valores propios equivale a resolver la ecuación:
+
+$$
+\det(A - \lambda I_n) = 0.
+$$
+
+### Diagonalización:
+
+Una matriz $$A$$ de orden $$n$$ es **diagonalizable** si existe una matriz invertible $$P$$ y una matriz diagonal $$D$$ tales que:
+
+$$
+A = P D P^{-1}.
+$$
+
+En tal caso, las columnas de $$P$$ son vectores propios de $$A$$ y los elementos diagonales de $$D$$ son los valores propios correspondientes. Una matriz es diagonalizable si y sólo si posee $$n$$ vectores propios linealmente independientes.
+
+### Teorema espectral:
+
+Si $$A$$ es una matriz **simétrica** ($$A^T = A$$), entonces es diagonalizable mediante una matriz ortogonal, es decir:
+
+$$
+A = Q D Q^T, \qquad Q^T Q = I_n.
+$$
+
+### Traza y determinante:
+
+En términos de los valores propios $$\lambda_1, \lambda_2, \dots, \lambda_n$$ contados con su multiplicidad algebraica:
+
+$$
+\operatorname{tr}(A) = \sum_{i=1}^{n} \lambda_i, \qquad
+\det(A) = \prod_{i=1}^{n} \lambda_i.
+$$

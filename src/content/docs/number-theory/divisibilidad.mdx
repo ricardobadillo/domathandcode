@@ -1,0 +1,71 @@
+---
+title: Divisibilidad
+description: Conceptos fundamentales de divisibilidad, división euclidiana y máximo común divisor
+---
+
+### Definición:
+
+Sea $$a, b \in \mathbb{Z}$$. Se dice que $$a$$ **divide** a $$b$$ (o que $$b$$ es **múltiplo** de $$a$$), y se escribe $$a \mid b$$, si existe $$c \in \mathbb{Z}$$ tal que:
+
+$$
+b = ac.
+$$
+
+Si $$a$$ no divide a $$b$$, se escribe $$a \nmid b$$.
+
+### Propiedades de la divisibilidad:
+
+Para todos $$a, b, c \in \mathbb{Z}$$:
+
+1. Si $$a \mid b$$ y $$b \mid c$$, entonces $$a \mid c$$ (transitividad).
+2. Si $$a \mid b$$ y $$a \mid c$$, entonces $$a \mid (b + c)$$ y $$a \mid (b - c)$$.
+3. Si $$a \mid b$$, entonces $$a \mid bc$$ para todo $$c$$.
+4. Si $$a \mid b$$ y $$b \mid a$$, entonces $$a = \pm b$$.
+5. $$0$$ es múltiplo de todo entero y todo entero divide a sí mismo.
+
+### Algoritmo de división euclidiana:
+
+Dados $$a, b \in \mathbb{Z}$$ con $$b \neq 0$$, existen enteros únicos $$q$$ y $$r$$ (el cociente y el residuo) tales que:
+
+$$
+a = bq + r, \qquad 0 \leq r < |b|.
+$$
+
+### Máximo común divisor:
+
+El **máximo común divisor** de dos enteros $$a$$ y $$b$$, denotado $$\gcd(a, b)$$ o $$\operatorname{mcd}(a, b)$$, es el mayor entero positivo que divide a ambos. Es la menor combinación positiva de la forma:
+
+$$
+\gcd(a, b) = \min \{ ax + by : x, y \in \mathbb{Z}, \, ax + by > 0 \}.
+$$
+
+### Algoritmo de Euclides:
+
+El máximo común divisor se puede calcular aplicando repetidamente el algoritmo de la división:
+
+$$
+\begin{aligned}
+a &= bq_1 + r_1, \\
+b &= r_1 q_2 + r_2, \\
+r_1 &= r_2 q_3 + r_3, \\
+&\vdots
+\end{aligned}
+$$
+
+El último residuo no nulo es $$\gcd(a, b)$$.
+
+### Enteros coprimos:
+
+Dos enteros $$a$$ y $$b$$ son **coprimos** (o primos entre sí) si $$\gcd(a, b) = 1$$. En ese caso existen enteros $$x, y$$ tales que:
+
+$$
+ax + by = 1.
+$$
+
+### Mínimo común múltiplo:
+
+El **mínimo común múltiplo** de $$a$$ y $$b$$, denotado $$\operatorname{lcm}(a, b)$$ o $$\operatorname{mcm}(a, b)$$, es el menor entero positivo que es múltiplo de ambos. Se relaciona con el máximo común divisor mediante:
+
+$$
+\operatorname{mcd}(a, b) \cdot \operatorname{mcm}(a, b) = |ab|.
+$$

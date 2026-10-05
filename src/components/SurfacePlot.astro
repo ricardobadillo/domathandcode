@@ -1,0 +1,343 @@
+---
+import katex from 'katex';
+import {
+  parseExpression2,
+  robustRange,
+  linspace,
+  makeCamera,
+  projectPoint,
+  normalizeAxis,
+  cross,
+  subtract,
+  dotProduct,
+  normalizeVector,
+  colormap,
+  rgbString,
+  viridisGradientCss,
+  type Vec3,
+  type Projected,
+} from '../lib/plot';
+
+interface Props {
+  /** Expresión z = f(x, y). */
+  fn: string;
+  /** Fórmula en LaTeX para la leyenda (por defecto "z = <fn>"). */
+  label?: string;
+  xmin?: number;
+  xmax?: number;
+  ymin?: number;
+  ymax?: number;
+  zmin?: number;
+  zmax?: number;
+  /** Número de subdivisiones de la malla. */
+  resolution?: number;
+  width?: number;
+  height?: number;
+  /** Azimut de la cámara en grados. */
+  azimuth?: number;
+  /** Elevación de la cámara en grados. */
+  elevation?: number;
+  /** Proyección en perspectiva (si no, ortográfica). */
+  perspective?: boolean;
+  /** Dibuja las líneas de la malla. */
+  mesh?: boolean;
+  /** Colorea según la altura (si no, usa el color de acento). */
+  colored?: boolean;
+  caption?: string;
+}
+
+const {
+  fn,
+  label,
+  xmin = -5,
+  xmax = 5,
+  ymin = -5,
+  ymax = 5,
+  zmin,
+  zmax,
+  resolution = 28,
+  width = 640,
+  height = 460,
+  azimuth = -60,
+  elevation = 30,
+  perspective = false,
+  mesh = true,
+  colored = true,
+  caption,
+} = Astro.props;
+
+let f: (x: number, y: number) => number;
+try {
+  f = parseExpression2(fn);
+} catch (error) {
+  throw new Error(`SurfacePlot: no se pudo interpretar «${fn}»: ${(error as Error).message}`);
+}
+
+const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+const n = Math.max(2, Math.floor(resolution));
+const xs = linspace(xmin, xmax, n);
+const ys = linspace(ymin, ymax, n);
+
+const zGrid: number[][] = ys.map((y) =>
+  xs.map((x) => {
+    try {
+      const value = f(x, y);
+      return Number.isFinite(value) ? value : NaN;
+    } catch {
+      return NaN;
+    }
+  })
+);
+
+const finiteZ = zGrid.flat().filter(Number.isFinite);
+let [zLo, zHi] = zmin !== undefined && zmax !== undefined ? [zmin, zmax] : robustRange(finiteZ);
+if (!(zHi > zLo)) zHi = zLo + 1;
+
+const nx = (x: number) => normalizeAxis(x, xmin, xmax);
+const ny = (y: number) => normalizeAxis(y, ymin, ymax);
+const nz = (z: number) => normalizeAxis(clamp(z, zLo, zHi), zLo, zHi);
+
+const camera = makeCamera(azimuth, clamp(elevation, -85, 85));
+const project = (x: number, y: number, z: number) =>
+  projectPoint({ x: nx(x), y: ny(y), z: nz(z) }, camera, perspective);
+
+const projected: Projected[][] = ys.map((y, j) =>
+  xs.map((x, i) => project(x, y, zGrid[j]![i]!))
+);
+
+const corners: Vec3[] = [];
+for (const X of [-0.5, 0.5]) {
+  for (const Y of [-0.5, 0.5]) {
+    for (const Z of [-0.5, 0.5]) corners.push({ x: X, y: Y, z: Z });
+  }
+}
+const projectedCorners = corners.map((corner) => projectPoint(corner, camera, perspective));
+const minSx = Math.min(...projectedCorners.map((p) => p.sx));
+const maxSx = Math.max(...projectedCorners.map((p) => p.sx));
+const minSy = Math.min(...projectedCorners.map((p) => p.sy));
+const maxSy = Math.max(...projectedCorners.map((p) => p.sy));
+
+const pad = { top: 16, right: 16, bottom: 28, left: 44 };
+const plotWidth = width - pad.left - pad.right;
+const plotHeight = height - pad.top - pad.bottom;
+const spanSx = maxSx - minSx || 1;
+const spanSy = maxSy - minSy || 1;
+const scale = Math.min(plotWidth / spanSx, plotHeight / spanSy) * 0.92;
+const centerSx = (minSx + maxSx) / 2;
+const centerSy = (minSy + maxSy) / 2;
+const toPixel = (sx: number, sy: number) => ({
+  px: pad.left + plotWidth / 2 + (sx - centerSx) * scale,
+  py: pad.top + plotHeight / 2 - (sy - centerSy) * scale,
+});
+
+const light = normalizeVector({ x: 0.4, y: 0.35, z: 0.85 });
+const accentBase: [number, number, number] = [0, 36, 106];
+
+interface Quad {
+  d: string;
+  fill: string;
+  stroke: string;
+  depth: number;
+}
+
+const quads: Quad[] = [];
+for (let j = 0; j < n; j++) {
+  for (let i = 0; i < n; i++) {
+    const z00 = zGrid[j]![i]!;
+    const z10 = zGrid[j]![i + 1]!;
+    const z11 = zGrid[j + 1]![i + 1]!;
+    const z01 = zGrid[j + 1]![i]!;
+    if (![z00, z10, z11, z01].every(Number.isFinite)) continue;
+
+    const p00 = projected[j]![i]!;
+    const p10 = projected[j]![i + 1]!;
+    const p11 = projected[j + 1]![i + 1]!;
+    const p01 = projected[j + 1]![i]!;
+    const depth = (p00.depth + p10.depth + p11.depth + p01.depth) / 4;
+
+    const zAvg = (z00 + z10 + z11 + z01) / 4;
+    const t = (clamp(zAvg, zLo, zHi) - zLo) / (zHi - zLo);
+
+    const a: Vec3 = { x: nx(xs[i]!), y: ny(ys[j]!), z: nz(z00) };
+    const b: Vec3 = { x: nx(xs[i + 1]!), y: ny(ys[j]!), z: nz(z10) };
+    const c: Vec3 = { x: nx(xs[i]!), y: ny(ys[j + 1]!), z: nz(z01) };
+    let normal = normalizeVector(cross(subtract(b, a), subtract(c, a)));
+    if (normal.z < 0) normal = { x: -normal.x, y: -normal.y, z: -normal.z };
+    const shade = 0.55 + 0.45 * Math.max(0, dotProduct(normal, light));
+
+    const fill = rgbString(colored ? colormap(t) : accentBase, shade);
+    const points = [p00, p10, p11, p01].map((p) => toPixel(p.sx, p.sy));
+    const d = `M${points.map((p) => `${p.px.toFixed(1)} ${p.py.toFixed(1)}`).join('L')}Z`;
+    quads.push({ d, fill, stroke: mesh ? 'rgba(120,120,120,0.35)' : fill, depth });
+  }
+}
+quads.sort((q1, q2) => q1.depth - q2.depth);
+
+const boxVerts: Vec3[] = [];
+for (const X of [-0.5, 0.5]) {
+  for (const Y of [-0.5, 0.5]) {
+    for (const Z of [-0.5, 0.5]) boxVerts.push({ x: X, y: Y, z: Z });
+  }
+}
+const boxLines: { x1: number; y1: number; x2: number; y2: number }[] = [];
+for (let i = 0; i < boxVerts.length; i++) {
+  for (let j = i + 1; j < boxVerts.length; j++) {
+    const a = boxVerts[i]!;
+    const b = boxVerts[j]!;
+    const differences =
+      (a.x !== b.x ? 1 : 0) + (a.y !== b.y ? 1 : 0) + (a.z !== b.z ? 1 : 0);
+    if (differences !== 1) continue;
+    const pa = projectPoint(a, camera, perspective);
+    const pb = projectPoint(b, camera, perspective);
+    const A = toPixel(pa.sx, pa.sy);
+    const B = toPixel(pb.sx, pb.sy);
+    boxLines.push({ x1: A.px, y1: A.py, x2: B.px, y2: B.py });
+  }
+}
+
+const fmt = (value: number) =>
+  Math.abs(value) < 1e-9 ? '0' : String(Math.round(value * 1e4) / 1e4);
+
+const labelAt = (point: Vec3, text: string) => {
+  const p = projectPoint(point, camera, perspective);
+  const pixel = toPixel(p.sx, p.sy);
+  return { x: pixel.px, y: pixel.py, text };
+};
+
+const axisNames = [
+  labelAt({ x: 0.64, y: -0.5, z: -0.5 }, 'x'),
+  labelAt({ x: -0.5, y: 0.64, z: -0.5 }, 'y'),
+  labelAt({ x: -0.5, y: -0.5, z: 0.64 }, 'z'),
+];
+
+const tickLabels = [
+  labelAt({ x: -0.5, y: -0.5, z: -0.5 }, fmt(xmin)),
+  labelAt({ x: 0.5, y: -0.5, z: -0.5 }, fmt(xmax)),
+  labelAt({ x: -0.5, y: 0.5, z: -0.5 }, fmt(ymax)),
+  labelAt({ x: -0.5, y: -0.5, z: 0.5 }, fmt(zHi)),
+];
+
+const labelTex = label ?? `z = ${fn}`;
+const labelHtml = katex.renderToString(labelTex, { throwOnError: false });
+const description = caption ?? `Superficie ${labelTex} sobre [${xmin}, ${xmax}] × [${ymin}, ${ymax}]`;
+const gradient = viridisGradientCss();
+---
+
+<figure class="surface-plot">
+  <svg
+    viewBox={`0 0 ${width} ${height}`}
+    role="img"
+    aria-label={description}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title>{description}</title>
+
+    {quads.map((quad) => (
+      <path class="surface-quad" d={quad.d} style={`fill:${quad.fill};stroke:${quad.stroke}`} />
+    ))}
+
+    <g class="box">
+      {boxLines.map((line) => (
+        <line x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} />
+      ))}
+    </g>
+
+    <g class="axis-names">
+      {axisNames.map((item) => (
+        <text x={item.x} y={item.y} text-anchor="middle">{item.text}</text>
+      ))}
+    </g>
+
+    <g class="tick-labels">
+      {tickLabels.map((item) => (
+        <text x={item.x} y={item.y} text-anchor="middle">{item.text}</text>
+      ))}
+    </g>
+  </svg>
+
+  <figcaption>
+    {colored && (
+      <span class="colorbar">
+        <span class="colorbar-bar" style={`background:${gradient}`} />
+        <span class="colorbar-labels">
+          <span>{fmt(zLo)}</span>
+          <span>{fmt(zHi)}</span>
+        </span>
+      </span>
+    )}
+    <span set:html={labelHtml} />
+    {caption && <span class="caption-text">{caption}</span>}
+  </figcaption>
+</figure>
+
+<style>
+  .surface-plot {
+    margin: 1.5rem 0;
+  }
+
+  .surface-plot svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .surface-quad {
+    stroke-width: 0.5;
+    stroke-linejoin: round;
+  }
+
+  .box line {
+    stroke: var(--sl-color-gray-4);
+    stroke-width: 1;
+    opacity: 0.8;
+  }
+
+  .axis-names text {
+    fill: var(--sl-color-gray-1);
+    font-family: var(--sl-font);
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  .tick-labels text {
+    fill: var(--sl-color-gray-3);
+    font-family: var(--sl-font);
+    font-size: 10px;
+  }
+
+  figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+    color: var(--sl-color-gray-2);
+    font-size: 0.95rem;
+  }
+
+  .colorbar {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 8rem;
+  }
+
+  .colorbar-bar {
+    display: block;
+    height: 0.6rem;
+    border-radius: 999px;
+  }
+
+  .colorbar-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--sl-color-gray-3);
+  }
+
+  .caption-text {
+    color: var(--sl-color-gray-3);
+  }
+</style>

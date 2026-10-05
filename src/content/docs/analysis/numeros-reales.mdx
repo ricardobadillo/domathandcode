@@ -1,0 +1,65 @@
+---
+title: Números reales
+description: Cuerpo ordenado, supremo e ínfimo, completitud y propiedades de ℝ
+---
+
+### El cuerpo ordenado de los reales:
+
+$$\mathbb{R}$$ es un **cuerpo ordenado completo**. Esto significa que es un cuerpo conmutativo con un orden total $$\leq$$ compatible con las operaciones:
+
+$$
+a \leq b \Rightarrow a + c \leq b + c, \qquad a \leq b \text{ y } c \geq 0 \Rightarrow ac \leq bc.
+$$
+
+### Cotas y extremos:
+
+Sea $$A \subseteq \mathbb{R}$$ no vacío.
+
+- $$M$$ es **cota superior** de $$A$$ si $$a \leq M$$ para todo $$a \in A$$. Si además $$M \in A$$, es el **máximo**.
+- $$m$$ es **cota inferior** si $$m \leq a$$ para todo $$a \in A$$. Si además $$m \in A$$, es el **mínimo**.
+- El **supremo** $$\sup A$$ es la menor de las cotas superiores.
+- El **ínfimo** $$\inf A$$ es la mayor de las cotas inferiores.
+
+### Axioma del supremo:
+
+Todo subconjunto no vacío de $$\mathbb{R}$$ **acotado superiormente** tiene supremo en $$\mathbb{R}$$. Equivalentemente, todo conjunto no vacío acotado inferiormente tiene ínfimo. Este axioma es lo que distingue a $$\mathbb{R}$$ de $$\mathbb{Q}$$ y garantiza la completitud.
+
+### Propiedad arquimediana:
+
+Para todo $$x \in \mathbb{R}$$ existe $$n \in \mathbb{N}$$ con $$n > x$$. En particular:
+
+$$
+\forall \varepsilon > 0 \ \exists n \in \mathbb{N} : \frac{1}{n} < \varepsilon.
+$$
+
+### Densidad de los racionales:
+
+Entre dos números reales cualesquiera existe un racional:
+
+$$
+\forall x, y \in \mathbb{R},\ x < y \ \exists q \in \mathbb{Q} : x < q < y.
+$$
+
+Los irracionales también son densos en $$\mathbb{R}$$.
+
+### Intervalos encajados:
+
+Si $$I_n = [a_n, b_n]$$ es una sucesión decreciente de intervalos cerrados con $$b_n - a_n \to 0$$, entonces:
+
+$$
+\bigcap_{n=1}^{\infty} I_n \neq \varnothing.
+$$
+
+La intersección contiene exactamente un punto. Este resultado es equivalente a la completitud de $$\mathbb{R}$$.
+
+### Valor absoluto:
+
+$$
+\lvert x \rvert =
+\begin{cases}
+x & \text{si } x \geq 0, \\
+-x & \text{si } x < 0,
+\end{cases}
+$$
+
+y define la distancia $$d(x, y) = \lvert x - y \rvert$$, con la que $$\mathbb{R}$$ es un espacio métrico completo.

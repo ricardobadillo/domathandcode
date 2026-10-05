@@ -1,0 +1,51 @@
+---
+title: Números naturales
+description: Axiomas de Peano, inducción, orden y operaciones
+---
+
+### Definición (axiomas de Peano):
+
+El conjunto de los **números naturales** $$\mathbb{N}$$ queda caracterizado por:
+
+1. $$1 \in \mathbb{N}$$ (o $$0 \in \mathbb{N}$$, según la convención).
+2. Todo $$n \in \mathbb{N}$$ tiene un **sucesor** $$s(n) \in \mathbb{N}$$.
+3. $$s(n) \neq 1$$ para todo $$n \in \mathbb{N}$$.
+4. Si $$s(m) = s(n)$$, entonces $$m = n$$ (la función sucesor es inyectiva).
+5. **Principio de inducción:** si $$S \subseteq \mathbb{N}$$ contiene a $$1$$ y es cerrado bajo el sucesor, entonces $$S = \mathbb{N}$$.
+
+### Principio de inducción matemática:
+
+Para probar que una propiedad $$P(n)$$ vale para todo $$n \in \mathbb{N}$$:
+
+1. **Base:** se verifica $$P(1)$$.
+2. **Paso inductivo:** suponiendo $$P(n)$$ (hipótesis inductiva) se demuestra $$P(n + 1)$$.
+
+### Orden:
+
+Se define $$m \leq n$$ si existe $$k \in \mathbb{N}$$ tal que $$n = m + k$$. Es un **buen orden**: todo subconjunto no vacío de $$\mathbb{N}$$ posee un elemento mínimo.
+
+### Operaciones:
+
+La **suma** y el **producto** se definen recursivamente:
+
+$$
+m + 1 = s(m), \qquad m + s(n) = s(m + n),
+$$
+
+$$
+m \cdot 1 = m, \qquad m \cdot s(n) = m \cdot n + m.
+$$
+
+Ambas operaciones son asociativas y conmutativas, y el producto distribuye sobre la suma.
+
+### División euclidiana:
+
+Dados $$a, b \in \mathbb{N}$$ con $$b \neq 0$$, existen únicos $$q, r \in \mathbb{N}$$ tales que:
+
+$$
+a = bq + r, \qquad 0 \leq r < b.
+$$
+
+### Cardinalidad:
+
+$$\mathbb{N}$$ es el ejemplo prototípico de conjunto **numerable** (infinito contable). Todo subconjunto de $$\mathbb{N}$$ es finito o numerable.

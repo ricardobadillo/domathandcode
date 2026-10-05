@@ -1,0 +1,90 @@
+---
+title: Combinatoria
+description: Principios de conteo, permutaciones, combinaciones e inclusión-exclusión
+---
+
+import GeometryFigure from '../../../components/GeometryFigure.astro';
+
+### Principios de conteo:
+
+**Principio de la suma:** si una tarea puede realizarse de $$m$$ formas y otra de $$n$$ formas mutuamente excluyentes, entonces realizar una u otra puede hacerse de:
+
+$$
+m + n
+$$
+
+formas.
+
+**Principio del producto:** si una tarea tiene $$m$$ formas y, para cada una de ellas, una segunda tarea tiene $$n$$ formas, entonces realizar ambas puede hacerse de $$m \cdot n$$ formas.
+
+### Permutaciones:
+
+Una **permutación** es una ordenación de objetos en la que importa el orden.
+
+- De $$n$$ elementos tomados de $$k$$ en $$k$$, sin repetición: $$P(n, k) = \dfrac{n!}{(n-k)!}$$.
+- Con repetición: $$n^k$$.
+- De todos los elementos: $$n!$$.
+
+### Combinaciones:
+
+Una **combinación** es una selección en la que no importa el orden:
+
+$$
+\binom{n}{k} = \frac{n!}{k!\,(n-k)!}.
+$$
+
+Se cumplen $$\binom{n}{k} = \binom{n}{n-k}$$ y la **regla de Pascal**:
+
+$$
+\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}.
+$$
+
+Los coeficientes $$\binom{n}{k}$$ forman el **triángulo de Pascal**.
+
+### Binomio de Newton:
+
+$$
+(x + y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{n-k} y^k.
+$$
+
+### Principio del palomar:
+
+Si se distribuyen $$n$$ objetos en $$m$$ cajas con $$n > m$$, alguna caja contiene al menos dos objetos. En general, alguna caja contiene al menos $$\lceil n/m \rceil$$ objetos.
+
+### Inclusión-exclusión:
+
+$$
+\lvert A \cup B \rvert = \lvert A \rvert + \lvert B \rvert - \lvert A \cap B \rvert,
+$$
+
+$$
+\lvert A \cup B \cup C \rvert = \lvert A \rvert + \lvert B \rvert + \lvert C \rvert
+- \lvert A \cap B \rvert - \lvert A \cap C \rvert - \lvert B \cap C \rvert
++ \lvert A \cap B \cap C \rvert.
+$$
+
+### Ejemplo (árbol de decisiones):
+
+Al lanzar una moneda dos veces, cada lanzamiento tiene dos resultados (cara $$C$$ o cruz $$X$$), y el principio del producto da $$2 \cdot 2 = 4$$ resultados posibles:
+
+<GeometryFigure
+	caption="Árbol de resultados de dos lanzamientos de moneda"
+	elements={[
+		{ type: 'segment', from: [210, 50], to: [130, 150] },
+		{ type: 'segment', from: [210, 50], to: [290, 150] },
+		{ type: 'segment', from: [130, 150], to: [80, 250] },
+		{ type: 'segment', from: [130, 150], to: [180, 250] },
+		{ type: 'segment', from: [290, 150], to: [250, 250] },
+		{ type: 'segment', from: [290, 150], to: [330, 250] },
+		{ type: 'label', at: [152, 96], text: 'C' },
+		{ type: 'label', at: [272, 96], text: 'X' },
+		{ type: 'label', at: [96, 202], text: 'C' },
+		{ type: 'label', at: [166, 202], text: 'X' },
+		{ type: 'label', at: [260, 202], text: 'C' },
+		{ type: 'label', at: [324, 202], text: 'X' },
+		{ type: 'label', at: [80, 270], text: 'CC' },
+		{ type: 'label', at: [180, 270], text: 'CX' },
+		{ type: 'label', at: [250, 270], text: 'XC' },
+		{ type: 'label', at: [330, 270], text: 'XX' },
+	]}
+/>

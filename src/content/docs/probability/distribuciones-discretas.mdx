@@ -1,0 +1,105 @@
+---
+title: Distribuciones discretas
+description: Distribuciones de Bernoulli, binomial, geométrica y de Poisson
+---
+
+import FunctionPlot from '../../../components/FunctionPlot.astro';
+
+### Distribución de Bernoulli:
+
+Es la distribución de un experimento con dos resultados (éxito $$x = 1$$ con probabilidad $$p$$ y fracaso $$x = 0$$ con probabilidad $$q = 1 - p$$). La función de masa es:
+
+$$
+p(x) = p^x (1 - p)^{1-x}, \qquad x \in \{ 0, 1 \}.
+$$
+
+Se denota $$X \sim \operatorname{Bernoulli}(p)$$. Su esperanza y varianza son:
+
+$$
+E[X] = p, \qquad \operatorname{Var}(X) = p(1 - p).
+$$
+
+### Distribución binomial:
+
+Modela la cantidad de éxitos en $$n$$ ensayos independientes de Bernoulli. La función de masa es:
+
+$$
+P(X = k) = \binom{n}{k} p^k (1 - p)^{n-k}, \qquad k = 0, 1, \dots, n.
+$$
+
+Se denota $$X \sim \operatorname{Binomial}(n, p)$$. Sus parámetros son:
+
+$$
+E[X] = np, \qquad \operatorname{Var}(X) = np(1 - p).
+$$
+
+La binomial surge de la suma de $$n$$ variables de Bernoulli independientes.
+
+### Distribución geométrica:
+
+Modela el número de ensayos de Bernoulli necesarios hasta obtener el primer éxito. La función de masa es:
+
+$$
+P(X = k) = (1 - p)^{k-1} p, \qquad k = 1, 2, 3, \dots
+$$
+
+Se denota $$X \sim \operatorname{Geom}(p)$$. Sus parámetros son:
+
+$$
+E[X] = \frac{1}{p}, \qquad \operatorname{Var}(X) = \frac{1 - p}{p^2}.
+$$
+
+### Distribución de Poisson:
+
+Modela el número de ocurrencias de un evento en un intervalo de tiempo o espacio fijo, con tasa $$\lambda$$. La función de masa es:
+
+$$
+P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}, \qquad k = 0, 1, 2, \dots
+$$
+
+Se denota $$X \sim \operatorname{Poisson}(\lambda)$$. Sus parámetros son:
+
+$$
+E[X] = \lambda, \qquad \operatorname{Var}(X) = \lambda.
+$$
+
+<FunctionPlot
+	fn="3^x * exp(-3) / gamma(x+1)"
+	label="P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}"
+	discrete
+	xmin={0}
+	xmax={10}
+	ymin={0}
+	ymax={0.25}
+	caption="Función de masa de Poisson con λ = 3"
+/>
+
+### Fórmula de recursión de Poisson:
+
+Las probabilidades de Poisson verifican la recurrencia:
+
+$$
+P(X = k + 1) = \frac{\lambda}{k + 1} \, P(X = k).
+$$
+
+### Distribución binomial negativa:
+
+Generaliza la geométrica: modela el número de ensayos hasta obtener $$r$$ éxitos. La función de masa es:
+
+$$
+P(X = k) = \binom{k - 1}{r - 1} p^r (1 - p)^{k - r}, \qquad k = r, r+1, \dots
+$$
+
+Sus parámetros son:
+
+$$
+E[X] = \frac{r}{p}, \qquad \operatorname{Var}(X) = \frac{r(1 - p)}{p^2}.
+$$
+
+### Distribución uniforme discreta:
+
+Cada uno de los posibles valores $$\Omega = \{ x_1, x_2, \dots, x_n \}$$ es igualmente probable:
+
+$$
+p(x) = \frac{1}{n}, \qquad E[X] = \frac{1}{n} \sum_{i=1}^{n} x_i, \qquad \operatorname{Var}(X) = \frac{n^2 - 1}{12}.
+$$

@@ -1,0 +1,59 @@
+---
+title: Grupos
+description: Definición, propiedades, subgrupos y homomorfismos de grupos
+---
+
+### Definición:
+
+Sea $$G$$ un conjunto no vacío dotado de una operación binaria $$\cdot : G \times G \to G$$. Se dice que $$(G, \cdot)$$ es un **grupo** si se cumplen los siguientes axiomas:
+
+1. **Asociatividad:** $$(a \cdot b) \cdot c = a \cdot (b \cdot c) \quad \text{para todo } a, b, c \in G.$$
+2. **Elemento neutro:** existe $$e \in G$$ tal que $$a \cdot e = e \cdot a = a$$ para todo $$a \in G.$$
+3. **Elemento inverso:** para cada $$a \in G$$ existe $$a^{-1} \in G$$ tal que $$a \cdot a^{-1} = a^{-1} \cdot a = e.$$
+
+Si además la operación es conmutativa ($$a \cdot b = b \cdot a$$), el grupo se llama **abeliano** (o conmutativo).
+
+### Propiedades básicas:
+
+Sea $$G$$ un grupo y $$a, b \in G$$.
+
+1. El elemento neutro $$e$$ es único.
+2. El inverso de cada elemento es único.
+3. $$(a^{-1})^{-1} = a.$$
+4. $$(ab)^{-1} = b^{-1}a^{-1}.$$
+5. Leyes de cancelación: $$ab = ac \Rightarrow b = c$$ y $$ba = ca \Rightarrow b = c.$$
+
+### Notación:
+
+Es usual escribir la operación de forma **aditiva** $$(G, +)$$ cuando el grupo es abeliano: el neutro se denota $$0$$ y el inverso de $$a$$ se denota $$-a$$. La forma **multiplicativa** $$(G, \cdot)$$ se emplea en general.
+
+### Orden:
+
+Se define el **orden** de un grupo $$G$$, denotado $$|G|$$, como el número de elementos de $$G$$ (puede ser infinito). El **orden** de un elemento $$a \in G$$ es el menor entero positivo $$n$$ tal que $$a^n = e$$; si no existe, se dice que tiene orden infinito.
+
+### Subgrupos:
+
+Un subconjunto no vacío $$H \subseteq G$$ es un **subgrupo** de $$G$$ si es cerrado respecto a la operación y a la toma de inversos:
+
+1. $$a \cdot b \in H \quad \text{para todo } a, b \in H.$$
+2. $$a^{-1} \in H \quad \text{para todo } a \in H.$$
+
+En particular, todo subgrupo contiene al neutro $$e$$, y $$H \subseteq G$$ es un subgrupo si y sólo si $$ab^{-1} \in H$$ para todo $$a, b \in H$$.
+
+### Teorema de Lagrange:
+
+Si $$G$$ es un grupo finito y $$H$$ es un subgrupo de $$G$$, entonces el orden de $$H$$ divide al orden de $$G$$:
+
+$$
+|H| \mid |G|.
+$$
+
+### Homomorfismos de grupos:
+
+Sean $$(G, \cdot)$$ y $$(G', *)$$ grupos. Una función $$f : G \to G'$$ es un **homomorfismo** si:
+
+$$
+f(a \cdot b) = f(a) * f(b) \quad \text{para todo } a, b \in G.
+$$
+
+Un homomorfismo **inyectivo** se llama **monomorfismo**, **sobreyectivo** se llama **epimorfismo**, y si es biyectivo se llama **isomorfismo**. Si $$G = G'$$, un homomorfismo de $$G$$ en sí mismo se llama **endomorfismo**.

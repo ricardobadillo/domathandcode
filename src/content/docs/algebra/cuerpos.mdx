@@ -1,0 +1,50 @@
+---
+title: Cuerpos
+description: Definición de cuerpo, ejemplos, característica y subcuerpos
+---
+
+### Definición:
+
+Un **cuerpo** es un anillo conmutativo con unidad $$(K, +, \cdot)$$ en el que todo elemento no nulo tiene inverso multiplicativo. Equivalentemente, $$(K, +)$$ y $$(K \setminus \{0\}, \cdot)$$ son grupos abelianos y el producto distribuye sobre la suma.
+
+### Ejemplos:
+
+- $$\mathbb{Q}$$, $$\mathbb{R}$$ y $$\mathbb{C}$$ con las operaciones usuales.
+- $$\mathbb{Z}/p\mathbb{Z}$$ con $$p$$ primo, denotado $$\mathbb{F}_p$$.
+- El cuerpo de fracciones de cualquier dominio de integridad.
+- $$\mathbb{Q}(\sqrt{2}) = \{a + b\sqrt{2} : a, b \in \mathbb{Q}\}.$$
+
+### Propiedades básicas:
+
+En un cuerpo $$K$$, para todo $$a, b \in K$$:
+
+1. $$a \cdot 0 = 0.$$
+2. Si $$ab = 0$$, entonces $$a = 0$$ o $$b = 0$$ (no hay divisores de cero).
+3. Leyes de cancelación: si $$ab = ac$$ con $$a \neq 0$$, entonces $$b = c$$.
+4. $$(-a)b = -(ab)$$ y $$(-a)(-b) = ab.$$
+
+### Característica:
+
+La **característica** de $$K$$ es el menor entero positivo $$n$$ tal que:
+
+$$
+\underbrace{1 + 1 + \cdots + 1}_{n} = 0,
+$$
+
+si existe; en caso contrario se dice que la característica es $$0$$. La característica de un cuerpo es siempre $$0$$ o un número primo. Así, $$\mathbb{Q}, \mathbb{R}, \mathbb{C}$$ tienen característica $$0$$, y $$\mathbb{F}_p$$ tiene característica $$p$$.
+
+### Subcuerpos y extensiones:
+
+Un subconjunto $$F \subseteq K$$ es un **subcuerpo** si es un cuerpo con las operaciones restringidas. Entonces $$K$$ es una **extensión** de $$F$$, denotada $$K/F$$, y $$K$$ es un espacio vectorial sobre $$F$$. Su **grado** es $$[K : F] = \dim_F K$$.
+
+El **cuerpo primo** de $$K$$ es el menor subcuerpo que contiene a $$1$$: es isomorfo a $$\mathbb{Q}$$ si la característica es $$0$$, o a $$\mathbb{F}_p$$ si es $$p$$.
+
+### Homomorfismos de cuerpos:
+
+Una aplicación $$f : K \to L$$ entre cuerpos es un **homomorfismo** si preserva las operaciones:
+
+$$
+f(a + b) = f(a) + f(b), \qquad f(ab) = f(a) f(b), \qquad f(1) = 1.
+$$
+
+Todo homomorfismo de cuerpos es **inyectivo**, ya que su núcleo es un ideal propio y los únicos ideales de un cuerpo son $$\{0\}$$ y $$K$$.

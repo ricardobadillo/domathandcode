@@ -1,0 +1,79 @@
+---
+title: Integrales impropias
+description: Integrales impropias de primera y segunda especie y su convergencia
+---
+
+import FunctionPlot from '../../../components/FunctionPlot.astro';
+
+### Integrales de primera especie:
+
+Son integrales sobre intervalos no acotados, definidas como límites:
+
+$$
+\int_{a}^{\infty} f(x)\,dx = \lim_{b \to \infty} \int_{a}^{b} f(x)\,dx,
+$$
+
+$$
+\int_{-\infty}^{\infty} f(x)\,dx = \int_{-\infty}^{c} f(x)\,dx + \int_{c}^{\infty} f(x)\,dx.
+$$
+
+Si el límite existe y es finito, la integral **converge**; en caso contrario, **diverge**.
+
+### Integrales de segunda especie:
+
+Son integrales de funciones no acotadas en un extremo del intervalo:
+
+$$
+\int_{a}^{b} f(x)\,dx = \lim_{t \to a^+} \int_{t}^{b} f(x)\,dx,
+$$
+
+cuando $$f \to \pm\infty$$ al acercarse a $$a$$. Si la discontinuidad es interior, la integral se divide en dos.
+
+### Integrales p:
+
+$$
+\int_{1}^{\infty} \frac{dx}{x^p} \text{ converge} \iff p > 1,
+$$
+
+$$
+\int_{0}^{1} \frac{dx}{x^p} \text{ converge} \iff p < 1.
+$$
+
+<FunctionPlot
+	fns={[
+		{ fn: '1/x', label: '1/x' },
+		{ fn: '1/x^2', label: '1/x^2' },
+	]}
+	xmin={0.1}
+	xmax={5}
+	ymin={0}
+	ymax={4}
+	caption="La integral de 1/x² converge; la de 1/x diverge"
+/>
+
+### Criterios de comparación:
+
+Si $$0 \leq f(x) \leq g(x)$$ para $$x \geq a$$:
+
+- Si $$\int_a^\infty g$$ converge, entonces $$\int_a^\infty f$$ converge.
+- Si $$\int_a^\infty f$$ diverge, entonces $$\int_a^\infty g$$ diverge.
+
+El **criterio del límite** compara con una integral p cuando existe:
+
+$$
+\lim_{x \to \infty} x^p f(x) = L, \qquad 0 < L < \infty.
+$$
+
+### Convergencia absoluta:
+
+Si $$\int |f|$$ converge, entonces $$\int f$$ converge (**convergencia absoluta**). Si $$\int f$$ converge pero $$\int |f|$$ no, la convergencia es **condicional**.
+
+### Valor principal de Cauchy:
+
+Cuando la singularidad es simétrica se define:
+
+$$
+\text{VP} \int_{-\infty}^{\infty} f(x)\,dx = \lim_{R \to \infty} \int_{-R}^{R} f(x)\,dx,
+$$
+
+que puede existir aunque la integral impropia no converja.

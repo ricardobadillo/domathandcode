@@ -1,0 +1,62 @@
+---
+title: Probabilidad condicional
+description: Probabilidad condicional, independencia y teorema de Bayes
+---
+
+### Probabilidad condicional:
+
+Dados dos sucesos $$A$$ y $$B$$ con $$P(B) > 0$$, la **probabilidad de $$A$$ condicionada a $$B$$** es:
+
+$$
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}.
+$$
+
+Representa la probabilidad de que ocurra $$A$$ sabiendo que ha ocurrido $$B$$.
+
+### Regla del producto:
+
+$$
+P(A \cap B) = P(A \mid B)\, P(B) = P(B \mid A)\, P(A).
+$$
+
+Se generaliza a varios sucesos:
+
+$$
+P(A_1 \cap \cdots \cap A_n) = P(A_1)\, P(A_2 \mid A_1) \cdots P(A_n \mid A_1 \cap \cdots \cap A_{n-1}).
+$$
+
+### Independencia:
+
+Dos sucesos $$A$$ y $$B$$ son **independientes** si:
+
+$$
+P(A \cap B) = P(A)\, P(B),
+$$
+
+lo que equivale a $$P(A \mid B) = P(A)$$. Varios sucesos son mutuamente independientes si la igualdad vale para todo subconjunto.
+
+### Probabilidad total:
+
+Si $$\{B_1, \dots, B_n\}$$ es una **partición** del espacio muestral (sucesos disjuntos cuya unión es todo $$\Omega$$), entonces:
+
+$$
+P(A) = \sum_{i=1}^{n} P(A \mid B_i)\, P(B_i).
+$$
+
+### Teorema de Bayes:
+
+Con la misma partición y $$P(A) > 0$$:
+
+$$
+P(B_i \mid A) = \frac{P(A \mid B_i)\, P(B_i)}{\displaystyle\sum_{j=1}^{n} P(A \mid B_j)\, P(B_j)}.
+$$
+
+Permite **actualizar** la probabilidad de una hipótesis $$B_i$$ a la luz de la evidencia $$A$$.
+
+### Ejemplo:
+
+Una enfermedad afecta al $$1\%$$ de la población. Una prueba da positivo en el $$99\%$$ de los enfermos y en el $$5\%$$ de los sanos. La probabilidad de estar enfermo tras un positivo es:
+
+$$
+P(E \mid +) = \frac{0.99 \cdot 0.01}{0.99 \cdot 0.01 + 0.05 \cdot 0.99} \approx 0.167.
+$$

@@ -1,0 +1,390 @@
+---
+import katex from 'katex';
+import {
+  parseExpression,
+  sampleFunction,
+  sampleInteger,
+  niceTicks,
+  autoYRange,
+  buildPath,
+  buildAreaPath,
+  linearScale,
+} from '../lib/plot';
+
+interface SeriesOption {
+  /** Expresión a evaluar, p. ej. "sin(x)". */
+  fn: string;
+  /** Fórmula en LaTeX para la leyenda. */
+  label?: string;
+  /** Color del trazo (CSS). */
+  color?: string;
+  /** Dibuja el trazo discontinuo. */
+  dash?: boolean;
+  /** Grosor del trazo en píxeles. */
+  width?: number;
+}
+
+interface PointOption {
+  x: number;
+  y: number;
+}
+
+interface Props {
+  /** Expresión de una única función. */
+  fn?: string;
+  /** Fórmula en LaTeX para la leyenda de `fn`. */
+  label?: string;
+  /** Varias funciones superpuestas. */
+  fns?: (string | SeriesOption)[];
+  /** Puntos (x, y) a dibujar, p. ej. datos de dispersión. */
+  points?: PointOption[];
+  /** Leyenda de los puntos en LaTeX. */
+  pointsLabel?: string;
+  /** Sombrea el área bajo la primera curva entre `from` y `to`. */
+  area?: { from: number; to: number };
+  /** Muestrea sólo valores enteros (para distribuciones discretas). */
+  discrete?: boolean;
+  xmin?: number;
+  xmax?: number;
+  ymin?: number;
+  ymax?: number;
+  samples?: number;
+  width?: number;
+  height?: number;
+  grid?: boolean;
+  caption?: string;
+}
+
+const {
+  fn,
+  label,
+  fns,
+  points,
+  pointsLabel,
+  area,
+  discrete = false,
+  xmin = -10,
+  xmax = 10,
+  ymin,
+  ymax,
+  samples = 400,
+  width = 640,
+  height = 400,
+  grid = true,
+  caption,
+} = Astro.props;
+
+const palette = [
+  'var(--sl-color-accent)',
+  '#e11d48',
+  '#0d9488',
+  '#7c3aed',
+  '#d97706',
+];
+const pointColor = '#e11d48';
+
+const rawSeries: (string | SeriesOption)[] =
+  fns && fns.length > 0 ? fns : fn ? [label ? { fn, label } : fn] : [];
+
+if (rawSeries.length === 0 && (!points || points.length === 0)) {
+  throw new Error('FunctionPlot: se requiere al menos «fn», «fns» o «points».');
+}
+
+const series = rawSeries.map((entry, index) => {
+  const base: SeriesOption = typeof entry === 'string' ? { fn: entry } : entry;
+  let evaluate: (x: number) => number;
+  try {
+    evaluate = parseExpression(base.fn);
+  } catch (error) {
+    throw new Error(`FunctionPlot: no se pudo interpretar «${base.fn}»: ${(error as Error).message}`);
+  }
+  return {
+    fn: base.fn,
+    label: base.label,
+    color: base.color ?? palette[index % palette.length]!,
+    dash: base.dash ?? false,
+    width: base.width,
+    discrete,
+    evaluate,
+  };
+});
+
+const labeledSeries = series.map((s) => ({
+  ...s,
+  label: s.label ?? (series.length === 1 && !s.discrete ? `f(x) = ${s.fn}` : undefined),
+}));
+
+const seriesPoints = series.map((s) =>
+  s.discrete ? sampleInteger(s.evaluate, xmin, xmax) : sampleFunction(s.evaluate, xmin, xmax, samples)
+);
+
+const allYs: number[] = [];
+for (const pts of seriesPoints) {
+  for (const p of pts) if (p.y !== null) allYs.push(p.y);
+}
+if (points) {
+  for (const p of points) if (Number.isFinite(p.y)) allYs.push(p.y);
+}
+
+let [yLo, yHi] =
+  ymin !== undefined && ymax !== undefined
+    ? [ymin, ymax]
+    : autoYRange(allYs.map((y) => ({ x: 0, y })));
+if (area) {
+  yLo = Math.min(yLo, 0);
+  yHi = Math.max(yHi, 0);
+}
+
+const pad = { top: 18, right: 18, bottom: 30, left: 44 };
+const plotWidth = width - pad.left - pad.right;
+const plotHeight = height - pad.top - pad.bottom;
+
+const xScale = linearScale(xmin, xmax, pad.left, pad.left + plotWidth);
+const yScale = linearScale(yLo, yHi, pad.top + plotHeight, pad.top);
+
+const xTicks = niceTicks(xmin, xmax, Math.max(4, Math.round(plotWidth / 80)));
+const yTicks = niceTicks(yLo, yHi, Math.max(4, Math.round(plotHeight / 60)));
+
+const xAxisY = 0 >= yLo && 0 <= yHi ? yScale(0) : pad.top + plotHeight;
+const yAxisX = 0 >= xmin && 0 <= xmax ? xScale(0) : pad.left;
+
+const clipId = `function-plot-${Math.random().toString(36).slice(2, 9)}`;
+
+const formatTick = (value: number): string => {
+  if (Math.abs(value) < 1e-9) return '0';
+  return String(Math.round(value * 1e6) / 1e6);
+};
+
+const lines = series
+  .map((s, index) => {
+    if (s.discrete) return null;
+    const d = buildPath(seriesPoints[index]!, xScale, yScale, [yLo, yHi]);
+    return { d, color: s.color, dash: s.dash, width: s.width };
+  })
+  .filter((line): line is NonNullable<typeof line> => line !== null);
+
+const dots = series
+  .map((s, index) =>
+    s.discrete
+      ? seriesPoints[index]!
+          .filter((p) => p.y !== null)
+          .map((p) => ({ cx: xScale(p.x), cy: yScale(p.y as number), color: s.color }))
+      : []
+  )
+  .flat();
+
+const areaPath = area && seriesPoints[0]
+  ? buildAreaPath(seriesPoints[0], xScale, yScale, area.from, area.to)
+  : '';
+
+const legend = [
+  ...labeledSeries
+    .filter((s) => s.label)
+    .map((s) => ({
+      color: s.color,
+      html: katex.renderToString(s.label as string, { throwOnError: false }),
+    })),
+  ...(points && points.length && pointsLabel
+    ? [{ color: pointColor, html: katex.renderToString(pointsLabel, { throwOnError: false }) }]
+    : []),
+];
+
+const description =
+  caption ??
+  (labeledSeries
+    .map((s) => s.label)
+    .filter(Boolean)
+    .join(', ') || 'Gráfica de funciones');
+---
+
+<figure class="function-plot">
+  <svg
+    viewBox={`0 0 ${width} ${height}`}
+    role="img"
+    aria-label={description}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title>{description}</title>
+    <defs>
+      <clipPath id={clipId}>
+        <rect x={pad.left} y={pad.top} width={plotWidth} height={plotHeight} />
+      </clipPath>
+    </defs>
+
+    {areaPath && (
+      <path class="area" d={areaPath} style={`fill:${labeledSeries[0]?.color ?? palette[0]}`} clip-path={`url(#${clipId})`} />
+    )}
+
+    {
+      grid && (
+        <g class="grid">
+          {xTicks.map((tick) => (
+            <line x1={xScale(tick)} y1={pad.top} x2={xScale(tick)} y2={pad.top + plotHeight} />
+          ))}
+          {yTicks.map((tick) => (
+            <line x1={pad.left} y1={yScale(tick)} x2={pad.left + plotWidth} y2={yScale(tick)} />
+          ))}
+        </g>
+      )
+    }
+
+    <g class="axes">
+      <line x1={pad.left} y1={xAxisY} x2={pad.left + plotWidth} y2={xAxisY} />
+      <line x1={yAxisX} y1={pad.top} x2={yAxisX} y2={pad.top + plotHeight} />
+    </g>
+
+    {
+      lines.map((line) => (
+        <path
+          class="curve"
+          d={line.d}
+          style={`stroke:${line.color}${line.width ? `;stroke-width:${line.width}` : ''}`}
+          stroke-dasharray={line.dash ? '6 5' : undefined}
+          clip-path={`url(#${clipId})`}
+        />
+      ))
+    }
+
+    {
+      points?.map((point) => (
+        <circle
+          class="dot"
+          cx={xScale(point.x)}
+          cy={yScale(point.y)}
+          r={4}
+          style={`fill:${pointColor}`}
+          clip-path={`url(#${clipId})`}
+        />
+      ))
+    }
+
+    {
+      dots.map((dot) => (
+        <circle class="dot" cx={dot.cx} cy={dot.cy} r={4} style={`fill:${dot.color}`} clip-path={`url(#${clipId})`} />
+      ))
+    }
+
+    <g class="ticks">
+      {
+        xTicks.map((tick) => (
+          <text x={xScale(tick)} y={xAxisY + 16} text-anchor="middle">
+            {formatTick(tick)}
+          </text>
+        ))
+      }
+      {
+        yTicks.map((tick) => (
+          <text x={yAxisX - 6} y={yScale(tick) + 4} text-anchor="end">
+            {formatTick(tick)}
+          </text>
+        ))
+      }
+    </g>
+
+    <text class="axis-label" x={pad.left + plotWidth} y={xAxisY - 8} text-anchor="end">x</text>
+    <text class="axis-label" x={yAxisX + 8} y={pad.top + 4} text-anchor="start">y</text>
+  </svg>
+  {
+    (legend.length > 0 || caption) && (
+      <figcaption>
+        {legend.length > 0 && (
+          <span class="legend">
+            {legend.map((item) => (
+              <span class="legend-item">
+                <span class="swatch" style={`background:${item.color}`} />
+                <span set:html={item.html} />
+              </span>
+            ))}
+          </span>
+        )}
+        {caption && <span class="caption-text">{caption}</span>}
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .function-plot {
+    margin: 1.5rem 0;
+  }
+
+  .function-plot svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .grid line {
+    stroke: var(--sl-color-gray-6);
+    stroke-width: 1;
+  }
+
+  .axes line {
+    stroke: var(--sl-color-gray-4);
+    stroke-width: 1.25;
+  }
+
+  .ticks text,
+  .axis-label {
+    fill: var(--sl-color-gray-2);
+    font-family: var(--sl-font);
+    font-size: 11px;
+  }
+
+  .axis-label {
+    font-style: italic;
+  }
+
+  .area {
+    opacity: 0.18;
+    stroke: none;
+  }
+
+  .curve {
+    fill: none;
+    stroke-width: 2.25;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+
+  .dot {
+    stroke: var(--sl-color-bg);
+    stroke-width: 1;
+  }
+
+  figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+    color: var(--sl-color-gray-2);
+    font-size: 0.95rem;
+  }
+
+  .legend {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    align-items: center;
+  }
+
+  .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .swatch {
+    display: inline-block;
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 999px;
+  }
+
+  .caption-text {
+    color: var(--sl-color-gray-3);
+  }
+</style>

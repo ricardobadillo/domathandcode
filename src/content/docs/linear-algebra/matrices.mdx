@@ -1,0 +1,92 @@
+---
+title: Matrices
+description: Definición, notación y operaciones básicas con matrices
+---
+
+### Definición y notación:
+
+Una **matriz** es un arreglo rectangular de números dispuestos en filas y columnas. Si la matriz tiene $$m$$ filas y $$n$$ columnas, decimos que su **dimensión** (u orden) es $$m \times n$$, y se escribe:
+
+$$
+A = \begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix}
+$$
+
+Al elemento situado en la fila $$i$$ y la columna $$j$$ se le denota $$a_{ij}$$, y se dice que $$A = (a_{ij})$$. El conjunto de todas las matrices de dimensión $$m \times n$$ con entradas en $$\mathbb{R}$$ se denota $$M_{m \times n}(\mathbb{R})$$.
+
+Una matriz con una sola fila se llama **vector fila**, y con una sola columna, **vector columna**. Si $$m = n$$ se dice que la matriz es **cuadrada**.
+
+### Igualdad de matrices:
+
+Dos matrices $$A = (a_{ij})$$ y $$B = (b_{ij})$$ son iguales si y sólo si tienen la misma dimensión y
+
+$$
+a_{ij} = b_{ij} \quad \text{para todo } i, j.
+$$
+
+### Suma de matrices:
+
+Sean $$A = (a_{ij})$$ y $$B = (b_{ij})$$ matrices de dimensión $$m \times n$$. Su suma se define entrada a entrada:
+
+$$
+(A + B)_{ij} = a_{ij} + b_{ij}.
+$$
+
+### Producto por un escalar:
+
+Dada una matriz $$A = (a_{ij})$$ y un escalar $$\lambda \in \mathbb{R}$$, el producto por escalar es:
+
+$$
+(\lambda A)_{ij} = \lambda a_{ij}.
+$$
+
+La suma de matrices y el producto por un escalar convierten a $$M_{m \times n}(\mathbb{R})$$ en un espacio vectorial.
+
+### Producto de matrices:
+
+Sean $$A \in M_{m \times n}(\mathbb{R})$$ y $$B \in M_{n \times p}(\mathbb{R})$$ (el número de columnas de $$A$$ debe coincidir con el de filas de $$B$$). El producto $$AB \in M_{m \times p}(\mathbb{R})$$ se define por:
+
+$$
+(AB)_{ij} = \sum_{k=1}^{n} a_{ik} b_{kj} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{in}b_{nj}.
+$$
+
+**No conmutativa:** en general $$AB \neq BA$$. El producto de matrices sí es asociativo y distributivo respecto a la suma.
+
+### Matriz identidad:
+
+La **matriz identidad** de orden $$n$$ es la matriz cuadrada con unos en la diagonal principal y ceros fuera de ella:
+
+$$
+I_n = \begin{pmatrix}
+1 & 0 & \cdots & 0 \\
+0 & 1 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & 1
+\end{pmatrix}.
+$$
+
+Para toda matriz cuadrada $$A$$ de orden $$n$$ se cumple $$AI_n = I_n A = A$$.
+
+### Transpuesta:
+
+La **transpuesta** de $$A \in M_{m \times n}(\mathbb{R})$$, denotada $$A^T$$, es la matriz de dimensión $$n \times m$$ tal que:
+
+$$
+(A^T)_{ij} = a_{ji}.
+$$
+
+Propiedades: $$(A^T)^T = A$$, $$(A + B)^T = A^T + B^T$$ y $$(AB)^T = B^T A^T$$.
+
+### Matriz inversa:
+
+Una matriz cuadrada $$A$$ de orden $$n$$ es **invertible** (o **regular**) si existe una matriz $$A^{-1}$$ tal que:
+
+$$
+AA^{-1} = A^{-1}A = I_n.
+$$
+
+La matriz $$A^{-1}$$ existe si y sólo si $$\det(A) \neq 0$$, en cuyo caso se llama **no singular**; en caso contrario se dice **singular**.

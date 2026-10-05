@@ -1,0 +1,88 @@
+---
+title: Transformaciones lineales
+description: Definición, propiedades básicas y representación matricial de las transformaciones lineales
+---
+
+### Definición:
+
+Sean $$V$$ y $$W$$ espacios vectoriales sobre el mismo cuerpo $$\mathbb{K}$$. Una función $$T : V \to W$$ es una **transformación lineal** (o aplicación lineal) si satisface:
+
+1. **Aditividad:** $$T(u + v) = T(u) + T(v) \quad \text{para todo } u, v \in V.$$
+2. **Homogeneidad:** $$T(\lambda u) = \lambda T(u) \quad \text{para todo } \lambda \in \mathbb{K}, \, u \in V.$$
+
+Ambas condiciones pueden resumirse en una sola:
+
+$$
+T(\lambda u + v) = \lambda T(u) + T(v) \quad \text{para todo } \lambda \in \mathbb{K}, \, u, v \in V.
+$$
+
+También se las llama **homomorfismos** de espacios vectoriales.
+
+### Propiedades básicas:
+
+Si $$T : V \to W$$ es una transformación lineal, entonces:
+
+1. $$T(0_V) = 0_W.$$
+2. $$T(-u) = -T(u) \quad \text{para todo } u \in V.$$
+3. $$T(u - v) = T(u) - T(v) \quad \text{para todo } u, v \in V.$$
+
+### Núcleo e imagen:
+
+El **núcleo** (o kernel) de $$T$$ es el conjunto de vectores que se anulan:
+
+$$
+\ker(T) = \{ u \in V : T(u) = 0_W \}.
+$$
+
+El núcleo $$\ker(T)$$ es un subespacio de $$V$$. La **imagen** de $$T$$ es:
+
+$$
+\operatorname{Im}(T) = \{ w \in W : \exists \, u \in V \text{ con } T(u) = w \},
+$$
+
+y es un subespacio de $$W$$. $$T$$ es **inyectiva** si y sólo si $$\ker(T) = \{ 0_V \}$$, y es **sobreyectiva** si $$\operatorname{Im}(T) = W$$.
+
+### Teorema de la dimensión (núcleo-imagen):
+
+Si $$V$$ es de dimensión finita, entonces:
+
+$$
+\dim(V) = \dim(\ker(T)) + \dim(\operatorname{Im}(T)).
+$$
+
+A $$\dim(\ker(T))$$ se le llama **nulidad** y a $$\dim(\operatorname{Im}(T))$$ se le llama **rango** de $$T$$.
+
+### Representación matricial:
+
+Sea $$B = \{ v_1, v_2, \dots, v_n \}$$ una base de $$V$$ y $$B' = \{ w_1, w_2, \dots, w_m \}$$ una base de $$W$$. Como $$T$$ es lineal, la transformación queda completamente determinada por los vectores $$T(v_j)$$, y cada uno se expresa en la base $$B'$$:
+
+$$
+T(v_j) = \sum_{i=1}^{m} a_{ij} w_i.
+$$
+
+La **matriz asociada** a $$T$$ respecto a las bases $$B$$ y $$B'$$ es:
+
+$$
+[T]_{B}^{B'} = \begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix},
+$$
+
+y satisface:
+
+$$
+[T(u)]_{B'} = [T]_{B}^{B'} \cdot [u]_{B}.
+$$
+
+### Composición de transformaciones lineales:
+
+Si $$T : U \to V$$ y $$S : V \to W$$ son transformaciones lineales, la composición $$S \circ T : U \to W$$ definida por $$(S \circ T)(u) = S(T(u))$$ también es lineal, y su matriz asociada es el producto de las matrices:
+
+$$
+[S \circ T]_{B_U}^{B_W} = [S]_{B_V}^{B_W} \cdot [T]_{B_U}^{B_V}.
+$$
+
+Una transformación lineal biyectiva entre dos espacios vectoriales se llama **isomorfismo**, y entonces los espacios se dicen **isomorfos**.

@@ -1,0 +1,51 @@
+---
+title: Probabilidad y estadística
+description: Combinatoria, probabilidad, variables aleatorias y estadísticos habituales
+---
+
+### Combinatoria:
+
+- **Principio multiplicativo:** si una tarea tiene $$m$$ formas y otra $$n$$, ambas se realizan de $$m \cdot n$$ formas.
+- **Permutaciones** (importa el orden): $$P(n, k) = \dfrac{n!}{(n-k)!}$$.
+- **Combinaciones** (no importa el orden): $$\binom{n}{k} = \dfrac{n!}{k!\,(n-k)!}$$.
+- **Permutaciones con repetición:** $$\dfrac{n!}{n_1!\, n_2! \cdots n_k!}$$.
+
+El **binomio de Newton** desarrolla:
+
+$$
+(x + y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{n-k} y^k.
+$$
+
+### Probabilidad:
+
+Un **experimento aleatorio** tiene un espacio muestral $$\Omega$$ (todos los resultados posibles). Un **suceso** es un subconjunto de $$\Omega$$. La probabilidad $$P$$ satisface los axiomas de Kolmogorov:
+
+1. $$P(A) \geq 0$$ para todo suceso $$A$$.
+2. $$P(\Omega) = 1$$.
+3. Si $$A$$ y $$B$$ son disjuntos, $$P(A \cup B) = P(A) + P(B)$$.
+
+Propiedades: $$P(A^{c}) = 1 - P(A)$$ y $$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$. La **probabilidad condicional** es $$P(A \mid B) = \dfrac{P(A \cap B)}{P(B)}$$ y dos sucesos son **independientes** si $$P(A \cap B) = P(A)P(B)$$.
+
+### Variables aleatorias:
+
+Una **variable aleatoria** $$X$$ asigna un número a cada resultado. Es **discreta** si toma valores contables (función de masa $$p(x) = P(X = x)$$) o **continua** si toma valores de un intervalo (función de densidad $$f(x)$$, con $$P(a \leq X \leq b) = \int_a^b f$$). La **función de distribución** es $$F(x) = P(X \leq x)$$.
+
+La **esperanza** y la **varianza** son:
+
+$$
+E[X] = \sum_x x\,p(x) \ \text{ o } \ \int x f(x)\,dx, \qquad \operatorname{Var}(X) = E\left[(X - E[X])^2\right] = E[X^2] - (E[X])^2.
+$$
+
+### Estadística:
+
+- **Población** y **muestra**; un **parámetro** describe la población y un **estadístico** la muestra.
+- **Medidas de tendencia central:** media $$\bar{x} = \frac{1}{n}\sum x_i$$, mediana y moda.
+- **Medidas de dispersión:** varianza muestral $$s^2 = \frac{1}{n-1}\sum (x_i - \bar{x})^2$$, desviación típica $$s = \sqrt{s^2}$$ y coeficiente de variación.
+- **Posición:** cuartiles y rango intercuartílico $$IQR = Q_3 - Q_1$$.
+- **Relación entre variables:** covarianza y correlación de Pearson $$r \in [-1, 1]$$.
+
+### Notación frecuente:
+
+$$
+E[X] = \mu, \qquad \operatorname{Var}(X) = \sigma^2, \qquad \sigma = \sqrt{\sigma^2}, \qquad \bar{x} \text{ (media muestral)}.
+$$

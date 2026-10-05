@@ -1,0 +1,67 @@
+---
+title: Campos vectoriales
+description: Campos vectoriales, divergencia, rotacional y potencial
+---
+
+### Definición:
+
+Un **campo vectorial** asigna a cada punto del espacio un vector:
+
+$$
+\mathbf{F} : D \subseteq \mathbb{R}^3 \to \mathbb{R}^3, \qquad \mathbf{F}(x, y, z) = (P, Q, R).
+$$
+
+Un ejemplo es el **campo gradiente** de una función escalar $$f$$:
+
+$$
+\mathbf{F} = \nabla f = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right).
+$$
+
+### Divergencia:
+
+La **divergencia** de un campo vectorial es el campo escalar:
+
+$$
+\nabla \cdot \mathbf{F} = \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z}.
+$$
+
+Mide la tasa neta de flujo que "sale" de cada punto. Si $$\nabla \cdot \mathbf{F} = 0$$, el campo es **solenoidal** o incompresible.
+
+### Rotacional:
+
+El **rotacional** es el campo vectorial:
+
+$$
+\nabla \times \mathbf{F} = \begin{vmatrix}
+\mathbf{i} & \mathbf{j} & \mathbf{k} \\
+\partial_x & \partial_y & \partial_z \\
+P & Q & R
+\end{vmatrix}
+= \left( \frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z}, \; \frac{\partial P}{\partial z} - \frac{\partial R}{\partial x}, \; \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right).
+$$
+
+Mide la tendencia del campo a "girar". Si $$\nabla \times \mathbf{F} = \mathbf{0}$$, el campo es **irrotacional**.
+
+### Identidades:
+
+Para una función escalar $$f$$ con segundas derivadas continuas:
+
+$$
+\nabla \times (\nabla f) = \mathbf{0}, \qquad \nabla \cdot (\nabla \times \mathbf{F}) = 0.
+$$
+
+El **laplaciano** es la divergencia del gradiente:
+
+$$
+\Delta f = \nabla \cdot (\nabla f) = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial z^2}.
+$$
+
+### Campos conservativos:
+
+Un campo $$\mathbf{F}$$ es **conservativo** si existe una función potencial $$\phi$$ tal que:
+
+$$
+\mathbf{F} = \nabla \phi.
+$$
+
+En un dominio simplemente conexo, $$\mathbf{F}$$ es conservativo si y sólo si es irrotacional ($$\nabla \times \mathbf{F} = \mathbf{0}$$). En tal caso la integral de línea entre dos puntos no depende del camino, sino sólo de los extremos.

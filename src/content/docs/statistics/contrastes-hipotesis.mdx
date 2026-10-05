@@ -1,0 +1,60 @@
+---
+title: Contrastes de hipótesis
+description: Hipótesis nula y alternativa, errores y pruebas paramétricas
+---
+
+### Hipótesis estadísticas:
+
+Un **contraste de hipótesis** decide entre dos afirmaciones sobre un parámetro:
+
+- **Hipótesis nula** $$H_0$$: afirmación que se contrasta (habitualmente "no hay efecto").
+- **Hipótesis alternativa** $$H_1$$: lo que se acepta si se rechaza $$H_0$$.
+
+Puede ser bilateral ($$\theta \neq \theta_0$$) o unilateral ($$\theta > \theta_0$$ o $$\theta < \theta_0$$).
+
+### Errores:
+
+| Decisión | $$H_0$$ verdadera | $$H_0$$ falsa |
+|---|---|---|
+| Se rechaza $$H_0$$ | Error de tipo I ($$\alpha$$) | Decisión correcta |
+| No se rechaza $$H_0$$ | Decisión correcta | Error de tipo II ($$\beta$$) |
+
+El **nivel de significación** $$\alpha$$ es la probabilidad máxima de error de tipo I. La **potencia** del contraste es $$1 - \beta$$.
+
+### Estadístico de contraste y p-valor:
+
+El **estadístico de contraste** se calcula a partir de la muestra y su distribución se conoce bajo $$H_0$$. El **p-valor** es la probabilidad de obtener un valor tan extremo como el observado suponiendo $$H_0$$ verdadera. Se rechaza $$H_0$$ si:
+
+$$
+p < \alpha.
+$$
+
+### Contraste para la media:
+
+**Varianza conocida (o muestra grande):**
+
+$$
+z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} \sim N(0, 1).
+$$
+
+**Varianza desconocida (muestra pequeña):**
+
+$$
+t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} \sim t_{n-1}.
+$$
+
+### Contraste para una proporción:
+
+$$
+z = \frac{\hat{p} - p_0}{\sqrt{\dfrac{p_0 (1 - p_0)}{n}}} \sim N(0, 1).
+$$
+
+### Prueba chi-cuadrado y ANOVA:
+
+- **Chi-cuadrado de independencia:** contrasta si dos variables cualitativas están asociadas, comparando frecuencias observadas $$O_i$$ y esperadas $$E_i$$:
+
+$$
+\chi^2 = \sum_{i} \frac{(O_i - E_i)^2}{E_i}.
+$$
+
+- **ANOVA:** compara las medias de tres o más grupos descomponiendo la varianza total en varianza entre grupos y dentro de los grupos, mediante el estadístico $$F$$.

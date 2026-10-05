@@ -1,0 +1,71 @@
+---
+title: Teoremas límite
+description: Ley de los grandes números y teorema central del límite
+---
+
+### Convergencia de sucesiones aleatorias:
+
+Sea $$(X_n)$$ una sucesión de variables aleatorias.
+
+- **Convergencia en probabilidad** a $$X$$: para todo $$\varepsilon > 0$$,
+
+$$
+\lim_{n \to \infty} P(|X_n - X| > \varepsilon) = 0.
+$$
+
+- **Convergencia casi segura** a $$X$$:
+
+$$
+P\left( \lim_{n \to \infty} X_n = X \right) = 1.
+$$
+
+La convergencia casi segura implica la convergencia en probabilidad.
+
+### Ley de los grandes números:
+
+Sea $$(X_n)$$ una sucesión de variables independientes e idénticamente distribuidas con media $$\mu$$ y varianza finita. La media muestral:
+
+$$
+\bar{X}_n = \frac{1}{n} \sum_{i=1}^{n} X_i
+$$
+
+converge a $$\mu$$:
+
+- **Ley débil:** en probabilidad.
+- **Ley fuerte:** casi seguramente.
+
+Esto justifica la interpretación frecuentista de la probabilidad.
+
+### Teorema central del límite:
+
+Si $$(X_n)$$ son independientes e idénticamente distribuidas con media $$\mu$$ y varianza $$\sigma^2 < \infty$$, entonces:
+
+$$
+\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \xrightarrow{d} N(0, 1).
+$$
+
+Es decir, la media muestral tipificada converge en distribución a la normal estándar. Para la suma $$S_n = \sum X_i$$:
+
+$$
+\frac{S_n - n\mu}{\sigma \sqrt{n}} \xrightarrow{d} N(0, 1).
+$$
+
+### Aproximación normal:
+
+Para $$n$$ grande, la media muestral se distribuye aproximadamente como:
+
+$$
+\bar{X}_n \approx N\!\left( \mu, \frac{\sigma^2}{n} \right).
+$$
+
+Si las $$X_i$$ son de Bernoulli con parámetro $$p$$, la suma es binomial y se aproxima por:
+
+$$
+B(n, p) \approx N(np,\, np(1-p)),
+$$
+
+usando la **corrección por continuidad**:
+
+$$
+P(X \leq k) \approx \Phi\!\left( \frac{k + 0.5 - np}{\sqrt{np(1-p)}} \right).
+$$

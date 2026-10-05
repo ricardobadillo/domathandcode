@@ -1,0 +1,58 @@
+---
+title: Producto interno y ortogonalidad
+description: Producto interno, normas, ortogonalidad y proyecciones
+---
+
+### Producto interno:
+
+Un **producto interno** sobre un espacio vectorial real $$V$$ es una aplicación $$\langle \cdot, \cdot \rangle : V \times V \to \mathbb{R}$$ que, para todo $$u, v, w \in V$$ y $$c \in \mathbb{R}$$, cumple:
+
+1. **Simetría:** $$\langle u, v \rangle = \langle v, u \rangle.$$
+2. **Linealidad:** $$\langle cu + w, v \rangle = c\langle u, v \rangle + \langle w, v \rangle.$$
+3. **Positividad:** $$\langle v, v \rangle \geq 0$$, con igualdad sólo si $$v = 0$$.
+
+En $$\mathbb{R}^n$$ el ejemplo estándar es el producto escalar $$\langle u, v \rangle = u \cdot v = \sum_{i=1}^n u_i v_i$$.
+
+### Norma inducida:
+
+$$
+\|v\| = \sqrt{\langle v, v \rangle}.
+$$
+
+Se cumplen la **desigualdad de Cauchy–Schwarz**:
+
+$$
+|\langle u, v \rangle| \leq \|u\|\, \|v\|,
+$$
+
+y la **desigualdad triangular**:
+
+$$
+\|u + v\| \leq \|u\| + \|v\|.
+$$
+
+### Ortogonalidad:
+
+Dos vectores son **ortogonales** si $$\langle u, v \rangle = 0$$, y se escribe $$u \perp v$$. Un conjunto es **ortogonal** si sus elementos son ortogonales dos a dos, y **ortonormal** si además cada uno tiene norma $$1$$.
+
+Todo conjunto ortogonal de vectores no nulos es **linealmente independiente**.
+
+### Proceso de Gram–Schmidt:
+
+Dada una base $$\{v_1, \dots, v_n\}$$, se construye una base ortogonal $$\{u_1, \dots, u_n\}$$ mediante:
+
+$$
+u_1 = v_1, \qquad u_k = v_k - \sum_{j=1}^{k-1} \frac{\langle v_k, u_j \rangle}{\langle u_j, u_j \rangle} u_j.
+$$
+
+Normalizando cada $$u_k$$ se obtiene una base ortonormal.
+
+### Proyección ortogonal:
+
+La proyección de $$v$$ sobre un subespacio $$W$$ con base ortonormal $$\{e_1, \dots, e_k\}$$ es:
+
+$$
+\operatorname{proj}_W(v) = \sum_{i=1}^{k} \langle v, e_i \rangle e_i.
+$$
+
+El vector $$v - \operatorname{proj}_W(v)$$ es ortogonal a $$W$$ y realiza la mínima distancia de $$v$$ a $$W$$. Esta idea fundamenta el método de **mínimos cuadrados**.

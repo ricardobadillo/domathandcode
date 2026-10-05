@@ -1,0 +1,68 @@
+---
+title: Módulos
+description: Definición de módulo sobre un anillo, subgrupos, homomorfismos y módulos libres
+---
+
+### Definición:
+
+Sea $$R$$ un anillo con identidad $$1_R$$. Un **módulo** sobre $$R$$ (o $$R$$-módulo) es un grupo abeliano $$(M, +)$$ dotado de un **producto por escalar** $$R \times M \to M$$, denotado $$(r, m) \mapsto rm$$, que satisface para todo $$r, s \in R$$ y $$m, n \in M$$:
+
+1. $$r(m + n) = rm + rn.$$
+2. $$(r + s)m = rm + sm.$$
+3. $$(rs)m = r(sm).$$
+4. $$1_R m = m.$$
+
+Los elementos de $$R$$ se llaman **escalares** y los de $$M$$ se llaman **vectores**.
+
+### Conexión con espacios vectoriales:
+
+Si $$R$$ es un cuerpo $$\mathbb{K}$$, entonces un $$\mathbb{K}$$-módulo es exactamente un **espacio vectorial** sobre $$\mathbb{K}$$. Así, los módulos generalizan la noción de espacio vectorial al permitir escalares en un anillo en lugar de un cuerpo.
+
+### Submódulos:
+
+Un subgrupo aditivo $$N \subseteq M$$ es un **submódulo** de $$M$$ si es cerrado bajo el producto por escalar:
+
+$$
+rn \in N \quad \text{para todo } r \in R, \, n \in N.
+$$
+
+### Homomorfismos de módulos:
+
+Sean $$M$$ y $$N$$ dos $$R$$-módulos. Una función $$\varphi : M \to N$$ es un **homomorfismo** de $$R$$-módulos (o una aplicación $$R$$-lineal) si:
+
+$$
+\varphi(m + m') = \varphi(m) + \varphi(m') \quad \text{y} \quad \varphi(rm) = r\varphi(m),
+$$
+
+para todo $$r \in R$$ y $$m, m' \in M$$.
+
+### Núcleo e imagen:
+
+El **núcleo** y la **imagen** de un homomorfismo $$\varphi : M \to N$$ son submódulos:
+
+$$
+\ker(\varphi) = \{ m \in M : \varphi(m) = 0 \}, \qquad
+\operatorname{Im}(\varphi) = \{ \varphi(m) : m \in M \}.
+$$
+
+$$\varphi$$ es inyectiva si y sólo si $$\ker(\varphi) = \{ 0 \}$$. Un homomorfismo biyectivo se llama **isomorfismo** de módulos.
+
+### Combinaciones lineales y generadores:
+
+Dados $$m_1, m_2, \dots, m_k \in M$$, una **combinación lineal** es una expresión de la forma:
+
+$$
+r_1 m_1 + r_2 m_2 + \cdots + r_k m_k, \qquad r_i \in R.
+$$
+
+Un conjunto $$\{ m_i \}$$ **genera** a $$M$$ si todo elemento de $$M$$ es combinación lineal de los $$m_i$$. El conjunto se dice **linealmente independiente** (libre) si la única combinación lineal que vale $$0$$ es la trivial.
+
+### Módulos libres y base:
+
+Un módulo $$M$$ es **libre** si posee una **base**, es decir, un conjunto de generadores linealmente independientes. Todo espacio vectorial es un módulo libre; un módulo libre con base de $$n$$ elementos es isomorfo a:
+
+$$
+R^n = \{ (r_1, r_2, \dots, r_n) : r_i \in R \}.
+$$
+
+En general, dos bases distintas de un módulo libre no tienen necesariamente la misma cardinalidad.

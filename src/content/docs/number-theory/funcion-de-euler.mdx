@@ -1,0 +1,73 @@
+---
+title: Función de Euler
+description: La función φ de Euler, sus propiedades y aplicaciones en teoría de números
+---
+
+### Definición:
+
+La **función de Euler** (o función indicatriz de Euler), denotada $$\varphi(n)$$, se define para $$n > 0$$ como el número de enteros $$k$$ con $$1 \leq k \leq n$$ que son coprimos con $$n$$:
+
+$$
+\varphi(n) = |\{ k \in \mathbb{Z} : 1 \leq k \leq n, \, \gcd(k, n) = 1 \}|.
+$$
+
+Por convención, $$\varphi(1) = 1$$.
+
+### Propiedades:
+
+1. Si $$p$$ es primo, entonces:
+   $$
+   \varphi(p) = p - 1.
+   $$
+2. Si $$p$$ es primo y $$a \geq 1$$:
+   $$
+   \varphi(p^a) = p^a - p^{a-1} = p^{a-1}(p - 1).
+   $$
+3. Si $$m$$ y $$n$$ son coprimos, la función es multiplicativa:
+   $$
+   \varphi(mn) = \varphi(m)\varphi(n).
+   $$
+
+### Fórmula general:
+
+Si $$n = p_1^{a_1} p_2^{a_2} \cdots p_k^{a_k}$$ es la descomposición en factores primos de $$n$$, entonces:
+
+$$
+\varphi(n) = n \prod_{i=1}^{k} \left( 1 - \frac{1}{p_i} \right).
+$$
+
+### Teorema de Euler:
+
+Si $$\gcd(a, n) = 1$$, entonces:
+
+$$
+a^{\varphi(n)} \equiv 1 \pmod{n}.
+$$
+
+### Relación con la suma de divisores:
+
+Para todo $$n > 1$$, se cumple la identidad:
+
+$$
+\sum_{d \mid n} \varphi(d) = n,
+$$
+
+donde la suma recorre todos los divisores positivos de $$n$$.
+
+### Tabla de valores:
+
+Para los primeros enteros positivos:
+
+$$
+\varphi(1) = 1, \quad \varphi(2) = 1, \quad \varphi(3) = 2, \quad \varphi(4) = 2, \quad \varphi(5) = 4, \quad \varphi(6) = 2, \quad \varphi(7) = 6.
+$$
+
+### Ejemplo:
+
+Calculamos $$\varphi(36)$$ mediante su descomposición en primos $$36 = 2^2 \cdot 3^2$$:
+
+$$
+\varphi(36) = 36 \left( 1 - \frac{1}{2} \right) \left( 1 - \frac{1}{3} \right) = 36 \cdot \frac{1}{2} \cdot \frac{2}{3} = 12.
+$$
+
+Así, hay $$12$$ enteros entre $$1$$ y $$36$$ coprimos con $$36$$.

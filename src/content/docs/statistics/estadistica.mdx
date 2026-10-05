@@ -1,0 +1,76 @@
+---
+title: Estadística
+description: Conceptos fundamentales de estadística descriptiva e inferencial
+---
+
+### ¿Qué es la estadística?
+
+La **estadística** es la rama de las matemáticas que se ocupa de recolectar, organizar, analizar e interpretar datos para obtener conclusiones. Se divide en dos grandes áreas:
+
+- **Estadística descriptiva:** resume y describe las características de un conjunto de datos.
+- **Estadística inferencial:** utiliza una muestra para hacer estimaciones o generalizaciones sobre una población.
+
+### Población y muestra:
+
+La **población** es el conjunto completo de elementos que se estudia. La **muestra** es un subconjunto representativo de la población. Las características medibles se llaman **variables**, y pueden ser:
+
+- **Cuantitativas:** numéricas (por ejemplo, la altura).
+- **Cualitativas:** categóricas (por ejemplo, el color).
+
+### Parámetros y estadísticos:
+
+Un **parámetro** es un valor numérico que describe a la población (fijo pero generalmente desconocido). Un **estadístico** es un valor numérico calculado a partir de una muestra, y se usa para estimar el parámetro correspondiente.
+
+### Ordenación y tabulación de datos:
+
+Los datos se pueden organizar mediante tablas de frecuencias y gráficos como el **histograma**, el **diagrama de barras**, el **diagrama circular** o el **diagrama de caja**. La **frecuencia absoluta** de un valor es el número de veces que aparece, y la **frecuencia relativa** es esa cantidad dividida entre el total de datos.
+
+### Medidas de tendencia central:
+
+Describen el "centro" de un conjunto de datos $$x_1, x_2, \dots, x_n$$:
+
+- **Media aritmética:**
+  $$
+  \bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}.
+  $$
+- **Mediana:** valor central de los datos ordenados (el dato de la posición $$\dfrac{n + 1}{2}$$ si $$n$$ es impar, o la media de los dos centrales si $$n$$ es par).
+- **Moda:** el valor que aparece con mayor frecuencia.
+
+### Medidas de dispersión:
+
+Miden cuánto se alejan los datos del centro:
+
+- **Rango:** $$\operatorname{Rango} = x_{\max} - x_{\min}.$$
+- **Varianza muestral:**
+  $$
+  s^2 = \frac{1}{n - 1} \sum_{i=1}^{n} (x_i - \bar{x})^2.
+  $$
+- **Desviación estándar muestral:** $$s = \sqrt{s^2}.$$
+- **Coeficiente de variación:** $$CV = \dfrac{s}{\bar{x}} \cdot 100\%$$.
+
+### Medidas de posición:
+
+Los **cuantiles** dividen los datos en partes iguales. Si ordenamos los datos de menor a mayor, el **percentil $$k$$** (representado por $$P_k$$) es el valor por debajo del cual se encuentra el $$k\%$$ de los datos. En particular:
+
+- **Cuartiles:** $$Q_1$$ ($$25\%$$), $$Q_2$$ ($$50\%$$, la mediana), $$Q_3$$ ($$75\%$$).
+- **Rango intercuartílico:** $$IQR = Q_3 - Q_1$$.
+
+### Forma de la distribución:
+
+La **asimetría** describe si los datos se concentran hacia un lado de la media:
+
+- **Asimétrica a la derecha:** la media es mayor que la mediana.
+- **Asimétrica a la izquierda:** la media es menor que la mediana.
+- **Simétrica:** la media y la mediana coinciden.
+
+La **curtosis** mide cuán "puntiaguda" o "aplanada" es la distribución respecto a una normal.
+
+### Introducción a la inferencia estadística:
+
+El objetivo de la inferencia es estimar parámetros y contrastar hipótesis. Conceptos clave son:
+
+- **Estimador:** un estadístico usado para estimar un parámetro. La media muestral $$\bar{x}$$ es un estimador insesgado de la media poblacional $$\mu$$.
+- **Intervalo de confianza:** un rango de valores en el que, con cierta probabilidad, se encuentra el parámetro.
+- **Contraste de hipótesis:** procedimiento para decidir entre dos afirmaciones rivales ($$H_0$$ y $$H_1$$) a partir de los datos.
+
+Debido a la **media y varianza muestrales**, la teoría aquí presentada sirve de base para estudiar los modelos de distribución y el teorema del límite central abordados en las secciones de probabilidad.

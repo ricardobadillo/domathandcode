@@ -1,0 +1,54 @@
+---
+title: Soluciones por series de potencias
+description: Método de series de potencias y puntos singulares
+---
+
+### Planteamiento:
+
+Cuando una ecuación diferencial lineal no se resuelve con funciones elementales, se busca su solución como una **serie de potencias** alrededor de un punto $$x_0$$:
+
+$$
+y(x) = \sum_{n=0}^{\infty} a_n (x - x_0)^n.
+$$
+
+El punto $$x_0$$ es **ordinario** si los coeficientes de la ecuación son analíticos en él; en caso contrario es **singular**.
+
+### Método para puntos ordinarios:
+
+Escribiendo la ecuación como:
+
+$$
+y'' + P(x)\, y' + Q(x)\, y = 0,
+$$
+
+con $$P$$ y $$Q$$ analíticas en $$x_0$$, se sustituye la serie y sus derivadas. Al agrupar potencias de $$(x - x_0)$$ se obtiene una **ecuación de recurrencia** que determina los coeficientes $$a_n$$ en función de $$a_0$$ y $$a_1$$. La serie converge en un entorno de $$x_0$$.
+
+### Ejemplo:
+
+Para $$y' = y$$, sustituyendo $$y = \sum a_n x^n$$ se obtiene $$(n+1)a_{n+1} = a_n$$, es decir $$a_n = a_0 / n!$$, de donde:
+
+$$
+y(x) = a_0 \sum_{n=0}^{\infty} \frac{x^n}{n!} = a_0 e^{x}.
+$$
+
+### Puntos singulares regulares:
+
+$$x_0$$ es un **punto singular regular** si:
+
+$$
+(x - x_0)P(x) \quad \text{y} \quad (x - x_0)^2 Q(x)
+$$
+
+son analíticas en $$x_0$$. En tal caso se aplica el **método de Frobenius**, que busca soluciones de la forma:
+
+$$
+y(x) = (x - x_0)^r \sum_{n=0}^{\infty} a_n (x - x_0)^n.
+$$
+
+El exponente $$r$$ se obtiene de la **ecuación indicial**, una ecuación cuadrática. Según sus raíces, la segunda solución puede incluir un término logarítmico.
+
+### Ecuaciones notables:
+
+- **Ecuación de Bessel:** $$x^2 y'' + x y' + (x^2 - \nu^2) y = 0$$, con $$x = 0$$ singular regular.
+- **Ecuación de Legendre:** $$(1 - x^2) y'' - 2x y' + n(n+1) y = 0$$, con $$x = \pm 1$$ singulares regulares.
+- **Ecuación de Airy:** $$y'' - x y = 0$$, con todos los puntos finitos ordinarios.

@@ -1,0 +1,89 @@
+---
+title: Polígonos y circunferencia
+description: Polígonos regulares, cuadriláteros, circunferencia y círculo
+---
+
+import GeometryFigure from '../../../components/GeometryFigure.astro';
+
+### Polígonos:
+
+Un **polígono** es una figura plana cerrada formada por segmentos. Se clasifica por su número de lados: triángulo (3), cuadrilátero (4), pentágono (5), hexágono (6), etc.
+
+En un polígono de $$n$$ lados:
+
+$$
+\text{suma de ángulos interiores} = (n - 2)\cdot 180^\circ.
+$$
+
+Un polígono es **regular** si todos sus lados y ángulos son iguales. En ese caso:
+
+$$
+\text{ángulo interior} = \frac{(n-2)\cdot 180^\circ}{n}, \qquad
+\text{perímetro} = n\ell, \qquad
+\text{área} = \frac{P \cdot a}{2},
+$$
+
+donde $$\ell$$ es el lado, $$P$$ el perímetro y $$a$$ la apotema (distancia del centro a un lado).
+
+<GeometryFigure
+	caption="Pentágono regular: radio R y apotema a"
+	elements={[
+		{ type: 'polyline', points: [[210, 65], [309.9, 137.5], [271.7, 254.9], [148.3, 254.9], [110.1, 137.5]], closed: true },
+		{ type: 'segment', from: [210, 170], to: [210, 65] },
+		{ type: 'segment', from: [210, 170], to: [259.9, 101.3] },
+		{ type: 'angle', at: [259.9, 101.3], from: [210, 170], to: [309.9, 137.5], right: true, radius: 12 },
+		{ type: 'point', at: [210, 170], label: 'O', labelOffset: [0, 22] },
+		{ type: 'label', at: [196, 118], text: 'R' },
+		{ type: 'label', at: [244, 138], text: 'a' },
+	]}
+/>
+
+### Cuadriláteros:
+
+| Cuadrilátero | Propiedad |
+| :--- | :--- |
+| Paralelogramo | lados opuestos paralelos e iguales |
+| Rectángulo | paralelogramo con cuatro ángulos rectos |
+| Rombo | paralelogramo con cuatro lados iguales |
+| Cuadrado | rectángulo y rombo a la vez |
+| Trapecio | sólo un par de lados paralelos |
+
+El área de un paralelogramo es $$A = b \cdot h$$ y la de un trapecio $$A = \dfrac{(B + b)}{2}\cdot h$$, con bases $$B$$ y $$b$$.
+
+### Circunferencia y círculo:
+
+La **circunferencia** es el conjunto de puntos equidistantes de un centro $$O$$; esa distancia es el **radio** $$r$$. El **círculo** es la región limitada por la circunferencia.
+
+$$
+\text{longitud} = 2\pi r, \qquad \text{área} = \pi r^2.
+$$
+
+Elementos:
+
+- **Diámetro:** $$d = 2r$$.
+- **Cuerda:** segmento entre dos puntos de la circunferencia.
+- **Arco:** porción de la circunferencia.
+- **Sector circular:** región limitada por dos radios y un arco, de área $$\dfrac{\theta}{360^\circ}\,\pi r^2$$.
+
+### Ángulos en la circunferencia:
+
+- El **ángulo central** mide lo mismo que su arco.
+- El **ángulo inscrito** mide la mitad del arco que abarca.
+- Un ángulo inscrito que abarca un diámetro es recto (teorema de Tales).
+
+### Rectas y circunferencias:
+
+Según su posición respecto a una circunferencia, una recta puede ser **secante** (la corta en dos puntos), **tangente** (la toca en uno solo) o **exterior** (no la corta). La tangente es perpendicular al radio en el punto de tangencia.
+
+<GeometryFigure
+	caption="La tangente es perpendicular al radio en el punto de tangencia"
+	elements={[
+		{ type: 'circle', center: [210, 170], r: 100 },
+		{ type: 'segment', from: [210, 170], to: [310, 170] },
+		{ type: 'segment', from: [310, 70], to: [310, 270] },
+		{ type: 'angle', at: [310, 170], from: [210, 170], to: [310, 70], right: true, radius: 18 },
+		{ type: 'point', at: [210, 170], label: 'O', labelOffset: [-14, 20] },
+		{ type: 'point', at: [310, 170], label: 'T', labelOffset: [16, 20] },
+		{ type: 'label', at: [258, 158], text: 'r' },
+	]}
+/>

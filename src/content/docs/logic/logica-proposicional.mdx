@@ -1,0 +1,61 @@
+---
+title: Lógica proposicional
+description: Proposiciones, conectivas lógicas y el lenguaje de la lógica proposicional
+---
+
+### Definición:
+
+Una **proposición** es una oración declarativa de la que se puede afirmar sin ambigüedad que es **verdadera** ($$V$$) o **falsa** ($$F$$), pero no ambas. Por ejemplo, «$$2 + 2 = 4$$» es una proposición verdadera, mientras que «¿qué hora es?» no es una proposición.
+
+Las proposiciones se denotan con letras minúsculas $$p, q, r, \dots$$ y sus valores de verdad se recogen en una **valoración** $$v : \{p, q, r, \dots\} \to \{V, F\}$$.
+
+### Conectivas lógicas:
+
+A partir de proposiciones simples se construyen **proposiciones compuestas** mediante las conectivas lógicas:
+
+1. **Negación** $$\neg p$$: «no $$p$$».
+2. **Conjunción** $$p \wedge q$$: «$$p$$ y $$q$$».
+3. **Disyunción** $$p \vee q$$: «$$p$$ o $$q$$».
+4. **Implicación** $$p \to q$$: «si $$p$$, entonces $$q$$».
+5. **Bicondicional** $$p \leftrightarrow q$$: «$$p$$ si y sólo si $$q$$».
+
+### Semántica:
+
+El valor de verdad de una proposición compuesta queda determinado por el de sus componentes según las siguientes reglas:
+
+$$
+\begin{aligned}
+\neg p &\text{ es } V \iff p \text{ es } F, \\
+p \wedge q &\text{ es } V \iff p \text{ y } q \text{ son } V, \\
+p \vee q &\text{ es } V \iff p \text{ o } q \text{ (o ambos) son } V, \\
+p \to q &\text{ es } V \iff p \text{ es } F \text{ o } q \text{ es } V, \\
+p \leftrightarrow q &\text{ es } V \iff p \text{ y } q \text{ tienen el mismo valor de verdad.}
+\end{aligned}
+$$
+
+### Fórmulas bien formadas:
+
+El conjunto de **fórmulas bien formadas** (fbf) se define inductivamente:
+
+1. Toda variable proposicional es una fbf.
+2. Si $$\varphi$$ es una fbf, entonces $$\neg \varphi$$ también lo es.
+3. Si $$\varphi$$ y $$\psi$$ son fbf, entonces $$(\varphi \wedge \psi)$$, $$(\varphi \vee \psi)$$, $$(\varphi \to \psi)$$ y $$(\varphi \leftrightarrow \psi)$$ también lo son.
+
+### Tautologías, contradicciones y contingencias:
+
+- Una fórmula es una **tautología** si es verdadera bajo toda valoración.
+- Una fórmula es una **contradicción** si es falsa bajo toda valoración.
+- Una fórmula es una **contingencia** si es verdadera bajo algunas valoraciones y falsa bajo otras.
+
+### Equivalencias notables:
+
+$$
+\begin{aligned}
+p \to q &\equiv \neg p \vee q, \\
+\neg(p \wedge q) &\equiv \neg p \vee \neg q, \\
+\neg(p \vee q) &\equiv \neg p \wedge \neg q, \\
+p \leftrightarrow q &\equiv (p \to q) \wedge (q \to p).
+\end{aligned}
+$$
+
+Las dos igualdades centrales son las **leyes de De Morgan**.

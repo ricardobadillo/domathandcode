@@ -1,0 +1,33 @@
+---
+title: Compacidad
+description: Cubrimientos abiertos, compacidad, Heine-Borel y compacidad secuencial
+---
+
+### Cubrimientos abiertos:
+
+Un **cubrimiento abierto** de $$X$$ es una familia $$\{U_i\}_{i \in I}$$ de abiertos con $$X = \bigcup_{i \in I} U_i$$. Un **subcubrimiento** es una subfamilia que sigue cubriendo a $$X$$.
+
+### Definición:
+
+Un espacio topológico $$X$$ es **compacto** si todo cubrimiento abierto de $$X$$ admite un subcubrimiento finito.
+
+De forma equivalente, $$X$$ es compacto si toda familia de cerrados con intersección vacía contiene una subfamilia finita con intersección vacía.
+
+### Teorema de Heine-Borel:
+
+En $$\mathbb{R}^n$$ con la topología usual, un conjunto es compacto **si y sólo si** es cerrado y acotado. En particular, el intervalo $$[a, b]$$ es compacto, mientras que $$(a, b)$$ y $$\mathbb{R}$$ no lo son.
+
+### Compacidad secuencial:
+
+En espacios métricos, ser compacto equivale a que toda sucesión posea una subsucesión convergente (a un punto del espacio). Todo espacio métrico compacto es completo y totalmente acotado.
+
+### Propiedades:
+
+1. La imagen continua de un conjunto compacto es compacta.
+2. Un subconjunto cerrado de un compacto es compacto.
+3. La unión finita de compactos es compacta.
+4. Un compacto en un espacio de Hausdorff es cerrado.
+
+### Consecuencias en análisis:
+
+Si $$f : X \to \mathbb{R}$$ es continua y $$X$$ es compacto, entonces $$f$$ está **acotada** y alcanza su **máximo** y su **mínimo** (teorema de Weierstrass). Esta es la base de muchos resultados de existencia en optimización.

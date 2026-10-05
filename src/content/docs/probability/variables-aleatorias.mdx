@@ -1,0 +1,88 @@
+---
+title: Variables aleatorias
+description: Definición de variable aleatoria, funciones de distribución y esperanza y varianza
+---
+
+import FunctionPlot from '../../../components/FunctionPlot.astro';
+
+### Variable aleatoria:
+
+Una **variable aleatoria** es una función $$X : \Omega \to \mathbb{R}$$ que asocia un número real a cada resultado de un experimento aleatorio. Se clasifica en:
+
+- **Discreta:** toma un conjunto de valores contable (finito o numerable).
+- **Continua:** toma valores en un intervalo de $$\mathbb{R}$$.
+
+### Función de masa de probabilidad (discreta):
+
+Si $$X$$ es discreta, la **función de masa de probabilidad** $$p(x)$$ da la probabilidad de cada valor:
+
+$$
+p(x) = P(X = x), \qquad \sum_{x} p(x) = 1, \qquad p(x) \geq 0.
+$$
+
+### Función de densidad de probabilidad (continua):
+
+Si $$X$$ es continua, la **función de densidad** $$f(x)$$ satisface:
+
+$$
+P(a \leq X \leq b) = \int_{a}^{b} f(x) \, dx, \qquad \int_{-\infty}^{+\infty} f(x) \, dx = 1, \qquad f(x) \geq 0.
+$$
+
+### Función de distribución acumulada:
+
+La **función de distribución** de una variable aleatoria $$X$$ es:
+
+$$
+F(x) = P(X \leq x).
+$$
+
+Para variables continuas, $$F(x) = \int_{-\infty}^{x} f(t) \, dt$$, de modo que $$f(x) = F'(x)$$.
+
+<FunctionPlot
+	fns={[
+		{ fn: 'exp(-x^2/2)/sqrt(2*pi)', label: 'f(x)' },
+		{ fn: '0.5*(1 + erf(x/sqrt(2)))', label: 'F(x)' },
+	]}
+	xmin={-4}
+	xmax={4}
+	ymin={0}
+	ymax={1.1}
+	caption="Densidad y función de distribución de una normal estándar"
+/>
+
+### Esperanza (valor esperado):
+
+La **esperanza** de $$X$$, denotada $$E[X]$$ o $$\mu$$, mide el valor medio:
+
+- **Discreta:** $$E[X] = \sum_{x} x \, p(x).$$
+- **Continua:** $$E[X] = \int_{-\infty}^{+\infty} x f(x) \, dx.$$
+
+Propiedades: $$E[aX + b] = aE[X] + b$$ y, si $$X$$ y $$Y$$ son independientes, $$E[XY] = E[X]E[Y]$$.
+
+### Varianza y desviación estándar:
+
+La **varianza** mide la dispersión de $$X$$ alrededor de su media:
+
+$$
+\operatorname{Var}(X) = E\left[ (X - \mu)^2 \right] = E[X^2] - \mu^2.
+$$
+
+Se cumple $$\operatorname{Var}(aX + b) = a^2 \operatorname{Var}(X)$$. La **desviación estándar** es $$\sigma = \sqrt{\operatorname{Var}(X)}$$.
+
+### Valor absoluto y momentos:
+
+El **momento de orden $$k$$** es:
+
+$$
+m_k = E[X^k],
+$$
+
+y el **momento central de orden $$k$$** es $$E\left[ (X - \mu)^k \right]$$. La varianza es el segundo momento central.
+
+### Independencia de variables:
+
+Dos variables aleatorias $$X$$ y $$Y$$ son **independientes** si para todo $$x, y$$:
+
+$$
+P(X \leq x, \, Y \leq y) = P(X \leq x) \, P(Y \leq y).
+$$

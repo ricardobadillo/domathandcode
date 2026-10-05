@@ -1,0 +1,90 @@
+---
+title: Álgebra elemental
+description: Polinomios, productos notables, factorización, ecuaciones e inecuaciones
+---
+
+### Expresiones algebraicas:
+
+Una **expresión algebraica** combina números, variables y operaciones. Un **monomio** es un producto de un coeficiente por potencias de variables, como $$-3x^2y$$. Un **polinomio** es una suma de monomios:
+
+$$
+P(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0, \qquad a_n \neq 0.
+$$
+
+El **grado** es $$n$$, $$a_n$$ es el **coeficiente principal** y $$a_0$$ el **término independiente**.
+
+### Productos notables:
+
+$$
+(a + b)^2 = a^2 + 2ab + b^2, \qquad (a - b)^2 = a^2 - 2ab + b^2,
+$$
+
+$$
+(a + b)(a - b) = a^2 - b^2,
+$$
+
+$$
+(a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3, \qquad (a - b)^3 = a^3 - 3a^2b + 3ab^2 - b^3,
+$$
+
+$$
+a^3 + b^3 = (a + b)(a^2 - ab + b^2), \qquad a^3 - b^3 = (a - b)(a^2 + ab + b^2).
+$$
+
+### Factorización:
+
+Consiste en escribir un polinomio como producto. Técnicas habituales:
+
+1. **Factor común:** $$ax + ay = a(x + y)$$.
+2. **Diferencia de cuadrados:** $$a^2 - b^2 = (a+b)(a-b)$$.
+3. **Trinomio cuadrado perfecto:** $$a^2 \pm 2ab + b^2 = (a \pm b)^2$$.
+4. **Trinomio $$x^2 + bx + c$$:** se buscan dos números que sumen $$b$$ y multipliquen $$c$$.
+5. **Agrupación** y **regla de Ruffini** para raíces racionales.
+
+### Ecuaciones:
+
+Una **ecuación** es una igualdad que se cumple sólo para ciertos valores de la incógnita.
+
+- **Lineal:** $$ax + b = 0 \Rightarrow x = -\dfrac{b}{a}$$ (con $$a \neq 0$$).
+- **Cuadrática:** $$ax^2 + bx + c = 0$$, con soluciones:
+
+$$
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.
+$$
+
+El **discriminante** $$\Delta = b^2 - 4ac$$ determina el número de raíces reales: dos si $$\Delta > 0$$, una si $$\Delta = 0$$ y ninguna real si $$\Delta < 0$$. Las relaciones de Vieta son:
+
+$$
+x_1 + x_2 = -\frac{b}{a}, \qquad x_1 x_2 = \frac{c}{a}.
+$$
+
+- **Racionales:** se resuelven multiplicando en cruz, descartando los valores que anulan un denominador.
+- **Con valor absoluto:** se separa en casos según el signo.
+- **Exponenciales y logarítmicas:** se aplican las propiedades de potencias y logaritmos.
+
+### Sistemas de ecuaciones:
+
+Un sistema de dos ecuaciones lineales:
+
+$$
+\begin{cases}
+a_1 x + b_1 y = c_1, \\
+a_2 x + b_2 y = c_2
+\end{cases}
+$$
+
+se resuelve por **sustitución**, **igualación** o **reducción**. Según el determinante del sistema, puede tener solución única, infinitas soluciones o ninguna.
+
+### Inecuaciones:
+
+Una **inecuación** se satisface en un conjunto (intervalo) de valores. Al multiplicar o dividir por un número negativo se invierte el sentido. Para inecuaciones cuadráticas o racionales se estudia el signo de cada factor en una **tabla de signos**.
+
+### Funciones elementales (repaso):
+
+| Función | Expresión | Dominio | Recorrido |
+| :---: | :---: | :---: | :---: |
+| Lineal | $$mx + b$$ | $$\mathbb{R}$$ | $$\mathbb{R}$$ |
+| Cuadrática | $$ax^2 + bx + c$$ | $$\mathbb{R}$$ | según $$a$$ |
+| Exponencial | $$a^x$$ | $$\mathbb{R}$$ | $$(0, +\infty)$$ |
+| Logarítmica | $$\log_a x$$ | $$(0, +\infty)$$ | $$\mathbb{R}$$ |
+| Racional | $$\dfrac{P(x)}{Q(x)}$$ | $$\mathbb{R} \setminus \{Q = 0\}$$ | variable |

@@ -1,0 +1,110 @@
+---
+title: Conceptos básicos
+description: Conjuntos numéricos, operaciones, orden, potencias, logaritmos y sumatorias
+---
+
+### Conjuntos numéricos:
+
+$$
+\mathbb{N} = \{0, 1, 2, 3, \dots\}, \qquad
+\mathbb{Z} = \{\dots, -2, -1, 0, 1, 2, \dots\},
+$$
+
+$$
+\mathbb{Q} = \left\{ \frac{p}{q} : p, q \in \mathbb{Z},\ q \neq 0 \right\}, \qquad
+\mathbb{C} = \{ a + bi : a, b \in \mathbb{R},\ i^2 = -1 \}.
+$$
+
+$$\mathbb{R}$$ reúne a los racionales y a los irracionales (como $$\sqrt{2}$$, $$\pi$$ o $$e$$). Se tiene $$\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$$.
+
+### Propiedades de las operaciones:
+
+Para $$a, b, c \in \mathbb{R}$$:
+
+1. **Conmutatividad:** $$a + b = b + a$$ y $$ab = ba$$.
+2. **Asociatividad:** $$(a + b) + c = a + (b + c)$$ y $$(ab)c = a(bc)$$.
+3. **Distributividad:** $$a(b + c) = ab + ac$$.
+4. **Elementos neutros:** $$a + 0 = a$$ y $$a \cdot 1 = a$$.
+5. **Elementos inversos:** $$a + (-a) = 0$$ y, si $$a \neq 0$$, $$a \cdot \frac{1}{a} = 1$$.
+
+### Orden y desigualdades:
+
+Si $$a < b$$, entonces:
+
+1. $$a + c < b + c$$ para todo $$c$$.
+2. Si $$c > 0$$, $$ac < bc$$.
+3. Si $$c < 0$$, $$ac > bc$$ (el sentido de la desigualdad se **invierte**).
+
+### Valor absoluto:
+
+$$
+\lvert x \rvert =
+\begin{cases}
+x & \text{si } x \geq 0, \\
+-x & \text{si } x < 0.
+\end{cases}
+$$
+
+Propiedades: $$\lvert xy \rvert = \lvert x \rvert \lvert y \rvert$$, $$\lvert x \rvert^2 = x^2$$ y la desigualdad triangular $$\lvert x + y \rvert \leq \lvert x \rvert + \lvert y \rvert$$. Además $$\lvert x \rvert < a \iff -a < x < a$$ (con $$a > 0$$).
+
+### Intervalos:
+
+$$
+(a, b), \quad [a, b], \quad [a, b), \quad (a, b], \quad (-\infty, b], \quad [a, +\infty).
+$$
+
+El corchete indica que el extremo se incluye y el paréntesis que no. Los símbolos $$\pm\infty$$ siempre llevan paréntesis.
+
+### Potencias y radicales:
+
+$$
+a^m a^n = a^{m+n}, \quad \frac{a^m}{a^n} = a^{m-n}, \quad (a^m)^n = a^{mn}, \quad (ab)^n = a^n b^n,
+$$
+
+$$
+a^0 = 1 \ (a \neq 0), \qquad a^{-n} = \frac{1}{a^n}, \qquad a^{m/n} = \sqrt[n]{a^m}.
+$$
+
+Para radicales: $$\sqrt{ab} = \sqrt{a}\,\sqrt{b}$$, $$\sqrt{\dfrac{a}{b}} = \dfrac{\sqrt{a}}{\sqrt{b}}$$ y $$\sqrt{a^2} = \lvert a \rvert$$.
+
+### Logaritmos:
+
+El logaritmo en base $$a > 0$$, $$a \neq 1$$, se define por:
+
+$$
+\log_a x = y \iff a^y = x, \qquad x > 0.
+$$
+
+Propiedades:
+
+$$
+\log_a(xy) = \log_a x + \log_a y, \qquad \log_a\!\left(\frac{x}{y}\right) = \log_a x - \log_a y,
+$$
+
+$$
+\log_a(x^n) = n \log_a x, \qquad \log_a b = \frac{\ln b}{\ln a}, \qquad a^{\log_a x} = x.
+$$
+
+El **logaritmo natural** es $$\ln x = \log_e x$$.
+
+### Factorial y coeficiente binomial:
+
+$$
+n! = n(n-1)(n-2)\cdots 2 \cdot 1, \qquad 0! = 1,
+$$
+
+$$
+\binom{n}{k} = \frac{n!}{k!\,(n-k)!}.
+$$
+
+### Sumatoria y productoria:
+
+$$
+\sum_{i=1}^{n} a_i = a_1 + a_2 + \cdots + a_n, \qquad \prod_{i=1}^{n} a_i = a_1 a_2 \cdots a_n.
+$$
+
+La sumatoria es lineal: $$\sum (c\,a_i + b_i) = c \sum a_i + \sum b_i$$. Fórmulas habituales:
+
+$$
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}, \qquad \sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}, \qquad \sum_{i=0}^{n} r^i = \frac{1 - r^{n+1}}{1 - r}.
+$$

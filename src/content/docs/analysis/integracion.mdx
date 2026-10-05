@@ -1,0 +1,80 @@
+---
+title: Integración
+description: Integral de Riemann, teorema fundamental del cálculo y técnicas
+---
+
+import FunctionPlot from '../../../components/FunctionPlot.astro';
+
+### Particiones y sumas de Riemann:
+
+Sea $$f : [a, b] \to \mathbb{R}$$. Una **partición** es $$P = \{a = x_0 < x_1 < \cdots < x_n = b\}$$. La **suma de Riemann** asociada a puntos $$c_i \in [x_{i-1}, x_i]$$ es:
+
+$$
+S(f, P) = \sum_{i=1}^{n} f(c_i)\,\Delta x_i, \qquad \Delta x_i = x_i - x_{i-1}.
+$$
+
+### Integral de Riemann:
+
+$$f$$ es **integrable** en $$[a, b]$$ si las sumas de Riemann tienden a un mismo valor cuando la norma de la partición tiende a cero:
+
+$$
+\int_a^b f(x)\,dx = \lim_{\lVert P \rVert \to 0} S(f, P).
+$$
+
+Toda función **continua** en $$[a, b]$$ es integrable; también lo son las funciones acotadas con un número finito de discontinuidades.
+
+<FunctionPlot
+	fn="x^2"
+	label="f(x) = x^2"
+	area={{ from: 0, to: 2 }}
+	xmin={-0.5}
+	xmax={2.6}
+	ymin={-0.5}
+	ymax={5}
+	caption="La integral definida mide el área bajo la curva"
+/>
+
+### Propiedades:
+
+1. **Linealidad:** $$\int_a^b (\alpha f + \beta g) = \alpha \int_a^b f + \beta \int_a^b g$$.
+2. **Aditividad:** $$\int_a^b f = \int_a^c f + \int_c^b f$$.
+3. **Signo:** $$\int_a^b f = -\int_b^a f$$ y $$\int_a^a f = 0$$.
+4. Si $$f \leq g$$ en $$[a, b]$$, entonces $$\int_a^b f \leq \int_a^b g$$.
+
+### Teorema fundamental del cálculo:
+
+**Primera parte.** Si $$f$$ es continua en $$[a, b]$$, la función:
+
+$$
+F(x) = \int_a^x f(t)\,dt
+$$
+
+es diferenciable y $$F'(x) = f(x)$$.
+
+**Segunda parte (regla de Barrow).** Si $$F$$ es una primitiva de $$f$$ en $$[a, b]$$:
+
+$$
+\int_a^b f(x)\,dx = F(b) - F(a).
+$$
+
+### Técnicas de integración:
+
+**Sustitución:**
+
+$$
+\int f(g(x))\,g'(x)\,dx = \int f(u)\,du, \qquad u = g(x).
+$$
+
+**Integración por partes:**
+
+$$
+\int u\,dv = uv - \int v\,du.
+$$
+
+### Teorema del valor medio para integrales:
+
+Si $$f$$ es continua en $$[a, b]$$, existe $$c \in (a, b)$$ tal que:
+
+$$
+\int_a^b f(x)\,dx = f(c)\,(b - a).
+$$

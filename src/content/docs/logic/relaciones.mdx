@@ -1,0 +1,55 @@
+---
+title: Relaciones
+description: Relaciones binarias, propiedades, relaciones de equivalencia y de orden
+---
+
+### Definición:
+
+Una **relación binaria** $$R$$ de un conjunto $$A$$ en un conjunto $$B$$ es un subconjunto del producto cartesiano:
+
+$$
+R \subseteq A \times B.
+$$
+
+Se escribe $$a \, R \, b$$ en lugar de $$(a, b) \in R$$. Cuando $$A = B$$ se dice que $$R$$ es una relación **sobre** $$A$$.
+
+### Dominio, imagen e inversa:
+
+- **Dominio:** $$\operatorname{dom}(R) = \{a \in A : \exists b \in B, \, a R b\}$$.
+- **Imagen:** $$\operatorname{im}(R) = \{b \in B : \exists a \in A, \, a R b\}$$.
+- **Relación inversa:** $$R^{-1} = \{(b, a) : (a, b) \in R\}$$.
+
+### Propiedades sobre un conjunto:
+
+Una relación $$R$$ sobre $$A$$ es:
+
+1. **Reflexiva** si $$a R a$$ para todo $$a \in A$$.
+2. **Simétrica** si $$a R b \Rightarrow b R a$$ para todo $$a, b \in A$$.
+3. **Antisimétrica** si $$a R b$$ y $$b R a$$ implican $$a = b$$.
+4. **Transitiva** si $$a R b$$ y $$b R c$$ implican $$a R c$$.
+
+### Relaciones de equivalencia:
+
+Una relación $$R$$ sobre $$A$$ es de **equivalencia** si es reflexiva, simétrica y transitiva. Toda relación de equivalencia induce una **partición** de $$A$$ en **clases de equivalencia**:
+
+$$
+[a] = \{x \in A : x R a\}.
+$$
+
+Las clases son disjuntas entre sí y su unión es todo $$A$$.
+
+### Relaciones de orden:
+
+Una relación $$R$$ sobre $$A$$ es de **orden parcial** si es reflexiva, antisimétrica y transitiva. Si además para todo $$a, b \in A$$ se cumple $$a R b$$ o $$b R a$$, el orden es **total**.
+
+Ejemplos: $$\leq$$ sobre $$\mathbb{R}$$ es un orden total; la inclusión $$\subseteq$$ sobre $$\mathcal{P}(A)$$ es un orden parcial (no total en general).
+
+### Relación de congruencia:
+
+Un ejemplo fundamental de relación de equivalencia es la **congruencia módulo** $$n$$ sobre $$\mathbb{Z}$$:
+
+$$
+a \equiv b \pmod{n} \iff n \mid (a - b).
+$$
+
+Sus clases de equivalencia son los residuos $$0, 1, \dots, n - 1$$ módulo $$n$$.

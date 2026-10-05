@@ -1,0 +1,56 @@
+---
+title: Determinantes
+description: Definición, propiedades y cálculo de determinantes
+---
+
+### Definición:
+
+El **determinante** de una matriz cuadrada $$A = (a_{ij})$$ de orden $$n$$ es:
+
+$$
+\det(A) = \sum_{\sigma \in S_n} \operatorname{sgn}(\sigma) \prod_{i=1}^{n} a_{i,\sigma(i)},
+$$
+
+donde la suma recorre todas las permutaciones $$\sigma$$ de $$\{1, \dots, n\}$$ y $$\operatorname{sgn}(\sigma)$$ es el signo de la permutación.
+
+### Órdenes 2 y 3:
+
+$$
+\det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc,
+$$
+
+$$
+\det \begin{pmatrix} a & b & c \\ d & e & f \\ g & h & i \end{pmatrix} = aei + bfg + cdh - ceg - bdi - afh.
+$$
+
+### Propiedades:
+
+1. $$\det(A^T) = \det(A).$$
+2. $$\det(AB) = \det(A)\det(B).$$
+3. Intercambiar dos filas cambia el signo del determinante.
+4. Si una fila es múltiplo de otra, entonces $$\det(A) = 0$$.
+5. Sumar a una fila un múltiplo de otra no altera el determinante.
+6. $$\det(cA) = c^n \det(A)$$ para $$A$$ de orden $$n$$.
+7. $$A$$ es **invertible** si y sólo si $$\det(A) \neq 0$$, y entonces $$\det(A^{-1}) = 1/\det(A).$$
+
+### Menores y cofactores:
+
+El **menor** $$M_{ij}$$ es el determinante de la submatriz que resulta de eliminar la fila $$i$$ y la columna $$j$$. El **cofactor** es $$C_{ij} = (-1)^{i+j} M_{ij}$$. El **desarrollo de Laplace** por la fila $$i$$ es:
+
+$$
+\det(A) = \sum_{j=1}^{n} a_{ij} C_{ij}.
+$$
+
+### Regla de Cramer:
+
+Si $$A$$ es invertible, el sistema $$Ax = b$$ tiene solución única:
+
+$$
+x_i = \frac{\det(A_i)}{\det(A)},
+$$
+
+donde $$A_i$$ se obtiene reemplazando la columna $$i$$ de $$A$$ por el vector $$b$$.
+
+### Interpretación geométrica:
+
+En $$\mathbb{R}^2$$ y $$\mathbb{R}^3$$, el valor absoluto del determinante es el **área** o el **volumen** del paralelepípedo generado por las columnas de la matriz. El signo indica la orientación.

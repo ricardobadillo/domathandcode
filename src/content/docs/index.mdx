@@ -1,40 +1,519 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: domathandcode
+description: Apuntes de matemáticas y programación, con teoría y ejemplos.
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
-  image:
-    file: ../../assets/houston.webp
+  tagline: Apuntes de matemáticas y programación, con teoría y ejemplos.
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Empezar por Álgebra abstracta
+      link: /algebra/numeros-reales/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
+    - text: Ir a Teoría de números
+      link: /number-theory/divisibilidad/
+      icon: right-arrow
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-## Next steps
+## Explora el contenido
 
-<CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+### Álgebra abstracta
+
+<CardGrid>
+	<LinkCard
+		title="Números reales"
+		href="/algebra/numeros-reales/"
+		description="Axiomas de cuerpo y orden, completitud, intervalos y valor absoluto"
+	/>
+	<LinkCard
+		title="Números naturales"
+		href="/algebra/numeros-naturales/"
+		description="Axiomas de Peano, inducción, orden y operaciones"
+	/>
+	<LinkCard
+		title="Números enteros"
+		href="/algebra/numeros-enteros/"
+		description="Construcción, valor absoluto, divisibilidad y división euclidiana"
+	/>
+	<LinkCard
+		title="Números racionales"
+		href="/algebra/numeros-racionales/"
+		description="Construcción, operaciones, orden y densidad de los racionales"
+	/>
+	<LinkCard
+		title="Grupos"
+		href="/algebra/grupos/"
+		description="Definición, propiedades, subgrupos y homomorfismos de grupos"
+	/>
+	<LinkCard
+		title="Anillos"
+		href="/algebra/anillos/"
+		description="Definición, propiedades, ideales, homomorfismos y dominios de integridad"
+	/>
+	<LinkCard
+		title="Módulos"
+		href="/algebra/modulos/"
+		description="Definición de módulo sobre un anillo, subgrupos, homomorfismos y módulos libres"
+	/>
+	<LinkCard
+		title="Cuerpos"
+		href="/algebra/cuerpos/"
+		description="Definición de cuerpo, ejemplos, característica y subcuerpos"
+	/>
+</CardGrid>
+
+### Álgebra lineal
+
+<CardGrid>
+	<LinkCard
+		title="Matrices"
+		href="/linear-algebra/matrices/"
+		description="Definición, notación y operaciones básicas con matrices"
+	/>
+	<LinkCard
+		title="Transformaciones lineales"
+		href="/linear-algebra/transformaciones-lineales/"
+		description="Definición, propiedades básicas y representación matricial de las transformaciones lineales"
+	/>
+	<LinkCard
+		title="Espacios vectoriales"
+		href="/linear-algebra/espacios-vectoriales/"
+		description="Definición, axiomas de espacio vectorial, subespacios y propiedades básicas"
+	/>
+	<LinkCard
+		title="Valores y vectores propios"
+		href="/linear-algebra/valores-vectores-propios/"
+		description="Definición de autovalores y autovectores, polinomio característico y diagonalización"
+	/>
+	<LinkCard
+		title="Sistemas de ecuaciones lineales"
+		href="/linear-algebra/sistemas-lineales/"
+		description="Método de Gauss, rango y teorema de Rouché–Frobenius"
+	/>
+	<LinkCard
+		title="Determinantes"
+		href="/linear-algebra/determinantes/"
+		description="Definición, propiedades y cálculo de determinantes"
+	/>
+	<LinkCard
+		title="Producto interno y ortogonalidad"
+		href="/linear-algebra/producto-interno/"
+		description="Producto interno, normas, ortogonalidad y proyecciones"
+	/>
+</CardGrid>
+
+### Análisis matemático
+
+<CardGrid>
+	<LinkCard
+		title="Números reales"
+		href="/analysis/numeros-reales/"
+		description="Cuerpo ordenado, supremo e ínfimo, completitud y propiedades de ℝ"
+	/>
+	<LinkCard
+		title="Sucesiones"
+		href="/analysis/sucesiones/"
+		description="Convergencia, sucesiones monótonas, Cauchy y Bolzano-Weierstrass"
+	/>
+	<LinkCard
+		title="Límites y continuidad"
+		href="/analysis/limites-continuidad/"
+		description="Límite de funciones, discontinuidades, valor intermedio y continuidad uniforme"
+	/>
+	<LinkCard
+		title="Derivación"
+		href="/analysis/derivacion/"
+		description="Derivada, reglas, teoremas de Rolle, valor medio y Taylor"
+	/>
+	<LinkCard
+		title="Integración"
+		href="/analysis/integracion/"
+		description="Integral de Riemann, teorema fundamental del cálculo y técnicas"
+	/>
+	<LinkCard
+		title="Series"
+		href="/analysis/series/"
+		description="Series numéricas, criterios de convergencia y series de potencias"
+	/>
+</CardGrid>
+
+### Cálculo
+
+<CardGrid>
+	<LinkCard
+		title="Funciones"
+		href="/calculus/funciones/"
+		description="Definición de función, dominio, recorrido y operaciones con funciones"
+	/>
+	<LinkCard
+		title="Límites"
+		href="/calculus/limites/"
+		description="Definición de límite, límites laterales y continuidad"
+	/>
+	<LinkCard
+		title="Derivada"
+		href="/calculus/derivada/"
+		description="Definición de derivada, interpretación geométrica y reglas de derivación"
+	/>
+	<LinkCard
+		title="Integrales"
+		href="/calculus/integrales/"
+		description="Definición de integral, integración, teorema fundamental del cálculo y técnicas de integración"
+	/>
+	<LinkCard
+		title="Sucesiones y series"
+		href="/calculus/sucesiones-series/"
+		description="Convergencia de sucesiones y series, criterios y series de potencias"
+	/>
+	<LinkCard
+		title="Teorema de Taylor"
+		href="/calculus/teorema-taylor/"
+		description="Polinomios de Taylor, resto y series de Taylor"
+	/>
+	<LinkCard
+		title="Integrales impropias"
+		href="/calculus/integrales-impropias/"
+		description="Integrales impropias de primera y segunda especie y su convergencia"
+	/>
+</CardGrid>
+
+### Cálculo multivariable
+
+<CardGrid>
+	<LinkCard
+		title="Coordenadas en el espacio"
+		href="/multivariable-calculus/coordenadas/"
+		description="Sistemas de coordenadas cartesianas, cilíndricas y esféricas en R^3"
+	/>
+	<LinkCard
+		title="Límites y continuidad"
+		href="/multivariable-calculus/limites-continuidad/"
+		description="Límites, trayectorias y continuidad de funciones de varias variables"
+	/>
+	<LinkCard
+		title="Derivadas parciales y gradiente"
+		href="/multivariable-calculus/derivadas-parciales/"
+		description="Derivadas parciales, plano tangente, gradiente y regla de la cadena"
+	/>
+	<LinkCard
+		title="Integrales múltiples"
+		href="/multivariable-calculus/integrales-multiples/"
+		description="Integrales dobles y triples, cambio de variables y aplicaciones"
+	/>
+	<LinkCard
+		title="Campos vectoriales"
+		href="/multivariable-calculus/campos-vectoriales/"
+		description="Campos vectoriales, divergencia, rotacional y potencial"
+	/>
+	<LinkCard
+		title="Integrales de línea y de superficie"
+		href="/multivariable-calculus/integrales-linea/"
+		description="Integrales de línea, de superficie y sus aplicaciones"
+	/>
+	<LinkCard
+		title="Teoremas integrales"
+		href="/multivariable-calculus/teoremas-integrales/"
+		description="Teoremas de Green, Stokes y de la divergencia"
+	/>
+</CardGrid>
+
+### Ecuaciones diferenciales
+
+<CardGrid>
+	<LinkCard
+		title="Introducción"
+		href="/differential-equations/introduccion/"
+		description="Definición, orden, solución general y problemas de valor inicial"
+	/>
+	<LinkCard
+		title="Ecuaciones de primer orden"
+		href="/differential-equations/primer-orden/"
+		description="Ecuaciones de variables separables, lineales, homogéneas y de Bernoulli"
+	/>
+	<LinkCard
+		title="Ecuaciones lineales de orden superior"
+		href="/differential-equations/orden-superior/"
+		description="Ecuaciones homogéneas y no homogéneas, ecuación característica y Wronskiano"
+	/>
+	<LinkCard
+		title="Transformada de Laplace"
+		href="/differential-equations/laplace/"
+		description="Definición, propiedades y resolución de problemas de valor inicial"
+	/>
+	<LinkCard
+		title="Sistemas de ecuaciones diferenciales"
+		href="/differential-equations/sistemas/"
+		description="Sistemas lineales, matriz fundamental y valores propios"
+	/>
+	<LinkCard
+		title="Soluciones por series de potencias"
+		href="/differential-equations/series/"
+		description="Método de series de potencias y puntos singulares"
+	/>
+</CardGrid>
+
+### Estadística
+
+<CardGrid>
+	<LinkCard
+		title="Estadística"
+		href="/statistics/estadistica/"
+		description="Conceptos fundamentales de estadística descriptiva e inferencial"
+	/>
+	<LinkCard
+		title="Estadística descriptiva"
+		href="/statistics/descriptiva/"
+		description="Medidas de tendencia central, dispersión y representaciones"
+	/>
+	<LinkCard
+		title="Inferencia estadística"
+		href="/statistics/inferencia/"
+		description="Estimación puntual, intervalos de confianza y tamaños de muestra"
+	/>
+	<LinkCard
+		title="Contrastes de hipótesis"
+		href="/statistics/contrastes-hipotesis/"
+		description="Hipótesis nula y alternativa, errores y pruebas paramétricas"
+	/>
+	<LinkCard
+		title="Regresión y correlación"
+		href="/statistics/regresion/"
+		description="Regresión lineal, correlación y bondad de ajuste"
+	/>
+</CardGrid>
+
+### Geometría
+
+<CardGrid>
+	<LinkCard
+		title="Fundamentos"
+		href="/geometry/fundamentos/"
+		description="Puntos, rectas, planos, segmentos y ángulos"
+	/>
+	<LinkCard
+		title="Triángulos"
+		href="/geometry/triangulos/"
+		description="Clasificación, teorema de Pitágoras, congruencia y semejanza"
+	/>
+	<LinkCard
+		title="Polígonos y circunferencia"
+		href="/geometry/poligonos/"
+		description="Polígonos regulares, cuadriláteros, circunferencia y círculo"
+	/>
+	<LinkCard
+		title="Geometría analítica"
+		href="/geometry/geometria-analitica/"
+		description="Coordenadas, distancia, recta, circunferencia y cónicas"
+	/>
+	<LinkCard
+		title="Geometría del espacio"
+		href="/geometry/solidos/"
+		description="Poliedros, cuerpos redondos, áreas y volúmenes"
+	/>
+</CardGrid>
+
+### Lógica
+
+<CardGrid>
+	<LinkCard
+		title="Lógica proposicional"
+		href="/logic/logica-proposicional/"
+		description="Proposiciones, conectivas lógicas y el lenguaje de la lógica proposicional"
+	/>
+	<LinkCard
+		title="Tablas de verdad"
+		href="/logic/tablas-de-verdad/"
+		description="Construcción de tablas de verdad y clasificación de fórmulas proposicionales"
+	/>
+	<LinkCard
+		title="Lógica de predicados"
+		href="/logic/logica-de-predicados/"
+		description="Predicados, cuantificadores y el lenguaje de la lógica de primer orden"
+	/>
+	<LinkCard
+		title="Cuantificadores"
+		href="/logic/cuantificadores/"
+		description="Cuantificadores universal y existencial, negación y orden"
+	/>
+	<LinkCard
+		title="Reglas de inferencia"
+		href="/logic/reglas-de-inferencia/"
+		description="Razonamiento deductivo, reglas de inferencia y validez de argumentos"
+	/>
+	<LinkCard
+		title="Métodos de demostración"
+		href="/logic/metodos-de-demostracion/"
+		description="Demostración directa, contrarrecíproco, reducción al absurdo e inducción"
+	/>
+	<LinkCard
+		title="Conjuntos"
+		href="/logic/conjuntos/"
+		description="Conjuntos, operaciones, producto cartesiano y relaciones de pertenencia"
+	/>
+	<LinkCard
+		title="Relaciones"
+		href="/logic/relaciones/"
+		description="Relaciones binarias, propiedades, relaciones de equivalencia y de orden"
+	/>
+</CardGrid>
+
+### Matemática discreta
+
+<CardGrid>
+	<LinkCard
+		title="Combinatoria"
+		href="/discrete-math/combinatoria/"
+		description="Principios de conteo, permutaciones, combinaciones e inclusión-exclusión"
+	/>
+	<LinkCard
+		title="Relaciones de recurrencia"
+		href="/discrete-math/recurrencias/"
+		description="Sucesiones definidas recursivamente, Fibonacci y recurrencias lineales"
+	/>
+	<LinkCard
+		title="Teoría de grafos"
+		href="/discrete-math/grafos/"
+		description="Grafos, caminos, árboles, conectividad y coloración"
+	/>
+	<LinkCard
+		title="Álgebra de Boole"
+		href="/discrete-math/boole/"
+		description="Operaciones lógicas, leyes, funciones booleanas y formas canónicas"
+	/>
+</CardGrid>
+
+### Probabilidad
+
+<CardGrid>
+	<LinkCard
+		title="Probabilidades"
+		href="/probability/probabilidades/"
+		description="Definición de probabilidad, espacio muestral, eventos y axiomas de Kolmogorov"
+	/>
+	<LinkCard
+		title="Probabilidad condicional"
+		href="/probability/probabilidad-condicional/"
+		description="Probabilidad condicional, independencia y teorema de Bayes"
+	/>
+	<LinkCard
+		title="Variables aleatorias"
+		href="/probability/variables-aleatorias/"
+		description="Definición de variable aleatoria, funciones de distribución y esperanza y varianza"
+	/>
+	<LinkCard
+		title="Distribuciones discretas"
+		href="/probability/distribuciones-discretas/"
+		description="Distribuciones de Bernoulli, binomial, geométrica y de Poisson"
+	/>
+	<LinkCard
+		title="Distribuciones continuas"
+		href="/probability/distribuciones-continuas/"
+		description="Distribuciones uniforme, exponencial y normal; teorema central del límite"
+	/>
+	<LinkCard
+		title="Teoremas límite"
+		href="/probability/teoremas-limite/"
+		description="Ley de los grandes números y teorema central del límite"
+	/>
+</CardGrid>
+
+### Teoría de números
+
+<CardGrid>
+	<LinkCard
+		title="Divisibilidad"
+		href="/number-theory/divisibilidad/"
+		description="Conceptos fundamentales de divisibilidad, división euclidiana y máximo común divisor"
+	/>
+	<LinkCard
+		title="Números primos"
+		href="/number-theory/numeros-primos/"
+		description="Definición de número primo, teorema fundamental de la aritmética y criba de Eratóstenes"
+	/>
+	<LinkCard
+		title="Congruencias"
+		href="/number-theory/congruencias/"
+		description="Definición de congruencia, propiedades, congruencias lineales y teorema de Fermat"
+	/>
+	<LinkCard
+		title="Función de Euler"
+		href="/number-theory/funcion-de-euler/"
+		description="La función φ de Euler, sus propiedades y aplicaciones en teoría de números"
+	/>
+	<LinkCard
+		title="Números de Mersenne gaussianos"
+		href="/number-theory/numeros-mersenne-gaussianos/"
+		description="Definición, primalidad y factorización de los números de Mersenne gaussianos"
+	/>
+	<LinkCard
+		title="Ecuaciones diofantinas"
+		href="/number-theory/ecuaciones-diofantinas/"
+		description="Ecuaciones diofantinas lineales y no lineales"
+	/>
+	<LinkCard
+		title="Residuos cuadráticos"
+		href="/number-theory/residuos-cuadraticos/"
+		description="Residuos cuadráticos, símbolo de Legendre y reciprocidad cuadrática"
+	/>
+</CardGrid>
+
+### Topología
+
+<CardGrid>
+	<LinkCard
+		title="Espacios topológicos"
+		href="/topology/espacios-topologicos/"
+		description="Definición, abiertos, cerrados, base y topología métrica"
+	/>
+	<LinkCard
+		title="Interior, clausura y frontera"
+		href="/topology/interior-clausura/"
+		description="Interior, clausura, frontera, puntos de acumulación y conjuntos densos"
+	/>
+	<LinkCard
+		title="Continuidad y homeomorfismos"
+		href="/topology/continuidad/"
+		description="Funciones continuas, homeomorfismos e invariantes topológicos"
+	/>
+	<LinkCard
+		title="Compacidad"
+		href="/topology/compacidad/"
+		description="Cubrimientos abiertos, compacidad, Heine-Borel y compacidad secuencial"
+	/>
+	<LinkCard
+		title="Conexión"
+		href="/topology/conexion/"
+		description="Conjuntos conexos, conexión por caminos y componentes conexas"
+	/>
+</CardGrid>
+
+### Glosario
+
+<CardGrid>
+	<LinkCard
+		title="Símbolos y notación"
+		href="/glossary/simbolos/"
+		description="Símbolos y notación matemática de uso habitual en todas las materias"
+	/>
+	<LinkCard
+		title="Conceptos básicos"
+		href="/glossary/conceptos-basicos/"
+		description="Conjuntos numéricos, operaciones, orden, potencias, logaritmos y sumatorias"
+	/>
+	<LinkCard
+		title="Álgebra elemental"
+		href="/glossary/algebra/"
+		description="Polinomios, productos notables, factorización, ecuaciones e inecuaciones"
+	/>
+	<LinkCard
+		title="Análisis"
+		href="/glossary/analisis/"
+		description="Trigonometría, límites, continuidad, derivadas e integrales elementales"
+	/>
+	<LinkCard
+		title="Probabilidad y estadística"
+		href="/glossary/probabilidad-estadistica/"
+		description="Combinatoria, probabilidad, variables aleatorias y estadísticos habituales"
+	/>
 </CardGrid>

@@ -1,0 +1,74 @@
+---
+title: Integrales múltiples
+description: Integrales dobles y triples, cambio de variables y aplicaciones
+---
+
+import SurfacePlot from '../../../components/SurfacePlot.astro';
+
+### Integral doble:
+
+La **integral doble** de $$f(x, y)$$ sobre una región $$D \subseteq \mathbb{R}^2$$ se define como el límite de sumas de Riemann y representa el volumen con signo bajo la superficie $$z = f(x, y)$$:
+
+$$
+\iint_D f(x, y) \, dA.
+$$
+
+Si $$D = [a, b] \times [c, d]$$ es un rectángulo:
+
+$$
+\iint_D f(x, y) \, dA = \int_{a}^{b} \int_{c}^{d} f(x, y) \, dy \, dx.
+$$
+
+<SurfacePlot
+	fn="3*exp(-(x^2 + y^2))"
+	label="z = 3e^{-(x^2 + y^2)}"
+	xmin={-3}
+	xmax={3}
+	ymin={-3}
+	ymax={3}
+	resolution={32}
+	caption="La integral doble mide el volumen bajo la superficie"
+/>
+
+### Integral triple:
+
+Para una región $$V \subseteq \mathbb{R}^3$$:
+
+$$
+\iiint_V f(x, y, z) \, dV.
+$$
+
+### Cambio de variables:
+
+Bajo una transformación $$(x, y, z) = T(u, v, w)$$, el elemento de volumen se transforma mediante el **jacobiano**:
+
+$$
+dV = \left| \frac{\partial(x, y, z)}{\partial(u, v, w)} \right| \, du\, dv\, dw.
+$$
+
+En particular, en coordenadas cilíndricas y esféricas:
+
+$$
+dV = \rho\, d\rho\, d\theta\, dz, \qquad dV = r^2 \sin\varphi\, dr\, d\varphi\, d\theta.
+$$
+
+### Aplicaciones:
+
+- **Área:** $$A(D) = \iint_D dA.$$
+- **Volumen:** $$V = \iiint_V dV.$$
+- **Masa:** $$m = \iiint_V \rho(x, y, z) \, dV,$$ donde $$\rho$$ es la densidad.
+- **Centro de masas:** $$\bar{x} = \dfrac{1}{m} \iiint_V x\, \rho \, dV,$$ y análogamente para $$\bar{y}$$ y $$\bar{z}$$.
+
+### Teorema de Fubini:
+
+Si $$f$$ es continua en una región descrita como:
+
+$$
+D = \{(x, y) : a \leq x \leq b,\; g_1(x) \leq y \leq g_2(x)\},
+$$
+
+entonces:
+
+$$
+\iint_D f(x, y) \, dA = \int_{a}^{b} \int_{g_1(x)}^{g_2(x)} f(x, y) \, dy \, dx.
+$$

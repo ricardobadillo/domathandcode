@@ -1,0 +1,56 @@
+---
+title: Integrales de línea y de superficie
+description: Integrales de línea, de superficie y sus aplicaciones
+---
+
+### Integral de línea de un campo escalar:
+
+Sea $$C$$ una curva parametrizada por $$\gamma(t)$$ con $$a \leq t \leq b$$, y $$f$$ un campo escalar. Su integral de línea respecto a la longitud de arco es:
+
+$$
+\int_C f \, ds = \int_{a}^{b} f\big(\gamma(t)\big)\, \|\gamma'(t)\| \, dt.
+$$
+
+Si $$f = 1$$, se obtiene la **longitud** de la curva.
+
+### Integral de línea de un campo vectorial:
+
+El **trabajo** realizado por un campo $$\mathbf{F}$$ a lo largo de $$C$$ es:
+
+$$
+W = \int_C \mathbf{F} \cdot d\mathbf{r} = \int_{a}^{b} \mathbf{F}\big(\gamma(t)\big) \cdot \gamma'(t)\, dt.
+$$
+
+### Independencia del camino:
+
+Si $$\mathbf{F} = \nabla \phi$$ es conservativo, entonces:
+
+$$
+\int_C \mathbf{F} \cdot d\mathbf{r} = \phi(\gamma(b)) - \phi(\gamma(a)).
+$$
+
+En particular, la integral sobre cualquier curva cerrada es nula. En un dominio simplemente conexo, un campo es conservativo si y sólo si $$\nabla \times \mathbf{F} = \mathbf{0}$$.
+
+### Integral de superficie:
+
+Para una superficie $$S$$ parametrizada por $$\mathbf{r}(u, v)$$, el elemento de área es:
+
+$$
+dS = \left\| \frac{\partial \mathbf{r}}{\partial u} \times \frac{\partial \mathbf{r}}{\partial v} \right\| du\, dv.
+$$
+
+La integral de un campo escalar sobre $$S$$ es:
+
+$$
+\iint_S f \, dS = \iint_D f\big(\mathbf{r}(u, v)\big) \left\| \mathbf{r}_u \times \mathbf{r}_v \right\| \, du\, dv.
+$$
+
+### Flujo:
+
+El **flujo** de un campo vectorial $$\mathbf{F}$$ a través de $$S$$ es:
+
+$$
+\Phi = \iint_S \mathbf{F} \cdot \mathbf{n}\, dS = \iint_S \mathbf{F} \cdot d\mathbf{S},
+$$
+
+donde $$\mathbf{n}$$ es el vector normal unitario a la superficie.

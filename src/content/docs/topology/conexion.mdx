@@ -1,0 +1,37 @@
+---
+title: Conexión
+description: Conjuntos conexos, conexión por caminos y componentes conexas
+---
+
+import GeometryFigure from '../../../components/GeometryFigure.astro';
+
+### Definición:
+
+Un espacio topológico $$X$$ es **conexo** si no puede escribirse como unión de dos abiertos no vacíos y disjuntos. Equivalentemente, los únicos subconjuntos que son a la vez abiertos y cerrados (**clopen**) son $$\varnothing$$ y $$X$$.
+
+<GeometryFigure
+	caption="Un conjunto conexo (izquierda) frente a uno disconexo (derecha)"
+	elements={[
+		{ type: 'ellipse', center: [110, 160], rx: 80, ry: 60 },
+		{ type: 'ellipse', center: [300, 115], rx: 55, ry: 42 },
+		{ type: 'ellipse', center: [320, 225], rx: 45, ry: 32 },
+	]}
+/>
+
+### Conexión por caminos:
+
+$$X$$ es **conexo por caminos** si para todo par de puntos $$x, y \in X$$ existe un **camino** continuo $$\gamma : [0, 1] \to X$$ con $$\gamma(0) = x$$ y $$\gamma(1) = y$$. La conexión por caminos implica la conexión, pero no al revés.
+
+### Propiedades:
+
+1. La imagen continua de un conexo es conexa.
+2. La unión de conexos con un punto en común es conexa.
+3. Los subconjuntos conexos de $$\mathbb{R}$$ son exactamente los **intervalos**.
+
+### Componentes conexas:
+
+Dado $$x \in X$$, su **componente conexa** es la unión de todos los subconjuntos conexos que contienen a $$x$$; es el mayor conjunto conexo que lo contiene. Las componentes conexas forman una partición de $$X$$ en conjuntos cerrados disjuntos.
+
+### Teorema del valor intermedio:
+
+Si $$f : [a, b] \to \mathbb{R}$$ es continua, entonces $$f$$ toma todos los valores entre $$f(a)$$ y $$f(b)$$. Este resultado es una consecuencia directa de que $$[a, b]$$ es conexo y su imagen continua es conexa.

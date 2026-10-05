@@ -1,0 +1,59 @@
+---
+title: Espacios vectoriales
+description: Definición, axiomas de espacio vectorial, subespacios y propiedades básicas
+---
+
+### Definición:
+
+Sea $$\mathbb{K}$$ un cuerpo (por ejemplo $$\mathbb{R}$$ o $$\mathbb{C}$$). Un **espacio vectorial** sobre $$\mathbb{K}$$ es un conjunto no vacío $$V$$ dotado de dos operaciones: una **suma** de vectores $$V \times V \to V$$ y un **producto por escalar** $$\mathbb{K} \times V \to V$$, que satisfacen los siguientes axiomas.
+
+### Axiomas de espacio vectorial:
+
+Sean $$u, v, w \in V$$ y $$\lambda, \mu \in \mathbb{K}$$.
+
+1. **Conmutatividad de la suma:** $$u + v = v + u.$$
+2. **Asociatividad de la suma:** $$(u + v) + w = u + (v + w).$$
+3. **Neutro aditivo:** $$\exists \, 0_V \in V$$ tal que $$u + 0_V = u.$$
+4. **Inverso aditivo:** $$\exists \, (-u) \in V$$ tal que $$u + (-u) = 0_V.$$
+5. **Asociatividad del producto por escalar:** $$\lambda(\mu u) = (\lambda\mu)u.$$
+6. **Neutro del cuerpo:** $$1u = u.$$
+7. **Distributividad respecto a la suma de escalares:** $$(\lambda + \mu)u = \lambda u + \mu u.$$
+8. **Distributividad respecto a la suma de vectores:** $$\lambda(u + v) = \lambda u + \lambda v.$$
+
+Los elementos de $$V$$ se llaman **vectores** y los de $$\mathbb{K}$$ se llaman **escalares**.
+
+### Propiedades básicas:
+
+Si $$V$$ es un espacio vectorial, entonces para todo $$u \in V$$ y $$\lambda \in \mathbb{K}$$:
+
+1. $$0_{\mathbb{K}} u = 0_V.$$
+2. $$\lambda 0_V = 0_V.$$
+3. $$(-1)u = -u.$$
+4. Si $$\lambda u = 0_V$$, entonces $$\lambda = 0$$ ó $$u = 0_V$$.
+
+### Subespacios vectoriales:
+
+Un subconjunto no vacío $$W \subseteq V$$ es un **subespacio vectorial** de $$V$$ si es cerrado bajo las operaciones de $$V$$:
+
+1. $$u + v \in W \quad \text{para todo } u, v \in W.$$
+2. $$\lambda u \in W \quad \text{para todo } \lambda \in \mathbb{K}, \, u \in W.$$
+
+Todo subespacio contiene al neutro $$0_V$$.
+
+### Dependencia e independencia lineal:
+
+Un conjunto $$\{ v_1, v_2, \dots, v_n \} \subset V$$ es **linealmente independiente** si la única combinación lineal que da el neutro es la trivial:
+
+$$
+\lambda_1 v_1 + \lambda_2 v_2 + \cdots + \lambda_n v_n = 0_V \quad \Longrightarrow \quad \lambda_1 = \lambda_2 = \cdots = \lambda_n = 0.
+$$
+
+En caso contrario se dice que el conjunto es **linealmente dependiente**.
+
+### Base y dimensión:
+
+Una **base** de $$V$$ es un conjunto linealmente independiente que genera a $$V$$. Si $$V$$ posee una base finita, todos sus bases tienen el mismo número de elementos, y a ese número se le llama **dimensión** de $$V$$, denotada $$\dim(V)$$. En particular:
+
+$$
+\dim(\mathbb{R}^n) = n.
+$$

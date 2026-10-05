@@ -1,0 +1,54 @@
+---
+title: Sistemas de ecuaciones lineales
+description: Método de Gauss, rango y teorema de Rouché–Frobenius
+---
+
+### Forma matricial:
+
+Un sistema de $$m$$ ecuaciones lineales con $$n$$ incógnitas se escribe:
+
+$$
+A x = b,
+$$
+
+donde $$A \in \mathbb{R}^{m \times n}$$ es la **matriz de coeficientes**, $$x \in \mathbb{R}^n$$ el vector de incógnitas y $$b \in \mathbb{R}^m$$ el término independiente. La **matriz ampliada** es $$[A \mid b]$$.
+
+### Eliminación de Gauss:
+
+Consiste en aplicar operaciones elementales por filas para llevar $$[A \mid b]$$ a forma escalonada:
+
+1. Intercambiar dos filas.
+2. Multiplicar una fila por un escalar no nulo.
+3. Sumar a una fila un múltiplo de otra.
+
+El sistema resultante es equivalente y se resuelve por **sustitución hacia atrás**. La variante **Gauss–Jordan** continúa hasta la forma escalonada reducida.
+
+### Rango:
+
+El **rango** de $$A$$, denotado $$\operatorname{rg}(A)$$, es el número de filas no nulas de su forma escalonada; coincide con la dimensión del espacio columna y con la del espacio fila.
+
+### Teorema de Rouché–Frobenius:
+
+Para el sistema $$Ax = b$$ con $$n$$ incógnitas:
+
+- Si $$\operatorname{rg}(A) < \operatorname{rg}([A \mid b])$$, el sistema es **incompatible** (sin solución).
+- Si $$\operatorname{rg}(A) = \operatorname{rg}([A \mid b]) = n$$, es **compatible determinado** (solución única).
+- Si $$\operatorname{rg}(A) = \operatorname{rg}([A \mid b]) = r < n$$, es **compatible indeterminado**, con $$n - r$$ parámetros libres.
+
+### Sistemas homogéneos:
+
+Si $$b = 0$$, el sistema $$Ax = 0$$ siempre es compatible (solución trivial $$x = 0$$). Su conjunto de soluciones es el **espacio nulo** $$\ker(A)$$, de dimensión:
+
+$$
+\dim \ker(A) = n - \operatorname{rg}(A).
+$$
+
+La solución general de $$Ax = b$$ es $$x = x_p + x_h$$, donde $$x_p$$ es una solución particular y $$x_h \in \ker(A)$$.
+
+### Método de la inversa:
+
+Si $$A$$ es cuadrada e invertible, la solución es única y viene dada por:
+
+$$
+x = A^{-1} b.
+$$

@@ -1,0 +1,73 @@
+---
+title: Reglas de inferencia
+description: Razonamiento deductivo, reglas de inferencia y validez de argumentos
+---
+
+### Definición:
+
+Un **argumento** es una secuencia de proposiciones en la que las primeras, llamadas **premisas**, se ofrecen como apoyo de la última, llamada **conclusión**. Un argumento es **válido** si siempre que las premisas son verdaderas la conclusión también lo es.
+
+En forma simbólica, un argumento con premisas $$p_1, \dots, p_n$$ y conclusión $$q$$ es válido cuando:
+
+$$
+(p_1 \wedge p_2 \wedge \cdots \wedge p_n) \to q
+$$
+
+es una tautología. La notación habitual es:
+
+$$
+\frac{p_1, \; p_2, \; \dots, \; p_n}{\therefore \; q}.
+$$
+
+### Reglas de inferencia fundamentales:
+
+1. **Modus ponens:**
+$$
+\frac{p \to q, \quad p}{\therefore \; q}.
+$$
+
+2. **Modus tollens:**
+$$
+\frac{p \to q, \quad \neg q}{\therefore \; \neg p}.
+$$
+
+3. **Silogismo hipotético:**
+$$
+\frac{p \to q, \quad q \to r}{\therefore \; p \to r}.
+$$
+
+4. **Silogismo disyuntivo:**
+$$
+\frac{p \vee q, \quad \neg p}{\therefore \; q}.
+$$
+
+5. **Conjunción:**
+$$
+\frac{p, \quad q}{\therefore \; p \wedge q}.
+$$
+
+6. **Simplificación:**
+$$
+\frac{p \wedge q}{\therefore \; p}.
+$$
+
+7. **Adición:**
+$$
+\frac{p}{\therefore \; p \vee q}.
+$$
+
+### Reglas con cuantificadores:
+
+1. **Instanciación universal:** de $$\forall x \, P(x)$$ se sigue $$P(a)$$ para cualquier $$a$$ del dominio.
+2. **Generalización universal:** si $$P(a)$$ se demuestra para un $$a$$ arbitrario, entonces $$\forall x \, P(x)$$.
+3. **Instanciación existencial:** de $$\exists x \, P(x)$$ se sigue $$P(c)$$ para algún elemento $$c$$.
+4. **Generalización existencial:** de $$P(a)$$ se sigue $$\exists x \, P(x)$$.
+
+### Falacias comunes:
+
+- **Afirmación del consecuente:** de $$p \to q$$ y $$q$$ concluir $$p$$ (inválido).
+- **Negación del antecedente:** de $$p \to q$$ y $$\neg p$$ concluir $$\neg q$$ (inválido).
+
+### Ejemplo:
+
+Del argumento «si llueve, la calle se moja; llueve», se concluye «la calle se moja» mediante modus ponens.

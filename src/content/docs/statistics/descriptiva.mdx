@@ -1,0 +1,50 @@
+---
+title: Estadística descriptiva
+description: Medidas de tendencia central, dispersión y representaciones
+---
+
+### Variables y datos:
+
+Una **variable estadística** describe una característica medible de una población. Puede ser:
+
+- **Cualitativa:** categórica (por ejemplo, el color).
+- **Cuantitativa discreta:** toma valores aislados (número de hijos).
+- **Cuantitativa continua:** toma cualquier valor de un intervalo (altura).
+
+### Frecuencias:
+
+Para $$n$$ observaciones, la **frecuencia absoluta** $$f_i$$ de un valor $$x_i$$ es el número de veces que aparece; la **frecuencia relativa** es $$h_i = f_i / n$$. La **frecuencia acumulada** $$F_i = \sum_{j \leq i} f_j$$ permite calcular cuantiles.
+
+### Representaciones gráficas:
+
+- **Diagrama de barras** e **histograma** para la distribución de frecuencias.
+- **Polígono de frecuencias** y **ojiva** (frecuencias acumuladas).
+- **Diagrama de sectores** para variables cualitativas.
+- **Diagrama de caja** (boxplot) para resumir posición y dispersión.
+
+### Medidas de tendencia central:
+
+- **Media aritmética:** $$\bar{x} = \dfrac{1}{n} \sum_{i=1}^{n} x_i.$$
+- **Mediana:** valor central de los datos ordenados.
+- **Moda:** valor de mayor frecuencia.
+- **Media ponderada:** $$\bar{x}_p = \dfrac{\sum w_i x_i}{\sum w_i}.$$
+
+### Medidas de dispersión:
+
+- **Rango:** $$x_{\max} - x_{\min}.$$
+- **Varianza:** $$s^2 = \dfrac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2.$$
+- **Desviación típica:** $$s = \sqrt{s^2}.$$
+- **Coeficiente de variación:** $$CV = \dfrac{s}{\bar{x}} \cdot 100\%.$$
+
+### Medidas de posición:
+
+Los **cuartiles** $$Q_1, Q_2, Q_3$$ dividen los datos en cuatro partes. El **rango intercuartílico** es $$IQR = Q_3 - Q_1$$ y permite detectar valores atípicos:
+
+$$
+x < Q_1 - 1.5\, IQR \quad \text{o} \quad x > Q_3 + 1.5\, IQR.
+$$
+
+### Forma de la distribución:
+
+- **Asimetría:** compara media y mediana; es positiva si $$\bar{x} > Me$$ y negativa si $$\bar{x} < Me$$.
+- **Curtosis:** mide el apuntamiento de la distribución respecto a la normal.

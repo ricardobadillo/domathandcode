@@ -1,0 +1,60 @@
+---
+title: Cuantificadores
+description: Cuantificadores universal y existencial, negación y orden
+---
+
+### Definición:
+
+Sea $$D$$ un dominio de objetos y $$P(x)$$ un predicado sobre $$D$$. Los **cuantificadores** permiten expresar el alcance de un predicado sobre todo el dominio:
+
+$$
+\forall x \, P(x) \quad \text{(universal)}, \qquad \exists x \, P(x) \quad \text{(existencial)}.
+$$
+
+### Cuantificador universal:
+
+$$\forall x \, P(x)$$ se lee «para todo $$x$$, $$P(x)$$» y es verdadera cuando $$P(a)$$ es verdadera para cada $$a \in D$$. Un contraejemplo basta para refutarla.
+
+### Cuantificador existencial:
+
+$$\exists x \, P(x)$$ se lee «existe un $$x$$ tal que $$P(x)$$» y es verdadera cuando al menos un $$a \in D$$ satisface $$P(a)$$. Un ejemplo basta para verificarla.
+
+### Unicidad:
+
+El cuantificador $$\exists! x \, P(x)$$ se lee «existe un único $$x$$ tal que $$P(x)$$» y equivale a:
+
+$$
+\exists x \big( P(x) \wedge \forall y \, (P(y) \to y = x) \big).
+$$
+
+### Negación:
+
+$$
+\neg \forall x \, P(x) \equiv \exists x \, \neg P(x), \qquad \neg \exists x \, P(x) \equiv \forall x \, \neg P(x).
+$$
+
+Estas reglas permiten trasladar la negación hacia el interior de la fórmula hasta alcanzar los predicados atómicos.
+
+### Distributividad:
+
+$$
+\forall x \, (P(x) \wedge Q(x)) \equiv (\forall x \, P(x)) \wedge (\forall x \, Q(x)),
+$$
+
+$$
+\exists x \, (P(x) \vee Q(x)) \equiv (\exists x \, P(x)) \vee (\exists x \, Q(x)).
+$$
+
+En cambio, sólo se tienen implicaciones en un sentido:
+
+$$
+(\forall x \, P(x)) \vee (\forall x \, Q(x)) \Rightarrow \forall x \, (P(x) \vee Q(x)),
+$$
+
+$$
+\exists x \, (P(x) \wedge Q(x)) \Rightarrow (\exists x \, P(x)) \wedge (\exists x \, Q(x)).
+$$
+
+### Dominio vacío:
+
+Si $$D = \varnothing$$, entonces $$\forall x \, P(x)$$ es verdadera (vacuamente) y $$\exists x \, P(x)$$ es falsa, para cualquier predicado $$P$$.

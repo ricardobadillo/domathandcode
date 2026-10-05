@@ -1,0 +1,47 @@
+---
+title: Tablas de verdad
+description: Construcción de tablas de verdad y clasificación de fórmulas proposicionales
+---
+
+### Definición:
+
+Una **tabla de verdad** es una representación que muestra el valor de verdad de una fórmula para cada una de las posibles combinaciones de valores de sus variables proposicionales. Si la fórmula contiene $$n$$ variables, la tabla tiene $$2^n$$ filas.
+
+### Tablas de las conectivas básicas:
+
+| $$p$$ | $$q$$ | $$\neg p$$ | $$p \wedge q$$ | $$p \vee q$$ | $$p \to q$$ | $$p \leftrightarrow q$$ |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| $$V$$ | $$V$$ | $$F$$ | $$V$$ | $$V$$ | $$V$$ | $$V$$ |
+| $$V$$ | $$F$$ | $$F$$ | $$F$$ | $$V$$ | $$F$$ | $$F$$ |
+| $$F$$ | $$V$$ | $$V$$ | $$F$$ | $$V$$ | $$V$$ | $$F$$ |
+| $$F$$ | $$F$$ | $$V$$ | $$F$$ | $$F$$ | $$V$$ | $$V$$ |
+
+### Construcción paso a paso:
+
+Para construir la tabla de una fórmula compuesta se procede de las subfórmulas más simples a las más complejas. Por ejemplo, para $$\neg p \vee q$$:
+
+| $$p$$ | $$q$$ | $$\neg p$$ | $$\neg p \vee q$$ |
+| :---: | :---: | :---: | :---: |
+| $$V$$ | $$V$$ | $$F$$ | $$V$$ |
+| $$V$$ | $$F$$ | $$F$$ | $$F$$ |
+| $$F$$ | $$V$$ | $$V$$ | $$V$$ |
+| $$F$$ | $$F$$ | $$V$$ | $$V$$ |
+
+Como la columna final coincide con la de $$p \to q$$, se comprueba que $$\neg p \vee q \equiv p \to q$$.
+
+### Clasificación mediante tablas:
+
+- Si la columna final sólo contiene $$V$$, la fórmula es una **tautología**.
+- Si sólo contiene $$F$$, es una **contradicción**.
+- Si contiene ambos valores, es una **contingencia**.
+
+### Ejemplo:
+
+La fórmula $$p \vee \neg p$$ es una tautología (principio del tercero excluido):
+
+| $$p$$ | $$\neg p$$ | $$p \vee \neg p$$ |
+| :---: | :---: | :---: |
+| $$V$$ | $$F$$ | $$V$$ |
+| $$F$$ | $$V$$ | $$V$$ |
+
+En cambio, $$p \wedge \neg p$$ es una contradicción (principio de no contradicción).

@@ -1,0 +1,63 @@
+---
+title: Espacios topológicos
+description: Definición, abiertos, cerrados, base y topología métrica
+---
+
+import GeometryFigure from '../../../components/GeometryFigure.astro';
+
+### Definición:
+
+Un **espacio topológico** es un par $$(X, \tau)$$, donde $$X$$ es un conjunto y $$\tau \subseteq \mathcal{P}(X)$$ es una familia de subconjuntos, llamados **abiertos**, que cumple:
+
+1. $$\varnothing \in \tau$$ y $$X \in \tau$$.
+2. La unión de cualquier familia de abiertos es un abierto.
+3. La intersección de un número finito de abiertos es un abierto.
+
+La familia $$\tau$$ se llama **topología** sobre $$X$$.
+
+### Conjuntos cerrados:
+
+Un subconjunto $$F \subseteq X$$ es **cerrado** si su complemento $$X \setminus F$$ es abierto. Se cumplen las leyes duales: $$\varnothing$$ y $$X$$ son cerrados, la intersección arbitraria de cerrados es cerrada y la unión finita de cerrados es cerrada.
+
+### Base de una topología:
+
+Una **base** $$\mathcal{B} \subseteq \tau$$ es una familia de abiertos tal que todo abierto es unión de elementos de $$\mathcal{B}$$. Una familia $$\mathcal{B}$$ es base de alguna topología si cubre $$X$$ y, para cada $$B_1, B_2 \in \mathcal{B}$$ y cada $$x \in B_1 \cap B_2$$, existe $$B_3 \in \mathcal{B}$$ con $$x \in B_3 \subseteq B_1 \cap B_2$$.
+
+### Topología métrica:
+
+Todo espacio métrico $$(X, d)$$ induce una topología tomando como abiertos las uniones de **bolas abiertas**:
+
+$$
+B(x, r) = \{ y \in X : d(x, y) < r \}.
+$$
+
+La **bola cerrada** es $$\bar{B}(x, r) = \{ y \in X : d(x, y) \leq r \}$$.
+
+<GeometryFigure
+	caption="Bola abierta (frontera discontinua) y bola cerrada (frontera incluida)"
+	elements={[
+		{ type: 'circle', center: [120, 160], r: 70, dash: true },
+		{ type: 'circle', center: [300, 160], r: 70 },
+		{ type: 'segment', from: [120, 160], to: [190, 160] },
+		{ type: 'point', at: [120, 160], label: 'x', labelOffset: [-4, 20] },
+		{ type: 'point', at: [300, 160], label: 'x', labelOffset: [-4, 20] },
+		{ type: 'label', at: [155, 150], text: 'r' },
+		{ type: 'label', at: [120, 262], text: 'abierta' },
+		{ type: 'label', at: [300, 262], text: 'cerrada' },
+	]}
+/>
+
+### Subespacio topológico:
+
+Si $$A \subseteq X$$, la **topología del subespacio** es:
+
+$$
+\tau_A = \{ A \cap U : U \in \tau \}.
+$$
+
+### Axiomas de separación:
+
+- **T1:** para dos puntos distintos, cada uno tiene un abierto que no contiene al otro.
+- **T2 (Hausdorff):** dos puntos distintos tienen entornos abiertos disjuntos.
+
+Todo espacio métrico es de Hausdorff, lo que garantiza la unicidad de los límites.

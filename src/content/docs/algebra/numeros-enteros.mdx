@@ -1,0 +1,60 @@
+---
+title: Números enteros
+description: Construcción, valor absoluto, divisibilidad y división euclidiana
+---
+
+### Definición:
+
+El conjunto de los **números enteros** $$\mathbb{Z}$$ amplía a los naturales con el cero y los opuestos de los naturales:
+
+$$
+\mathbb{Z} = \mathbb{N} \cup \{0\} \cup \{-n : n \in \mathbb{N}\}.
+$$
+
+$$(\mathbb{Z}, +, \cdot)$$ es un **dominio de integridad** (anillo conmutativo sin divisores de cero), pero no un cuerpo, pues en general los elementos no nulos no tienen inverso multiplicativo en $$\mathbb{Z}$$.
+
+### Valor absoluto:
+
+$$
+|a| = \begin{cases} a, & a \geq 0, \\ -a, & a < 0. \end{cases}
+$$
+
+Siempre $$|a| \in \mathbb{N}$$ o $$|a| = 0$$, y se cumple $$|ab| = |a|\,|b|$$ y $$|a + b| \leq |a| + |b|$$.
+
+### Potencias de exponente entero:
+
+Para $$a \in \mathbb{Z}$$ con $$a \neq 0$$ y $$n \in \mathbb{N}$$:
+
+$$
+a^0 = 1, \qquad a^{-n} = \frac{1}{a^n}, \qquad a^{m+n} = a^m a^n, \qquad (a^m)^n = a^{mn}.
+$$
+
+### Divisibilidad:
+
+Sean $$a, b \in \mathbb{Z}$$. Se dice que $$a$$ **divide** a $$b$$ (o que $$b$$ es **múltiplo** de $$a$$), y se escribe $$a \mid b$$, si existe $$c \in \mathbb{Z}$$ tal que:
+
+$$
+b = ac.
+$$
+
+Si $$a \mid b$$ y $$b \mid c$$, entonces $$a \mid c$$; si $$a \mid b$$ y $$a \mid c$$, entonces $$a \mid (bx + cy)$$ para todo $$x, y \in \mathbb{Z}$$.
+
+### División euclidiana:
+
+Dados $$a, b \in \mathbb{Z}$$ con $$b \neq 0$$, existen únicos $$q, r \in \mathbb{Z}$$ tales que:
+
+$$
+a = bq + r, \qquad 0 \leq r < |b|.
+$$
+
+### Máximo común divisor:
+
+$$\gcd(a, b)$$ es el mayor entero positivo que divide a ambos y admite la **identidad de Bézout**:
+
+$$
+\gcd(a, b) = ax + by, \qquad x, y \in \mathbb{Z}.
+$$
+
+### Congruencias:
+
+Se dice que $$a \equiv b \pmod{m}$$ si $$m \mid (a - b)$$. La congruencia es una relación de equivalencia compatible con la suma y el producto, lo que da lugar al anillo $$\mathbb{Z}/m\mathbb{Z}$$.

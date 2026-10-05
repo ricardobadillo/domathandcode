@@ -1,0 +1,40 @@
+---
+title: Límites y continuidad
+description: Límites, trayectorias y continuidad de funciones de varias variables
+---
+
+### Funciones de varias variables:
+
+Una función escalar en el espacio asigna a cada punto un número real:
+
+$$
+f : D \subseteq \mathbb{R}^3 \to \mathbb{R}, \qquad (x, y, z) \mapsto f(x, y, z).
+$$
+
+Su **dominio** $$D$$ es el conjunto de puntos donde la expresión está definida.
+
+### Límite:
+
+Se dice que $$\lim_{(x,y,z) \to (x_0,y_0,z_0)} f(x,y,z) = L$$ si $$f$$ se aproxima a $$L$$ a lo largo de **todas** las trayectorias que conducen al punto. En particular, el límite debe coincidir por cualquier camino:
+
+$$
+\lim_{t \to 0} f\big(\gamma(t)\big) = L
+$$
+
+para toda curva $$\gamma(t)$$ con $$\gamma(0) = (x_0, y_0, z_0)$$. Si dos trayectorias producen límites distintos, el límite **no existe**.
+
+### Continuidad:
+
+$$f$$ es **continua** en $$(x_0, y_0, z_0)$$ si:
+
+$$
+\lim_{(x,y,z) \to (x_0,y_0,z_0)} f(x,y,z) = f(x_0, y_0, z_0).
+$$
+
+Las sumas, productos, cocientes (con denominador no nulo) y composiciones de funciones continuas son continuas.
+
+### Conjuntos y compacidad:
+
+- Un conjunto es **abierto** si todo punto tiene un entorno contenido en él.
+- Es **cerrado** si su complemento es abierto.
+- Es **compacto** si es cerrado y acotado. Toda función continua en un compacto alcanza su máximo y su mínimo.

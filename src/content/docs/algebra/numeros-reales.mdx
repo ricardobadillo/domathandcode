@@ -1,0 +1,55 @@
+---
+title: Números reales
+description: Axiomas de cuerpo y orden, completitud, intervalos y valor absoluto
+---
+
+### Introducción:
+
+El conjunto de los **números reales** $$\mathbb{R}$$ es el cuerpo ordenado y completo que contiene a los números racionales. Se construye completando los "huecos" de $$\mathbb{Q}$$, como el que ocupa $$\sqrt{2}$$.
+
+### Axiomas de cuerpo:
+
+$$(\mathbb{R}, +, \cdot)$$ es un **cuerpo conmutativo**: existen $$0, 1 \in \mathbb{R}$$ (con $$0 \neq 1$$) tales que, para todo $$a, b, c \in \mathbb{R}$$:
+
+1. **Asociatividad:** $$(a + b) + c = a + (b + c)$$ y $$(ab)c = a(bc).$$
+2. **Conmutatividad:** $$a + b = b + a$$ y $$ab = ba.$$
+3. **Distributividad:** $$a(b + c) = ab + ac.$$
+4. **Neutros:** $$a + 0 = a$$ y $$a \cdot 1 = a.$$
+5. **Inversos:** existe $$-a$$ con $$a + (-a) = 0$$, y si $$a \neq 0$$, existe $$a^{-1}$$ con $$a a^{-1} = 1.$$
+
+### Axiomas de orden:
+
+Existe una relación $$<$$ de **orden total** compatible con las operaciones:
+
+1. **Tricotomía:** para $$a, b \in \mathbb{R}$$ se cumple una y sólo una de $$a < b$$, $$a = b$$, $$a > b$$.
+2. **Transitividad:** si $$a < b$$ y $$b < c$$, entonces $$a < c$$.
+3. Si $$a < b$$, entonces $$a + c < b + c.$$
+4. Si $$a < b$$ y $$c > 0$$, entonces $$ac < bc.$$
+
+### Completitud (axioma del supremo):
+
+Todo subconjunto no vacío de $$\mathbb{R}$$ **acotado superiormente** tiene un **supremo** (mínima cota superior) en $$\mathbb{R}$$. Esta propiedad distingue a $$\mathbb{R}$$ de $$\mathbb{Q}$$ y garantiza la existencia de límites.
+
+### Intervalos:
+
+Dados $$a < b$$, se definen los intervalos:
+
+$$
+(a, b), \quad [a, b], \quad [a, b), \quad (a, b], \quad (-\infty, b), \quad (a, \infty).
+$$
+
+### Valor absoluto:
+
+$$
+|a| = \begin{cases} a, & a \geq 0, \\ -a, & a < 0. \end{cases}
+$$
+
+Cumple la **desigualdad triangular**:
+
+$$
+|a + b| \leq |a| + |b|.
+$$
+
+### Densidad y numerabilidad:
+
+Entre dos números reales cualesquiera existe un número racional y un número irracional: $$\mathbb{Q}$$ es **denso** en $$\mathbb{R}$$. Sin embargo, $$\mathbb{R}$$ es **no numerable**, mientras que $$\mathbb{Q}$$ sí lo es.

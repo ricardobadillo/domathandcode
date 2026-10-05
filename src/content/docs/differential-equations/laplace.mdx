@@ -1,0 +1,70 @@
+---
+title: Transformada de Laplace
+description: Definición, propiedades y resolución de problemas de valor inicial
+---
+
+### Definición:
+
+La **transformada de Laplace** de una función $$f(t)$$ definida para $$t \geq 0$$ es:
+
+$$
+\mathcal{L}\{f(t)\}(s) = F(s) = \int_{0}^{\infty} e^{-st} f(t) \, dt,
+$$
+
+siempre que la integral converja.
+
+### Linealidad:
+
+$$
+\mathcal{L}\{a f(t) + b g(t)\} = a F(s) + b G(s).
+$$
+
+### Transformadas básicas:
+
+$$
+\begin{aligned}
+&\mathcal{L}\{1\} = \frac{1}{s}, & &\mathcal{L}\{t^n\} = \frac{n!}{s^{n+1}}, \\
+&\mathcal{L}\{e^{at}\} = \frac{1}{s - a}, & &\mathcal{L}\{\sin(\omega t)\} = \frac{\omega}{s^2 + \omega^2}, \\
+&\mathcal{L}\{\cos(\omega t)\} = \frac{s}{s^2 + \omega^2}.
+\end{aligned}
+$$
+
+### Propiedades:
+
+**Derivadas:**
+
+$$
+\mathcal{L}\{f'(t)\} = s F(s) - f(0), \qquad \mathcal{L}\{f''(t)\} = s^2 F(s) - s f(0) - f'(0).
+$$
+
+**Traslación en $$s$$:**
+
+$$
+\mathcal{L}\{e^{at} f(t)\} = F(s - a).
+$$
+
+**Transformada de una integral:**
+
+$$
+\mathcal{L}\left\{ \int_{0}^{t} f(\tau) \, d\tau \right\} = \frac{F(s)}{s}.
+$$
+
+### Resolución de un PVI:
+
+Al aplicar la transformada, la ecuación diferencial se convierte en una ecuación algebraica en $$F(s)$$. Por ejemplo, para:
+
+$$
+y' + a y = 0, \qquad y(0) = y_0,
+$$
+
+se obtiene:
+
+$$
+s F(s) - y_0 + a F(s) = 0 \quad \Longrightarrow \quad F(s) = \frac{y_0}{s + a}.
+$$
+
+Antitransformando:
+
+$$
+y(t) = y_0 e^{-a t}.
+$$

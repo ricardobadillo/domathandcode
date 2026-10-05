@@ -1,0 +1,57 @@
+---
+title: Continuidad y homeomorfismos
+description: Funciones continuas, homeomorfismos e invariantes topológicos
+---
+
+import GeometryFigure from '../../../components/GeometryFigure.astro';
+
+### Continuidad topológica:
+
+Sean $$(X, \tau_X)$$ y $$(Y, \tau_Y)$$ espacios topológicos. Una función $$f : X \to Y$$ es **continua** si la preimagen de todo abierto es abierta:
+
+$$
+U \in \tau_Y \;\Longrightarrow\; f^{-1}(U) \in \tau_X.
+$$
+
+Equivalentemente, la preimagen de todo cerrado es cerrada.
+
+### Continuidad en un punto:
+
+$$f$$ es continua en $$x_0 \in X$$ si para todo entorno $$V$$ de $$f(x_0)$$ existe un entorno $$U$$ de $$x_0$$ con $$f(U) \subseteq V$$. En espacios métricos esto equivale a la definición $$\varepsilon$$-$$\delta$$:
+
+$$
+\forall \varepsilon > 0 \ \exists \delta > 0 : \ d_X(x, x_0) < \delta \Rightarrow d_Y(f(x), f(x_0)) < \varepsilon.
+$$
+
+<GeometryFigure
+	caption="Una función continua: la preimagen de un abierto es un abierto"
+	elements={[
+		{ type: 'ellipse', center: [100, 160], rx: 65, ry: 85 },
+		{ type: 'ellipse', center: [320, 160], rx: 65, ry: 85 },
+		{ type: 'arrow', from: [110, 120], to: [300, 120] },
+		{ type: 'arrow', from: [95, 205], to: [285, 205] },
+		{ type: 'point', at: [110, 120], r: 4 },
+		{ type: 'point', at: [300, 120], r: 4 },
+		{ type: 'point', at: [95, 205], r: 4 },
+		{ type: 'point', at: [285, 205], r: 4 },
+		{ type: 'label', at: [100, 60], text: 'X' },
+		{ type: 'label', at: [320, 60], text: 'Y' },
+	]}
+/>
+
+### Homeomorfismos:
+
+Una función $$f : X \to Y$$ es un **homeomorfismo** si es biyectiva, continua y su inversa $$f^{-1}$$ también es continua. En ese caso $$X$$ e $$Y$$ son **homeomorfos** ($$X \cong Y$$) y tienen las mismas propiedades topológicas.
+
+### Invariantes topológicos:
+
+Una propiedad que se conserva bajo homeomorfismos se llama **invariante topológico**. Ejemplos: compacidad, conexión, conexión por caminos, ser de Hausdorff y el número de componentes conexas. La continuidad conserva la compacidad y la conexión:
+
+- Si $$X$$ es compacto, $$f(X)$$ es compacto.
+- Si $$X$$ es conexo, $$f(X)$$ es conexo.
+
+### Ejemplos:
+
+- Toda función constante es continua.
+- La inclusión de un subespacio es continua.
+- En $$\mathbb{R}$$, los polinomios, la exponencial y las funciones trigonométricas son continuas.

@@ -1,0 +1,100 @@
+---
+title: Geometría analítica
+description: Coordenadas, distancia, recta, circunferencia y cónicas
+---
+
+import FunctionPlot from '../../../components/FunctionPlot.astro';
+import GeometryFigure from '../../../components/GeometryFigure.astro';
+
+### Coordenadas cartesianas:
+
+Un punto del plano se representa por un par ordenado $$P = (x, y)$$ respecto a dos ejes perpendiculares. Los ejes dividen el plano en cuatro **cuadrantes**.
+
+La **distancia** entre dos puntos $$P_1 = (x_1, y_1)$$ y $$P_2 = (x_2, y_2)$$ es:
+
+$$
+d(P_1, P_2) = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}.
+$$
+
+El **punto medio** del segmento $$P_1P_2$$ es $$M = \left( \dfrac{x_1 + x_2}{2}, \dfrac{y_1 + y_2}{2} \right)$$.
+
+### La recta:
+
+La **pendiente** de la recta que pasa por dos puntos es:
+
+$$
+m = \frac{y_2 - y_1}{x_2 - x_1}.
+$$
+
+Formas de la ecuación de la recta:
+
+1. **Punto-pendiente:** $$y - y_1 = m(x - x_1)$$.
+2. **Explícita:** $$y = mx + b$$, con ordenada al origen $$b$$.
+3. **General:** $$Ax + By + C = 0$$.
+
+Dos rectas son **paralelas** si $$m_1 = m_2$$ y **perpendiculares** si $$m_1 m_2 = -1$$.
+
+<FunctionPlot
+	fn="2*x - 1"
+	label="y = 2x - 1"
+	xmin={-3}
+	xmax={3}
+	ymin={-5}
+	ymax={5}
+	caption="Recta de pendiente m = 2 y ordenada al origen b = -1"
+/>
+
+### La circunferencia:
+
+La circunferencia de centro $$(h, k)$$ y radio $$r$$ es:
+
+$$
+(x - h)^2 + (y - k)^2 = r^2.
+$$
+
+En particular, la centrada en el origen es $$x^2 + y^2 = r^2$$.
+
+### Las cónicas:
+
+Se obtienen al cortar un cono con un plano:
+
+1. **Parábola:** $$y = ax^2 + bx + c$$.
+2. **Elipse:** $$\dfrac{(x-h)^2}{a^2} + \dfrac{(y-k)^2}{b^2} = 1$$ (circunferencia si $$a = b$$).
+3. **Hipérbola:** $$\dfrac{(x-h)^2}{a^2} - \dfrac{(y-k)^2}{b^2} = 1$$.
+
+<FunctionPlot
+	fn="x^2 - 2"
+	label="y = x^2 - 2"
+	xmin={-3}
+	xmax={3}
+	ymin={-3}
+	ymax={7}
+	caption="Parábola con vértice en (0, -2)"
+/>
+
+<GeometryFigure
+	caption="Circunferencia y elipse como secciones cónicas"
+	elements={[
+		{ type: 'circle', center: [110, 160], r: 70 },
+		{ type: 'ellipse', center: [310, 160], rx: 90, ry: 55 },
+		{ type: 'point', at: [110, 160], label: 'O', labelOffset: [-14, 20] },
+		{ type: 'point', at: [310, 160], label: "O'", labelOffset: [-16, 20] },
+	]}
+/>
+
+<FunctionPlot
+	fns={[
+		{ fn: 'sqrt(x^2/4 - 1)', label: '\dfrac{x^2}{4} - y^2 = 1' },
+		{ fn: '-sqrt(x^2/4 - 1)' },
+	]}
+	xmin={-5}
+	xmax={5}
+	ymin={-3}
+	ymax={3}
+	caption="Hipérbola como sección cónica"
+/>
+
+### Traslaciones y simetrías:
+
+- Sumar una constante a $$x$$ o a $$y$$ **traslada** la gráfica.
+- Cambiar el signo de $$x$$ refleja respecto al eje $$y$$; cambiar el signo de $$y$$ refleja respecto al eje $$x$$.

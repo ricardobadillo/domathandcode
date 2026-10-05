@@ -1,0 +1,50 @@
+---
+title: Números de Mersenne gaussianos
+description: Definición, primalidad y factorización de los números de Mersenne gaussianos
+---
+
+### Números de Mersenne:
+
+Un **número de Mersenne** es un número de la forma:
+
+$$
+M_n = 2^n - 1, \qquad n \in \mathbb{N}.
+$$
+
+Si $$M_n$$ es primo, entonces $$n$$ es primo; el recíproco es falso, pues $$M_{11} = 2047 = 23 \cdot 89$$.
+
+### Enteros gaussianos:
+
+Los **enteros gaussianos** son los números complejos con partes enteras:
+
+$$
+\mathbb{Z}[i] = \{ a + bi : a, b \in \mathbb{Z} \}, \qquad i^2 = -1.
+$$
+
+Es un anillo euclídeo con la **norma** $$N(a + bi) = a^2 + b^2$$, y sus unidades son $$\pm 1, \pm i$$.
+
+### Definición:
+
+Un **número de Mersenne gaussiano** es un entero gaussiano de la forma:
+
+$$
+M_n(i) = (1 + i)^n - 1, \qquad n \in \mathbb{N}.
+$$
+
+Su norma es:
+
+$$
+N\big((1+i)^n - 1\big) = 2^n + 1 - 2\,\operatorname{Re}\!\big((1+i)^n\big).
+$$
+
+### Primalidad gaussiana:
+
+Un entero gaussiano $$a + bi$$ es **primo gaussiano** si no es una unidad y sus únicos divisores son las unidades y sus asociados. Un primo racional $$p$$ se comporta así en $$\mathbb{Z}[i]$$:
+
+- **Inerte** si $$p \equiv 3 \pmod 4$$ (sigue siendo primo).
+- **Ramificado** si $$p = 2$$, pues $$2 = -i(1+i)^2$$.
+- **Descompuesto** si $$p \equiv 1 \pmod 4$$, y se factoriza como producto de dos primos conjugados.
+
+### Factorización:
+
+Todo entero gaussiano admite una factorización única en primos gaussianos, salvo el orden y la multiplicación por unidades. Los números de Mersenne gaussianos son de interés por su relación con la aritmética de $$\mathbb{Z}[i]$$ y con las recurrencias de tipo Mersenne.

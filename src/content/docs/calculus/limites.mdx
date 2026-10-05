@@ -1,0 +1,71 @@
+---
+title: Límites
+description: Definición de límite, límites laterales y continuidad
+---
+
+import FunctionPlot from '../../../components/FunctionPlot.astro';
+
+### Definición intuitiva:
+
+Se dice que el **límite** de una función $$f(x)$$ cuando $$x$$ tiende a un punto $$a$$ es $$L$$, y se escribe:
+
+$$
+\lim_{x \to a} f(x) = L,
+$$
+
+si los valores de $$f(x)$$ se acercan arbitrariamente a $$L$$ cuando $$x$$ se aproxima a $$a$$, sin ser necesariamente igual a $$f(a)$$.
+
+### Definición épsilon-delta (formal):
+
+$$\lim_{x \to a} f(x) = L$$ si para todo $$\varepsilon > 0$$ existe un $$\delta > 0$$ tal que:
+
+$$
+0 < |x - a| < \delta \quad \Longrightarrow \quad |f(x) - L| < \varepsilon.
+$$
+
+### Límites laterales:
+
+El **límite por la izquierda** se denota $$\lim_{x \to a^{-}} f(x)$$ y el **por la derecha** $$\lim_{x \to a^{+}} f(x)$$. El límite existe si y sólo si ambos límites laterales existen y son iguales:
+
+$$
+\lim_{x \to a} f(x) = L \quad \Longleftrightarrow \quad
+\lim_{x \to a^{-}} f(x) = \lim_{x \to a^{+}} f(x) = L.
+$$
+
+### Límites al infinito:
+
+El límite $$x \to +\infty$$ o $$x \to -\infty$$ describe el comportamiento de $$f$$ cuando $$x$$ crece o decrece sin cota:
+
+$$
+\lim_{x \to +\infty} f(x) = L.
+$$
+
+### Propiedades de los límites:
+
+Si $$\lim_{x \to a} f(x) = L$$ y $$\lim_{x \to a} g(x) = M$$, entonces:
+
+1. $$\lim_{x \to a} \left[ f(x) \pm g(x) \right] = L \pm M.$$
+2. $$\lim_{x \to a} \left[ cf(x) \right] = cL.$$
+3. $$\lim_{x \to a} \left[ f(x)g(x) \right] = LM.$$
+4. Si $$M \neq 0$$, $$\lim_{x \to a} \frac{f(x)}{g(x)} = \frac{L}{M}.$$
+5. Si $$n$$ es un entero positivo, $$\lim_{x \to a} \left[ f(x) \right]^{n} = L^{n}.$$
+
+### Continuidad:
+
+Una función $$f$$ es **continua** en el punto $$a$$ si:
+
+$$
+\lim_{x \to a} f(x) = f(a).
+$$
+
+Es decir, el límite existe, la función está definida en $$a$$ y ambos coinciden. $$f$$ es continua en un intervalo si lo es en todos sus puntos.
+
+<FunctionPlot
+	fn="sin(x)/x"
+	label="f(x) = \frac{\sin x}{x}"
+	xmin={-12}
+	xmax={12}
+	ymin={-0.3}
+	ymax={1.2}
+	caption="La discontinuidad evitable en x = 0 muestra que el límite vale 1"
+/>

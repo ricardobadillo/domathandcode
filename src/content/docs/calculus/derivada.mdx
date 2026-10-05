@@ -1,0 +1,79 @@
+---
+title: Derivada
+description: Definición de derivada, interpretación geométrica y reglas de derivación
+---
+
+import FunctionPlot from '../../../components/FunctionPlot.astro';
+
+### Definición (cociente incremental):
+
+La **derivada** de una función $$f$$ en el punto $$a$$, denotada $$f'(a)$$, se define como el límite:
+
+$$
+f'(a) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h},
+$$
+
+si este límite existe. En ese caso se dice que $$f$$ es **diferenciable** (o derivable) en $$a$$.
+
+Una forma equivalente de escribirlo es:
+
+$$
+f'(a) = \lim_{x \to a} \frac{f(x) - f(a)}{x - a}.
+$$
+
+### Interpretación geométrica:
+
+La derivada $$f'(a)$$ representa la **pendiente** de la recta tangente a la gráfica de $$f$$ en el punto $$(a, f(a))$$. La ecuación de dicha recta tangente es:
+
+$$
+y = f(a) + f'(a)(x - a).
+$$
+
+<FunctionPlot
+	fns={[
+		{ fn: 'x^3 - 3*x', label: 'f(x) = x^3 - 3x' },
+		{ fn: '9*x - 16', label: "y = f(2) + f'(2)(x-2)", dash: true },
+	]}
+	xmin={-3}
+	xmax={3}
+	ymin={-6}
+	ymax={8}
+	caption="Recta tangente a la gráfica de f en x = 2"
+/>
+
+### Derivabilidad y continuidad:
+
+Si $$f$$ es diferenciable en $$a$$, entonces $$f$$ es continua en $$a$$. La recíproca no es cierta: existen funciones continuas que no son diferenciables.
+
+### Reglas de derivación:
+
+Sean $$f$$ y $$g$$ funciones diferenciables y $$c \in \mathbb{R}$$.
+
+1. **Constante:** $$(c)' = 0.$$
+2. **Potencia:** $$(x^n)' = n x^{n-1}, \quad n \in \mathbb{R}.$$
+3. **Suma:** $$(f \pm g)' = f' \pm g'.$$
+4. **Producto por escalar:** $$(cf)' = cf'.$$
+5. **Producto:** $$(fg)' = f'g + fg'.$$
+6. **Cociente:** $$\left( \frac{f}{g} \right)' = \frac{f'g - fg'}{g^2}, \quad g \neq 0.$$
+
+### Regla de la cadena:
+
+Si $$y = f(u)$$ y $$u = g(x)$$, entonces:
+
+$$
+\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx} = f'(g(x)) \, g'(x).
+$$
+
+### Derivadas de funciones elementales:
+
+$$
+\begin{aligned}
+&(\sin x)' = \cos x, & &(\cos x)' = -\sin x, \\
+&(e^x)' = e^x, & &(\ln x)' = \frac{1}{x}, \\
+&(\arctan x)' = \frac{1}{1 + x^2}, & &(a^x)' = a^x \ln a.
+\end{aligned}
+$$
+
+### Puntos críticos y monotonia:
+
+Los **puntos críticos** de $$f$$ son aquellos donde $$f'(x) = 0$$ o $$f'(x)$$ no existe. Si $$f' > 0$$ en un intervalo, $$f$$ es **creciente**; si $$f' < 0$$, es **decreciente**. Un cambio de signo de $$f'$$ en un punto crítico indica un **extremo local** (máximo o mínimo).

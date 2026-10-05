@@ -1,0 +1,79 @@
+---
+title: Análisis
+description: Trigonometría, límites, continuidad, derivadas e integrales elementales
+---
+
+### Trigonometría:
+
+El **radián** es la unidad natural de ángulo: $$\pi\ \text{rad} = 180^\circ$$. Las funciones fundamentales cumplen la identidad pitagórica:
+
+$$
+\sin^2 x + \cos^2 x = 1, \qquad \tan x = \frac{\sin x}{\cos x}.
+$$
+
+Fórmulas de suma y diferencia:
+
+$$
+\sin(a \pm b) = \sin a \cos b \pm \cos a \sin b, \qquad \cos(a \pm b) = \cos a \cos b \mp \sin a \sin b.
+$$
+
+Del ángulo doble: $$\sin 2x = 2 \sin x \cos x$$ y $$\cos 2x = \cos^2 x - \sin^2 x$$. Valores notables:
+
+| $$x$$ | $$0$$ | $$\tfrac{\pi}{6}$$ | $$\tfrac{\pi}{4}$$ | $$\tfrac{\pi}{3}$$ | $$\tfrac{\pi}{2}$$ |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| $$\sin x$$ | $$0$$ | $$\tfrac{1}{2}$$ | $$\tfrac{\sqrt{2}}{2}$$ | $$\tfrac{\sqrt{3}}{2}$$ | $$1$$ |
+| $$\cos x$$ | $$1$$ | $$\tfrac{\sqrt{3}}{2}$$ | $$\tfrac{\sqrt{2}}{2}$$ | $$\tfrac{1}{2}$$ | $$0$$ |
+
+### Límites:
+
+$$
+\lim_{x \to a} f(x) = L
+$$
+
+significa que $$f(x)$$ se acerca a $$L$$ cuando $$x$$ se acerca a $$a$$. Son habituales las **indeterminaciones** $$\tfrac{0}{0}$$, $$\tfrac{\infty}{\infty}$$, $$\infty - \infty$$, $$0 \cdot \infty$$, $$1^\infty$$, $$0^0$$ y $$\infty^0$$, que se resuelven factorizando, racionalizando, comparando órdenes o con la regla de L'Hôpital. Límites notables:
+
+$$
+\lim_{x \to 0} \frac{\sin x}{x} = 1, \qquad \lim_{x \to 0} (1 + x)^{1/x} = e, \qquad \lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e.
+$$
+
+### Continuidad:
+
+$$f$$ es **continua** en $$a$$ si $$\lim_{x \to a} f(x) = f(a)$$. Si el límite no existe, es infinito o no coincide con $$f(a)$$, hay una **discontinuidad** (evitable, de salto o asintótica).
+
+### Derivadas:
+
+La derivada es la tasa de cambio instantánea y la pendiente de la recta tangente:
+
+$$
+f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}.
+$$
+
+Derivadas elementales:
+
+$$
+(x^n)' = n x^{n-1}, \quad (e^x)' = e^x, \quad (\ln x)' = \frac{1}{x}, \quad (\sin x)' = \cos x, \quad (\cos x)' = -\sin x, \quad (\tan x)' = \sec^2 x.
+$$
+
+Reglas: $$(fg)' = f'g + fg'$$, $$\left(\dfrac{f}{g}\right)' = \dfrac{f'g - fg'}{g^2}$$ y la regla de la cadena $$(f(g(x)))' = f'(g(x))\,g'(x)$$.
+
+### Integrales:
+
+La integral es la operación inversa de la derivada. Integrales inmediatas:
+
+$$
+\int x^n \, dx = \frac{x^{n+1}}{n+1} + C \ (n \neq -1), \quad \int \frac{1}{x} \, dx = \ln \lvert x \rvert + C, \quad \int e^x \, dx = e^x + C,
+$$
+
+$$
+\int \cos x \, dx = \sin x + C, \qquad \int \sin x \, dx = -\cos x + C.
+$$
+
+El **teorema fundamental del cálculo** relaciona derivada e integral definida:
+
+$$
+\int_{a}^{b} f(x) \, dx = F(b) - F(a), \qquad F' = f.
+$$
+
+### Sucesiones y series:
+
+Una sucesión $$(a_n)$$ **converge** a $$L$$ si $$a_n \to L$$ cuando $$n \to \infty$$. La serie $$\sum a_n$$ es el límite de las sumas parciales. Destacan la **serie geométrica** $$\sum_{n=0}^{\infty} r^n = \frac{1}{1-r}$$ (para $$\lvert r \rvert < 1$$) y la **serie p** $$\sum \frac{1}{n^p}$$, que converge si y sólo si $$p > 1$$.

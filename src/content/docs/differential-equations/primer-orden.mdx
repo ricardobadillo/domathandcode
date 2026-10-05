@@ -1,0 +1,66 @@
+---
+title: Ecuaciones de primer orden
+description: Ecuaciones de variables separables, lineales, homogéneas y de Bernoulli
+---
+
+### Variables separables:
+
+Una ecuación es de **variables separables** si puede escribirse como:
+
+$$
+\frac{dy}{dx} = g(x)\, h(y).
+$$
+
+Separando las variables e integrando:
+
+$$
+\int \frac{dy}{h(y)} = \int g(x) \, dx + C.
+$$
+
+### Ecuaciones lineales:
+
+Una ecuación lineal de primer orden tiene la forma:
+
+$$
+\frac{dy}{dx} + P(x)\, y = Q(x).
+$$
+
+El **factor integrante** asociado es:
+
+$$
+\mu(x) = e^{\int P(x) \, dx}.
+$$
+
+Multiplicando por $$\mu(x)$$ la ecuación se vuelve exacta, y la solución general es:
+
+$$
+y(x) = \frac{1}{\mu(x)} \left( \int \mu(x)\, Q(x) \, dx + C \right).
+$$
+
+### Ecuaciones homogéneas:
+
+Una ecuación es **homogénea** si puede escribirse como:
+
+$$
+\frac{dy}{dx} = F\!\left( \frac{y}{x} \right).
+$$
+
+El cambio de variable $$v = \dfrac{y}{x}$$, es decir $$y = vx$$, la transforma en una ecuación de variables separables:
+
+$$
+x \frac{dv}{dx} = F(v) - v.
+$$
+
+### Ecuación de Bernoulli:
+
+Tiene la forma:
+
+$$
+\frac{dy}{dx} + P(x)\, y = Q(x)\, y^{n}, \qquad n \neq 0, 1.
+$$
+
+El cambio de variable $$v = y^{1-n}$$ la reduce a una ecuación lineal:
+
+$$
+\frac{dv}{dx} + (1 - n)\, P(x)\, v = (1 - n)\, Q(x).
+$$

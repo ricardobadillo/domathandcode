@@ -1,0 +1,75 @@
+---
+title: Probabilidades
+description: Definición de probabilidad, espacio muestral, eventos y axiomas de Kolmogorov
+---
+
+### Espacio muestral:
+
+Se llama **espacio muestral**, denotado $$\Omega$$, al conjunto de todos los resultados posibles de un experimento aleatorio. Por ejemplo, al lanzar un dado, $$\Omega = \{ 1, 2, 3, 4, 5, 6 \}$$.
+
+### Eventos:
+
+Un **evento** (o suceso) es cualquier subconjunto $$A \subseteq \Omega$$. Un evento con un único elemento se llama **evento simple**. El conjunto vacío $$\emptyset$$ es el **evento imposible** y $$\Omega$$ es el **evento seguro**.
+
+### Definición de probabilidad (Kolmogorov):
+
+Una **probabilidad** es una función $$P : \mathcal{F} \to [0, 1]$$ definida sobre una colección de eventos $$\mathcal{F}$$ que satisface los axiomas:
+
+1. **No negatividad:** $$0 \leq P(A) \leq 1$$ para todo evento $$A$$.
+2. **Normalización:** $$P(\Omega) = 1$$.
+3. **Aditividad:** si $$A$$ y $$B$$ son eventos mutuamente excluyentes ($$A \cap B = \emptyset$$), entonces:
+   $$
+   P(A \cup B) = P(A) + P(B).
+   $$
+
+La terna $$(\Omega, \mathcal{F}, P)$$ se llama **espacio de probabilidad**.
+
+### Propiedades de la probabilidad:
+
+1. $$P(\emptyset) = 0.$$
+2. $$P(A^c) = 1 - P(A).$$
+3. Si $$A \subseteq B$$, entonces $$P(A) \leq P(B)$$.
+4. **Regla de inclusión-exclusión:**
+   $$
+   P(A \cup B) = P(A) + P(B) - P(A \cap B).
+   $$
+
+### Probabilidad condicional:
+
+La **probabilidad condicional** de un evento $$A$$ dado que ya ocurrió $$B$$ ($$P(B) > 0$$) es:
+
+$$
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}.
+$$
+
+### Regla del producto:
+
+De la definición anterior se deduce:
+
+$$
+P(A \cap B) = P(B) \, P(A \mid B) = P(A) \, P(B \mid A).
+$$
+
+### Independencia:
+
+Dos eventos $$A$$ y $$B$$ son **independientes** si la ocurrencia de uno no afecta a la probabilidad del otro:
+
+$$
+P(A \cap B) = P(A) \, P(B).
+$$
+
+### Teorema de Bayes:
+
+Si $$\{ B_1, B_2, \dots, B_n \}$$ es una partición de $$\Omega$$ y $$P(A) > 0$$, entonces:
+
+$$
+P(B_k \mid A) = \frac{P(B_k) \, P(A \mid B_k)}{\displaystyle \sum_{i=1}^{n} P(B_i) \, P(A \mid B_i)}.
+$$
+
+### Probabilidad clásica (Laplace):
+
+Si todos los resultados de un espacio muestral finito son igualmente probables, la probabilidad de un evento $$A$$ es:
+
+$$
+P(A) = \frac{|A|}{|\Omega|} = \frac{\text{casos favorables}}{\text{casos posibles}}.
+$$

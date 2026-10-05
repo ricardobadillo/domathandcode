@@ -1,0 +1,62 @@
+---
+title: Inferencia estadística
+description: Estimación puntual, intervalos de confianza y tamaños de muestra
+---
+
+### Población, muestra y estimadores:
+
+La **población** es el conjunto completo de interés; la **muestra** es un subconjunto representativo de tamaño $$n$$. Un **estimador** $$\hat{\theta}$$ es un estadístico que aproxima un parámetro $$\theta$$ desconocido. Propiedades deseables:
+
+- **Insesgado:** $$E[\hat{\theta}] = \theta.$$
+- **Consistente:** $$\hat{\theta} \to \theta$$ cuando $$n \to \infty$$.
+- **Eficiente:** tiene la menor varianza entre los estimadores insesgados.
+
+### Error estándar:
+
+La desviación típica del estimador se llama **error estándar**. Para la media muestral:
+
+$$
+SE(\bar{x}) = \frac{\sigma}{\sqrt{n}} \approx \frac{s}{\sqrt{n}}.
+$$
+
+### Intervalos de confianza:
+
+Un **intervalo de confianza** al nivel $$1 - \alpha$$ contiene al parámetro con esa probabilidad.
+
+**Para la media (varianza conocida o $$n$$ grande):**
+
+$$
+\bar{x} \pm z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}}.
+$$
+
+**Para la media (varianza desconocida, muestra pequeña):** se usa la distribución $$t$$ de Student con $$n - 1$$ grados de libertad:
+
+$$
+\bar{x} \pm t_{\alpha/2,\, n-1}\, \frac{s}{\sqrt{n}}.
+$$
+
+**Para una proporción:**
+
+$$
+\hat{p} \pm z_{\alpha/2} \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}.
+$$
+
+**Para la varianza:** con la distribución chi-cuadrado $$\chi^2_{n-1}$$:
+
+$$
+\left( \frac{(n-1)s^2}{\chi^2_{\alpha/2}},\, \frac{(n-1)s^2}{\chi^2_{1-\alpha/2}} \right).
+$$
+
+### Tamaño de muestra:
+
+Para estimar una media con un error máximo $$E$$:
+
+$$
+n = \left( \frac{z_{\alpha/2}\, \sigma}{E} \right)^2.
+$$
+
+Para estimar una proporción, con $$\hat{p}$$ (o $$0.5$$ si se desconoce):
+
+$$
+n = \frac{z_{\alpha/2}^2\, \hat{p}(1 - \hat{p})}{E^2}.
+$$

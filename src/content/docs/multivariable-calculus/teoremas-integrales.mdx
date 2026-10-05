@@ -1,0 +1,52 @@
+---
+title: Teoremas integrales
+description: Teoremas de Green, Stokes y de la divergencia
+---
+
+### Teorema de Green:
+
+Sea $$D$$ una región del plano con frontera $$\partial D$$ recorrida en sentido antihorario. Si $$P$$ y $$Q$$ tienen derivadas parciales continuas, entonces:
+
+$$
+\oint_{\partial D} (P\, dx + Q\, dy) = \iint_D \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) dA.
+$$
+
+Relaciona la circulación de un campo en el plano con la integral doble de su rotacional escalar. Permite calcular **áreas**:
+
+$$
+A(D) = \frac{1}{2} \oint_{\partial D} (x\, dy - y\, dx).
+$$
+
+### Teorema de Stokes:
+
+Generaliza el teorema de Green al espacio. Sea $$S$$ una superficie orientada con frontera $$\partial S$$ y campo $$\mathbf{F}$$ con derivadas continuas:
+
+$$
+\oint_{\partial S} \mathbf{F} \cdot d\mathbf{r} = \iint_S (\nabla \times \mathbf{F}) \cdot d\mathbf{S}.
+$$
+
+La **circulación** de $$\mathbf{F}$$ a lo largo de la frontera es igual al **flujo del rotacional** a través de la superficie.
+
+### Teorema de la divergencia (Gauss):
+
+Sea $$V$$ un sólido con frontera cerrada $$\partial V$$ orientada hacia el exterior:
+
+$$
+\iiint_V (\nabla \cdot \mathbf{F})\, dV = \iint_{\partial V} \mathbf{F} \cdot d\mathbf{S}.
+$$
+
+El **flujo** neto de $$\mathbf{F}$$ a través de la superficie cerrada es igual a la **integral triple de su divergencia**.
+
+### Relación entre los teoremas:
+
+Los tres son casos del **teorema de Stokes generalizado** y relacionan una integral sobre una variedad con otra sobre su frontera:
+
+- Green: dimensión 2 (rotacional escalar).
+- Stokes: superficie en $$\mathbb{R}^3$$ (rotacional).
+- Divergencia: volumen en $$\mathbb{R}^3$$ (divergencia).
+
+### Aplicaciones:
+
+- Cálculo de flujos y circulaciones sin integrar directamente.
+- Interpretación física: conservación de masa y de carga.
+- Cálculo de áreas y volúmenes.

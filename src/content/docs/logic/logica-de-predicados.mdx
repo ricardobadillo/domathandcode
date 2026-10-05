@@ -1,0 +1,69 @@
+---
+title: Lógica de predicados
+description: Predicados, cuantificadores y el lenguaje de la lógica de primer orden
+---
+
+### Definición:
+
+La **lógica de predicados** (o lógica de primer orden) amplía la lógica proposicional permitiendo hablar de objetos, sus propiedades y sus relaciones. Sus componentes básicos son:
+
+- Un **dominio** o universo $$D$$ de objetos.
+- **Constantes** $$a, b, c, \dots$$ que designan objetos de $$D$$.
+- **Variables** $$x, y, z, \dots$$ que recorren los elementos de $$D$$.
+- **Predicados** $$P(x), Q(x, y), \dots$$ que expresan propiedades o relaciones.
+- **Funciones** $$f(x), g(x, y), \dots$$ que devuelven objetos de $$D$$.
+
+### Predicados:
+
+Un **predicado** $$P(x)$$ es una expresión que se convierte en una proposición al sustituir la variable $$x$$ por un objeto del dominio. Por ejemplo, si $$D = \mathbb{N}$$ y $$P(x)$$ es «$$x$$ es par», entonces $$P(4)$$ es verdadera y $$P(7)$$ es falsa.
+
+### Cuantificadores:
+
+A partir de un predicado se forman proposiciones mediante los **cuantificadores**:
+
+1. **Cuantificador universal** $$\forall x \, P(x)$$: «para todo $$x$$, se cumple $$P(x)$$».
+2. **Cuantificador existencial** $$\exists x \, P(x)$$: «existe al menos un $$x$$ tal que $$P(x)$$».
+
+### Semántica:
+
+Sea $$D$$ el dominio de discusión. Entonces:
+
+$$
+\forall x \, P(x) \text{ es } V \iff P(a) \text{ es } V \text{ para todo } a \in D,
+$$
+
+$$
+\exists x \, P(x) \text{ es } V \iff P(a) \text{ es } V \text{ para al menos un } a \in D.
+$$
+
+### Negación de cuantificadores:
+
+Las **leyes de De Morgan para cuantificadores** establecen:
+
+$$
+\neg \forall x \, P(x) \equiv \exists x \, \neg P(x),
+$$
+
+$$
+\neg \exists x \, P(x) \equiv \forall x \, \neg P(x).
+$$
+
+### Variables libres y ligadas:
+
+Una variable es **ligada** si está afectada por un cuantificador y **libre** en caso contrario. Una fórmula sin variables libres se denomina **enunciado** o **fórmula cerrada** y tiene un valor de verdad bien definido en cada dominio.
+
+### Ejemplo:
+
+Si $$D = \mathbb{R}$$ y $$P(x, y)$$ es «$$x < y$$», entonces:
+
+$$
+\forall x \, \exists y \, P(x, y)
+$$
+
+es verdadera (para todo real existe uno mayor), mientras que
+
+$$
+\exists y \, \forall x \, P(x, y)
+$$
+
+es falsa (no existe un real mayor que todos los demás). Esto muestra que el orden de los cuantificadores importa.

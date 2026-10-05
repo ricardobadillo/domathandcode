@@ -1,0 +1,124 @@
+---
+title: Distribuciones continuas
+description: Distribuciones uniforme, exponencial y normal; teorema central del límite
+---
+
+import FunctionPlot from '../../../components/FunctionPlot.astro';
+
+### Distribución uniforme continua:
+
+Modela una variable con densidad constante en el intervalo $$[a, b]$$. La función de densidad es:
+
+$$
+f(x) = \begin{cases}
+\dfrac{1}{b - a} & \text{si } a \leq x \leq b, \\[6pt]
+0 & \text{en otro caso}.
+\end{cases}
+$$
+
+Se denota $$X \sim \operatorname{U}(a, b)$$. Sus parámetros son:
+
+$$
+E[X] = \frac{a + b}{2}, \qquad \operatorname{Var}(X) = \frac{(b - a)^2}{12}.
+$$
+
+### Distribución exponencial:
+
+Modela el tiempo de espera hasta el primer evento de un proceso de Poisson, con tasa $$\lambda > 0$$. La función de densidad es:
+
+$$
+f(x) = \begin{cases}
+\lambda e^{-\lambda x} & \text{si } x \geq 0, \\[6pt]
+0 & \text{si } x < 0.
+\end{cases}
+$$
+
+Se denota $$X \sim \operatorname{Exp}(\lambda)$$. Sus parámetros son:
+
+$$
+E[X] = \frac{1}{\lambda}, \qquad \operatorname{Var}(X) = \frac{1}{\lambda^2}.
+$$
+
+La distribución exponencial posee la propiedad de **falta de memoria**:
+
+$$
+P(X > s + t \mid X > s) = P(X > t).
+$$
+
+<FunctionPlot
+	fn="2*exp(-2*x)"
+	label="f(x) = 2e^{-2x}"
+	xmin={0}
+	xmax={4}
+	ymin={0}
+	ymax={2.2}
+	caption="Densidad exponencial con λ = 2"
+/>
+
+### Distribución normal (Gaussiana):
+
+Es la distribución continua más importante. Su función de densidad es:
+
+$$
+f(x) = \frac{1}{\sigma \sqrt{2\pi}} \, e^{-\frac{(x - \mu)^2}{2\sigma^2}}, \qquad x \in \mathbb{R},
+$$
+
+donde $$\mu \in \mathbb{R}$$ es la media y $$\sigma > 0$$ la desviación estándar. Se denota $$X \sim \mathcal{N}(\mu, \sigma^2)$$. Se cumple:
+
+$$
+E[X] = \mu, \qquad \operatorname{Var}(X) = \sigma^2.
+$$
+
+<FunctionPlot
+	fn="exp(-x^2/2)/sqrt(2*pi)"
+	label="\varphi(z) = \frac{1}{\sqrt{2\pi}}\, e^{-z^2/2}"
+	xmin={-4}
+	xmax={4}
+	ymin={0}
+	ymax={0.45}
+	caption="Densidad normal estándar"
+/>
+
+### Normal estándar:
+
+La distribución $$\mathcal{N}(0, 1)$$ se llama **normal estándar**, y su función de distribución se denota $$\Phi(z)$$:
+
+$$
+\Phi(z) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{z} e^{-\frac{t^2}{2}} \, dt.
+$$
+
+Toda variable normal se estandariza mediante:
+
+$$
+Z = \frac{X - \mu}{\sigma} \sim \mathcal{N}(0, 1).
+$$
+
+### Regla empírica (68-95-99,7):
+
+Para $$X \sim \mathcal{N}(\mu, \sigma^2)$$:
+
+$$
+\begin{aligned}
+P(\mu - \sigma \leq X \leq \mu + \sigma) &\approx 0{,}68, \\
+P(\mu - 2\sigma \leq X \leq \mu + 2\sigma) &\approx 0{,}95, \\
+P(\mu - 3\sigma \leq X \leq \mu + 3\sigma) &\approx 0{,}997.
+\end{aligned}
+$$
+
+### Teorema central del límite:
+
+Si $$X_1, X_2, \dots, X_n$$ son variables aleatorias independientes e idénticamente distribuidas con media $$\mu$$ y varianza $$\sigma^2$$ finita, entonces la suma estandarizada converge en distribución a una normal estándar cuando $$n \to \infty$$:
+
+$$
+\frac{\sum_{i=1}^{n} X_i - n\mu}{\sigma \sqrt{n}} \;\xrightarrow{\;d\;}\; \mathcal{N}(0, 1).
+$$
+
+### Distribución Gamma y otras:
+
+La **distribución Gamma** generaliza a la exponencial con función de densidad:
+
+$$
+f(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)} x^{\alpha - 1} e^{-\lambda x}, \qquad x > 0,
+$$
+
+con $$E[X] = \dfrac{\alpha}{\lambda}$$ y $$\operatorname{Var}(X) = \dfrac{\alpha}{\lambda^2}$$. Otras relacionadas son la distribución **de Weibull**, **beta** y **de Pareto**, ampliamente usadas en modelado y estadística aplicada.

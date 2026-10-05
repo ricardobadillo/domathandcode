@@ -1,0 +1,83 @@
+---
+title: Teoría de grafos
+description: Grafos, caminos, árboles, conectividad y coloración
+---
+
+import GeometryFigure from '../../../components/GeometryFigure.astro';
+
+### Definición:
+
+Un **grafo** $$G = (V, E)$$ consta de un conjunto de **vértices** $$V$$ y un conjunto de **aristas** $$E$$, donde cada arista conecta dos vértices. Si las aristas tienen dirección, el grafo es **dirigido** (dígrafo); si no, es **no dirigido**.
+
+<GeometryFigure
+	caption="Grafo con cinco vértices y siete aristas"
+	elements={[
+		{ type: 'segment', from: [100, 80], to: [260, 60] },
+		{ type: 'segment', from: [260, 60], to: [340, 180] },
+		{ type: 'segment', from: [340, 180], to: [200, 250] },
+		{ type: 'segment', from: [200, 250], to: [80, 190] },
+		{ type: 'segment', from: [80, 190], to: [100, 80] },
+		{ type: 'segment', from: [100, 80], to: [340, 180] },
+		{ type: 'segment', from: [260, 60], to: [200, 250] },
+		{ type: 'point', at: [100, 80], r: 5, label: 'A' },
+		{ type: 'point', at: [260, 60], r: 5, label: 'B' },
+		{ type: 'point', at: [340, 180], r: 5, label: 'C' },
+		{ type: 'point', at: [200, 250], r: 5, label: 'D' },
+		{ type: 'point', at: [80, 190], r: 5, label: 'E' },
+	]}
+/>
+
+### Clasificación:
+
+- **Simple:** sin aristas múltiples ni bucles.
+- **Completo** $$K_n$$: todos los pares de vértices están conectados.
+- **Bipartito:** los vértices se dividen en dos conjuntos y toda arista une vértices de conjuntos distintos.
+- **Ponderado:** cada arista tiene un peso o coste.
+- **Regular:** todos los vértices tienen el mismo grado.
+
+### Grado y conectividad:
+
+El **grado** de un vértice es el número de aristas que inciden en él. En todo grafo, la suma de los grados es el doble del número de aristas:
+
+$$
+\sum_{v \in V} \deg(v) = 2\lvert E \rvert.
+$$
+
+Un **camino** es una secuencia de vértices conectados por aristas; si vuelve al inicio es un **ciclo**. Un grafo es **conexo** si existe un camino entre cualquier par de vértices.
+
+### Caminos y circuitos especiales:
+
+- **Camino de Euler:** recorre cada arista exactamente una vez. Existe si y sólo si el grafo es conexo y tiene $$0$$ o $$2$$ vértices de grado impar.
+- **Circuito de Euler:** camino de Euler cerrado; requiere que todos los vértices tengan grado par.
+- **Camino de Hamilton:** visita cada vértice exactamente una vez.
+
+### Árboles:
+
+Un **árbol** es un grafo conexo y sin ciclos. Propiedades: con $$n$$ vértices tiene exactamente $$n - 1$$ aristas, y entre dos vértices cualesquiera existe un único camino.
+
+<GeometryFigure
+	caption="Árbol: grafo conexo y sin ciclos"
+	elements={[
+		{ type: 'segment', from: [210, 60], to: [130, 150] },
+		{ type: 'segment', from: [210, 60], to: [290, 150] },
+		{ type: 'segment', from: [130, 150], to: [80, 250] },
+		{ type: 'segment', from: [130, 150], to: [180, 250] },
+		{ type: 'segment', from: [290, 150], to: [250, 250] },
+		{ type: 'segment', from: [290, 150], to: [330, 250] },
+		{ type: 'point', at: [210, 60], r: 5 },
+		{ type: 'point', at: [130, 150], r: 5 },
+		{ type: 'point', at: [290, 150], r: 5 },
+		{ type: 'point', at: [80, 250], r: 5 },
+		{ type: 'point', at: [180, 250], r: 5 },
+		{ type: 'point', at: [250, 250], r: 5 },
+		{ type: 'point', at: [330, 250], r: 5 },
+	]}
+/>
+
+### Coloración:
+
+Una **coloración** asigna colores a los vértices de modo que dos vértices adyacentes nunca compartan color. El **número cromático** $$\chi(G)$$ es el mínimo de colores necesarios. Por ejemplo, $$\chi(K_n) = n$$ y todo grafo plano admite una coloración con $$4$$ colores (teorema de los cuatro colores).
+
+### Representación:
+
+Un grafo puede representarse mediante su **matriz de adyacencia** $$A$$, donde $$A_{ij} = 1$$ si hay arista entre los vértices $$i$$ y $$j$$, o mediante **listas de adyacencia**.

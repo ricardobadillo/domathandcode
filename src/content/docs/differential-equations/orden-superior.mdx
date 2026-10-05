@@ -1,0 +1,71 @@
+---
+title: Ecuaciones lineales de orden superior
+description: Ecuaciones homogéneas y no homogéneas, ecuación característica y Wronskiano
+---
+
+import FunctionPlot from '../../../components/FunctionPlot.astro';
+
+### Forma general:
+
+Una ecuación diferencial lineal de orden $$n$$ se escribe:
+
+$$
+a_n(x)\, y^{(n)} + a_{n-1}(x)\, y^{(n-1)} + \cdots + a_1(x)\, y' + a_0(x)\, y = g(x).
+$$
+
+Si $$g(x) = 0$$ la ecuación es **homogénea**; en caso contrario es **no homogénea**.
+
+### Coeficientes constantes:
+
+Para la ecuación homogénea con coeficientes constantes:
+
+$$
+a_n y^{(n)} + \cdots + a_1 y' + a_0 y = 0,
+$$
+
+se propone la solución $$y = e^{rx}$$, lo que conduce a la **ecuación característica**:
+
+$$
+a_n r^{n} + a_{n-1} r^{n-1} + \cdots + a_1 r + a_0 = 0.
+$$
+
+Según sus raíces:
+
+- Raíces reales distintas $$r_1, \dots, r_n$$: $$y = C_1 e^{r_1 x} + \cdots + C_n e^{r_n x}.$$
+- Raíz real $$r$$ repetida con multiplicidad $$m$$: aparecen los términos $$e^{rx}, \, x e^{rx}, \dots, x^{m-1} e^{rx}.$$
+- Raíces complejas $$\alpha \pm \beta i$$: $$y = e^{\alpha x}\left( C_1 \cos(\beta x) + C_2 \sin(\beta x) \right).$$
+
+<FunctionPlot
+	fn="exp(-0.3*x)*cos(2*x)"
+	label="y = e^{-0.3x}\cos(2x)"
+	xmin={0}
+	xmax={12}
+	ymin={-1}
+	ymax={1}
+	caption="Solución amortiguada asociada a raíces complejas"
+/>
+
+### Wronskiano:
+
+Dadas $$n$$ soluciones $$y_1, \dots, y_n$$, el **wronskiano** es el determinante:
+
+$$
+W(y_1, \dots, y_n) = \begin{vmatrix}
+y_1 & y_2 & \cdots & y_n \\
+y_1' & y_2' & \cdots & y_n' \\
+\vdots & \vdots & & \vdots \\
+y_1^{(n-1)} & y_2^{(n-1)} & \cdots & y_n^{(n-1)}
+\end{vmatrix}.
+$$
+
+Si $$W \neq 0$$ en algún punto, las soluciones son **linealmente independientes** y forman un sistema fundamental.
+
+### Solución de la no homogénea:
+
+La solución general de la ecuación no homogénea es:
+
+$$
+y = y_h + y_p,
+$$
+
+donde $$y_h$$ es la solución general de la homogénea asociada e $$y_p$$ una solución particular. Esta última puede hallarse por el método de **coeficientes indeterminados** o por **variación de parámetros**.

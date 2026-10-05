@@ -1,0 +1,45 @@
+---
+title: Métodos de demostración
+description: Demostración directa, contrarrecíproco, reducción al absurdo e inducción
+---
+
+### Definición:
+
+Una **demostración** es una cadena finita de razonamientos válidos que, partiendo de axiomas, definiciones y resultados ya conocidos, establece la verdad de una proposición. A continuación se recogen los métodos más habituales.
+
+### Demostración directa:
+
+Para probar $$p \to q$$ se supone $$p$$ y, mediante pasos válidos, se deduce $$q$$. Es el método más natural cuando la hipótesis conduce de forma clara a la tesis.
+
+### Demostración por contrarrecíproco:
+
+Como $$p \to q \equiv \neg q \to \neg p$$, para probar $$p \to q$$ basta suponer $$\neg q$$ y deducir $$\neg p$$. Resulta útil cuando la negación de la conclusión es más manejable que la hipótesis.
+
+### Demostración por reducción al absurdo:
+
+Para probar una proposición $$p$$ se supone $$\neg p$$ y se deriva una contradicción de la forma $$r \wedge \neg r$$. Puesto que una contradicción es imposible, se concluye que $$p$$ es verdadera.
+
+### Demostración por casos:
+
+Si la hipótesis se descompone en casos $$p_1, p_2, \dots, p_n$$ mutuamente excluyentes y exhaustivos, se demuestra la conclusión en cada uno de ellos:
+
+$$
+(p_1 \vee p_2 \vee \cdots \vee p_n) \to q.
+$$
+
+### Demostración por contraejemplo:
+
+Para refutar un enunciado universal $$\forall x \, P(x)$$ basta exhibir un único objeto $$a$$ del dominio tal que $$P(a)$$ sea falsa. Ese objeto se denomina **contraejemplo**.
+
+### Inducción matemática:
+
+Para probar que una propiedad $$P(n)$$ vale para todo entero $$n \geq n_0$$:
+
+1. **Base:** se verifica $$P(n_0)$$.
+2. **Paso inductivo:** se supone $$P(k)$$ (**hipótesis inductiva**) y se demuestra $$P(k + 1)$$.
+
+Entonces $$P(n)$$ es verdadera para todo $$n \geq n_0$$.
+
+### Inducción fuerte:
+
+En la **inducción fuerte** el paso inductivo supone $$P(n_0), P(n_0 + 1), \dots, P(k)$$ para demostrar $$P(k + 1)$$. Es equivalente a la inducción ordinaria y resulta útil cuando $$P(k+1)$$ depende de varios casos anteriores.
